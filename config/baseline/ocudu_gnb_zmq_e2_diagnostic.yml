@@ -1,0 +1,99 @@
+# Diagnostic-only variant of the frozen live gNB configuration. It keeps the
+# same radio, scheduler, core, E2, slicing, metrics, and PCAP settings while
+# increasing log visibility for one bounded root-cause run.
+cu_cp:
+  inactivity_timer: 7200
+  amf:
+    addrs: 127.0.0.5
+    port: 38412
+    bind_addrs: 127.0.0.1
+    supported_tracking_areas:
+      - tac: 7
+        plmn_list:
+          - plmn: "00101"
+            tai_slice_support_list:
+              - sst: 1
+                sd: 1
+
+ru_sdr:
+  device_driver: zmq
+  device_args: tx_port=tcp://127.0.0.1:2000,rx_port=tcp://127.0.0.1:2001,base_srate=23.04e6
+  srate: 23.04
+  tx_gain: 0
+  rx_gain: 0
+
+cell_cfg:
+  dl_arfcn: 368500
+  band: 3
+  channel_bandwidth_MHz: 20
+  common_scs: 15
+  plmn: "00101"
+  tac: 7
+  slicing:
+    - sst: 1
+      sd: 1
+      sched_cfg:
+        min_prb_policy_ratio: 10
+        max_prb_policy_ratio: 100
+        ded_prb_policy_ratio: 1
+  pdcch:
+    dedicated:
+      ss2_type: common
+      dci_format_0_1_and_1_1: false
+    common:
+      ss0_index: 0
+      coreset0_index: 12
+  prach:
+    prach_config_index: 1
+  pdsch:
+    mcs_table: qam64
+    max_consecutive_kos: 10000000
+  pusch:
+    mcs_table: qam64
+    max_consecutive_kos: 10000000
+  pucch:
+    max_consecutive_kos: 10000000
+
+e2:
+  enable_du_e2: true
+  addrs: 127.0.0.1
+  bind_addrs: 127.0.0.1
+  port: 36421
+  e2sm_kpm_enabled: true
+  e2sm_rc_enabled: true
+
+metrics:
+  autostart_stdout_metrics: true
+  enable_log: true
+  enable_json: true
+  enable_verbose: false
+  periodicity:
+    du_report_period: 100
+  layers:
+    enable_sched: true
+    enable_sched_ue: true
+    enable_rlc: true
+    enable_mac: true
+
+remote_control:
+  enabled: true
+  bind_addr: 127.0.0.1
+  port: 8001
+
+log:
+  filename: stdout
+  # Narrow causal logging for bounded RLF diagnosis. Keeping every subsystem
+  # at INFO previously generated enough output to perturb the software radio.
+  all_level: warning
+  mac_level: warning
+  f1ap_level: info
+  ngap_level: info
+  rrc_level: info
+  e2ap_level: warning
+  hex_max_size: 0
+
+pcap:
+  mac_enable: enable
+  mac_filename: /evidence/gnb_mac.pcap
+  ngap_enable: enable
+  ngap_filename: /evidence/gnb_ngap.pcap

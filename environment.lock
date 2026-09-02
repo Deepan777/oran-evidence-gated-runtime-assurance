@@ -1,0 +1,26 @@
+schema_version: 1
+status: pre_provisioning
+reference_host:
+  os: Ubuntu 24.04 LTS
+  architecture: x86_64
+  docker_engine_required: true
+  docker_desktop_prohibited: true
+python:
+  version: "3.11"
+  ubuntu_24_04_source: "ppa:deadsnakes/ppa"
+  package_version: pending_linux_provisioning
+  environment_path_windows: "<project-root>\\envs\\oran-action-xai"
+  environment_path_linux: /opt/oran-action-xai/envs/oran-action-xai
+external_repositories:
+  ocudu: {url: "https://gitlab.com/ocudu/ocudu.git", commit: pending_phase_4_clone}
+  oran_sc_ric: {url: "https://gerrit.o-ran-sc.org/r/ric-plt/ric-dep", commit: pending_phase_4_clone}
+  flexric: {url: "https://gitlab.eurecom.fr/mosaic5g/flexric.git", commit: pending_compatibility_clone}
+  open5gs: {url: "https://github.com/open5gs/open5gs.git", commit: pending_phase_4_clone}
+  srsran4g: {url: "https://github.com/srsRAN/srsRAN_4G.git", commit: pending_phase_4_clone}
+build_metadata:
+  compiler: pending_linux_provisioning
+  cmake: pending_linux_provisioning
+  cuda: optional_not_required
+  cpu_inference_required: true
+confirmatory_allowed: false
+confirmatory_block_reason: external_commits_and_transitive_dependencies_not_yet_frozen

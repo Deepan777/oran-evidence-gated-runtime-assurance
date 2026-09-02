@@ -1,0 +1,25 @@
+schema_version: 1
+validation_status: validation_tunable_not_confirmatory_frozen
+A0:
+  name: NO_OP
+A1:
+  name: PRB_AVOID_SHIFT
+  clean_prb_fraction_min: 0.15
+  protected_prb_guard_fraction: 0.10
+  restoration_timeout_seconds: 5
+A2:
+  name: MCS_BACKOFF
+  backoff_levels: {mild: 2, moderate: 4}
+  selected_level: moderate
+  minimum_mcs_index: 2
+A3:
+  name: SLICE_PRB_BOOST
+  quota_increment_fraction: 0.10
+  protected_quota_min_fraction: 0.20
+  protected_quota_max_fraction: 0.70
+A4:
+  name: COMPOSITE_LOCAL_DEFENSE
+  prb_component: A1
+  mcs_component_level: moderate
+  atomic: true
+

@@ -1,0 +1,16 @@
+schema_version: 1
+primary_attribution: integrated_gradients
+robustness_attribution: gradient_shap
+integrated_gradients_steps: 64
+top_k: 5
+attribution_mass_threshold: 0.80
+counterfactual:
+  optimizer: projected_gradient
+  fallback_optimizer: deterministic_seeded_evolutionary
+  lambda_l1: 1.0
+  lambda_plausibility: 0.25
+  lambda_margin: 5.0
+  target_margin: 0.01
+  maximum_iterations: 500
+  training_percentile_bounds: [1, 99]
+

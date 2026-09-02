@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools==75.6.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oran-action-xai"
+version = "0.1.0"
+description = "Action-explainable multi-strategy anti-jamming control for O-RAN"
+requires-python = ">=3.11,<3.13"
+dynamic = ["dependencies"]
+
+[tool.setuptools]
+packages = {find = {where = ["."], include = ["src*"]}}
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.in"]}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+  "requires_torch: requires the frozen PyTorch dependency",
+  "integration: requires more than an isolated unit",
+  "live_testbed: requires the Ubuntu O-RAN stack",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+

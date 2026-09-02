@@ -1,0 +1,6 @@
+# Direct dependency lock for methodology v1.0.
+# A fully transitive hash lock will be generated inside the D:-resident Linux
+# environment after Phase 4 provisioning. Until then, confirmatory execution is
+# prohibited and this file intentionally mirrors requirements.in.
+-r requirements.in
+
