@@ -180,8 +180,8 @@
     },
     {
       "path": "CITATION.cff",
-      "bytes": 591,
-      "sha256": "53d6bd1586ea40d914000f955756b4c470cd1e1615f782eef9a801250e39ec1a"
+      "bytes": 558,
+      "sha256": "584aa7674ef8ab240354a3776927fd05ea3aa134d8a965eec3a84d3acde389e7"
     },
     {
       "path": "config/baseline/ocudu_gnb_zmq_e2.yml",
@@ -760,8 +760,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7527,
-      "sha256": "2e324daa75918406783b76a2d77c0fab54740778d3690798b61e26420e814428"
+      "bytes": 7592,
+      "sha256": "24c7706e271b70e5d723611b30fbc44845305e52c04af8e49485cf61b2789c05"
     },
     {
       "path": "RELEASE_METADATA.json",

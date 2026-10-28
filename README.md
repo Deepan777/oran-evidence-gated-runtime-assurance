@@ -2,6 +2,8 @@
 
 Version 1.3.0
 
+Archived code and data: https://doi.org/10.5281/zenodo.23683142
+
 This software separates a controller's proposed radio action from permission to execute it. The runtime checks measured spectral and service evidence, temporal persistence and action feasibility, records command acknowledgement and scheduler-consumer readback, and requests baseline restoration when execution state is uncertain or a configured boundary is crossed. Readback verifies consumed software configuration within the local trust domain; it is not an independent measurement of a physical radio effect.
 
 ## Directory layout
