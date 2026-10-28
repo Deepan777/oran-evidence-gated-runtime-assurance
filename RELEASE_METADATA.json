@@ -1,0 +1,10 @@
+{
+  "title": "Evidence-Gated Runtime Assurance for Autonomous O-RAN Control: Code and Data",
+  "version": "1.3.0",
+  "resource_type": "software",
+  "license": "CC-BY-4.0",
+  "repository_code": "https://github.com/Deepan777/oran-evidence-gated-runtime-assurance",
+  "versioned_doi": null,
+  "prepared_github_tag": "v1.3.0",
+  "publication_performed": false
+}

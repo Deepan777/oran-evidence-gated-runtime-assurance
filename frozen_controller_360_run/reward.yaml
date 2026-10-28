@@ -1,0 +1,22 @@
+schema_version: 1
+status: validation_tunable_not_confirmatory_frozen
+weights:
+  throughput: 1.0
+  latency: 1.0
+  drop: 1.0
+  sla_violation: 2.0
+  action_cost: 0.10
+  action_switch: 0.05
+action_costs:
+  A0: 0.0
+  A1: 0.20
+  A2: 0.15
+  A3: 0.30
+  A4: 0.35
+normalization:
+  source: training_or_calibration_only
+  throughput_clip: [0.0, 1.0]
+  latency_clip: [0.0, 2.0]
+  drop_clip: [0.0, 1.0]
+  sla_violation_clip: [0.0, 1.0]
+

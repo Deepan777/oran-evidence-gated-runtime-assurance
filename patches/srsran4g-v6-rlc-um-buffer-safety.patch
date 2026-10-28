@@ -1,0 +1,49 @@
+diff --git a/lib/include/srsran/adt/pool/fixed_size_pool.h b/lib/include/srsran/adt/pool/fixed_size_pool.h
+index 55c2052..47d3390 100644
+--- a/lib/include/srsran/adt/pool/fixed_size_pool.h
++++ b/lib/include/srsran/adt/pool/fixed_size_pool.h
+@@ -84,7 +84,12 @@ public:
+     allocated_blocks.clear();
+   }
+ 
+-  static concurrent_fixed_memory_pool<ObjSize, DebugSanitizeAddress>* get_instance(size_t size = 4096)
++  // The NR software-radio UE can legitimately retain more than 4096 byte
++  // buffers while a long RLC-UM impairment creates a large PDCP reordering
++  // window.  This pool is the sole production instantiation of this template
++  // in srsUE.  Provision enough headroom for the frozen 120 s validation
++  // workload; this changes no radio samples or protocol decisions.
++  static concurrent_fixed_memory_pool<ObjSize, DebugSanitizeAddress>* get_instance(size_t size = 16384)
+   {
+     static concurrent_fixed_memory_pool<ObjSize, DebugSanitizeAddress> pool(size);
+     return &pool;
+diff --git a/lib/src/rlc/rlc_um_nr.cc b/lib/src/rlc/rlc_um_nr.cc
+index bcf8047..ab11ff7 100644
+--- a/lib/src/rlc/rlc_um_nr.cc
++++ b/lib/src/rlc/rlc_um_nr.cc
+@@ -551,8 +551,13 @@ void rlc_um_nr::rlc_um_nr_rx::handle_data_pdu(uint8_t* payload, uint32_t nof_byte
+   if (header.si == rlc_nr_si_field_t::full_sdu) {
+     // copy full PDU into buffer
+     unique_byte_buffer_t sdu = rlc_um_nr_strip_pdu_header(header, payload, nof_bytes);
++    if (sdu == nullptr) {
++      RlcError("Dropping full RLC-UM SDU after byte-buffer allocation failure.");
++      metrics.num_lost_pdus++;
++      return;
++    }
+ 
+     // deliver to PDCP
+     RlcInfo("Rx SDU (%d B)", sdu->N_bytes);
+     pdcp->write_pdu(lcid, std::move(sdu));
+   } else if (sn_invalid_for_rx_buffer(header.sn)) {
+@@ -563,7 +568,12 @@ void rlc_um_nr::rlc_um_nr_rx::handle_data_pdu(uint8_t* payload, uint32_t nof_byte
+     rlc_umd_pdu_nr_t rx_pdu = {};
+     rx_pdu.header           = header;
+     rx_pdu.buf              = rlc_um_nr_strip_pdu_header(header, payload, nof_bytes);
++    if (rx_pdu.buf == nullptr) {
++      RlcError("Dropping segmented RLC-UM PDU after byte-buffer allocation failure (SN=%d).", header.sn);
++      metrics.num_lost_pdus++;
++      return;
++    }
+ 
+     // check if this SN is already present in rx buffer
+     if (rx_window.find(header.sn) == rx_window.end()) {
+       // first received segment of this SN, add to rx buffer

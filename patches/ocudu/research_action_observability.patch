@@ -1,0 +1,73 @@
+diff --git a/lib/scheduler/ue_scheduling/grant_params_selector.cpp b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+--- a/lib/scheduler/ue_scheduling/grant_params_selector.cpp
++++ b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+@@ -360,7 +360,20 @@ find_available_vrbs(const dl_sched_context& space_cfg, const vrb_bitmap& used_vrb
+       return {};
+     }
+     nof_rbs = std::min(nof_rbs, stop - start);
+-    return rb_helper::find_empty_interval_of_length(used_vrbs, nof_rbs, vrb_interval{start, stop});
++    const vrb_interval selected =
++        rb_helper::find_empty_interval_of_length(used_vrbs, nof_rbs, vrb_interval{start, stop});
++    static std::atomic<uint16_t> last_logged_generation{0};
++    uint16_t expected = last_logged_generation.load(std::memory_order_relaxed);
++    if (expected != action.generation and
++        last_logged_generation.compare_exchange_strong(expected, action.generation, std::memory_order_relaxed)) {
++      std::printf("RESEARCH_PRB_CONSUMED generation=%u allowed=[%u,%u) allocated=[%u,%u)\n",
++                  action.generation,
++                  start,
++                  stop,
++                  selected.start(),
++                  selected.stop());
++      std::fflush(stdout);
++    }
++    return selected;
+   }
+diff --git a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+--- a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
++++ b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+@@ -108,9 +108,22 @@ std::optional<sch_mcs_index> ue_link_adaptation_controller::calculate_dl_mcs(pdsc
+ {
+   const research_action_state action = research_action_control::load();
+   const auto apply_research_cap = [&action](sch_mcs_index mcs) {
+-    return research_action_control::mcs_control_enabled(action)
+-               ? sch_mcs_index{static_cast<uint8_t>(std::min<unsigned>(mcs.value(), action.mcs_cap))}
+-               : mcs;
++    if (not research_action_control::mcs_control_enabled(action)) {
++      return mcs;
++    }
++    const sch_mcs_index capped{static_cast<uint8_t>(std::min<unsigned>(mcs.value(), action.mcs_cap))};
++    static std::atomic<uint16_t> last_logged_generation{0};
++    uint16_t expected = last_logged_generation.load(std::memory_order_relaxed);
++    if (expected != action.generation and
++        last_logged_generation.compare_exchange_strong(expected, action.generation, std::memory_order_relaxed)) {
++      std::printf("RESEARCH_MCS_CONSUMED generation=%u original=%u cap=%u applied=%u\n",
++                  action.generation,
++                  mcs.value(),
++                  action.mcs_cap,
++                  capped.value());
++      std::fflush(stdout);
++    }
++    return capped;
+   };
+diff --git a/lib/scheduler/slicing/inter_slice_scheduler.cpp b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+--- a/lib/scheduler/slicing/inter_slice_scheduler.cpp
++++ b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+@@ -99,6 +99,18 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resour
+                                        ? std::max(slice_min_rbs,
+                                                   dl_cell_nof_rbs * research_action.slice_max_pct / 100U)
+                                        : slice.inst.cfg.rbs.max();
++    if (controlled_slice) {
++      static std::atomic<uint16_t> last_logged_generation{0};
++      uint16_t expected = last_logged_generation.load(std::memory_order_relaxed);
++      if (expected != research_action.generation and
++          last_logged_generation.compare_exchange_strong(
++              expected, research_action.generation, std::memory_order_relaxed)) {
++        std::printf("RESEARCH_SLICE_CONSUMED generation=%u slice=%u min_rbs=%u max_rbs=%u\n",
++                    research_action.generation,
++                    fmt::underlying(slice.inst.id),
++                    slice_min_rbs,
++                    slice_max_rbs);
++        std::fflush(stdout);
++      }
++    }
+     // NOTE: Unlike the old \c pdsch_rb_count member, which was always 0 at this point because slot_tx had not been

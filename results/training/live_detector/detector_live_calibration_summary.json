@@ -1,0 +1,322 @@
+{
+  "status": "LIVE_DETECTOR_CALIBRATION_COMPLETE",
+  "not_confirmatory": true,
+  "model": "random_forest",
+  "features": [
+    "sinr_db",
+    "cqi",
+    "rsrp_dbfs",
+    "rsrq_db",
+    "bler",
+    "harq_nack_ratio",
+    "dl_throughput_mbps",
+    "rlc_drop_rate",
+    "rlc_sdu_delay_ms",
+    "prb_utilization",
+    "scheduler_queue_backlog_bytes",
+    "clean_prb_fraction"
+  ],
+  "classes": [
+    "none",
+    "barrage",
+    "partial_band",
+    "sweep",
+    "intermittent",
+    "reactive"
+  ],
+  "training_runs": [
+    "livecalv16-intermittentmjsrp0mlowmprotected_onlymnominal-s1303",
+    "livecalv16-intermittentmjsrp5mlowmprotected_onlymnominal-s1302",
+    "livecalv18-reactivemjsrp0mlowmprotected_onlymnominal-s1301",
+    "livecalv18-reactivemjsrp0mlowmprotected_onlymnominal-s1303",
+    "livecalv18-reactivemjsrp5mlowmprotected_onlymnominal-s1302",
+    "livecalv2-barragemjsrp0mlowmprotected_onlymnominal-s1301",
+    "livecalv2-barragemjsrp0mlowmprotected_onlymnominal-s1303",
+    "livecalv2-barragemjsrp5mlowmprotected_onlymnominal-s1302",
+    "livecalv2-nonemjsrNAmlowmprotected_onlymnominal-s1301",
+    "livecalv2-nonemjsrNAmlowmprotected_onlymnominal-s1302",
+    "livecalv2-nonemjsrNAmlowmprotected_onlymnominal-s1303",
+    "livecalv3-partial_bandmjsrp0mlowmprotected_onlymnominal-s1301",
+    "livecalv3-partial_bandmjsrp5mlowmprotected_onlymnominal-s1302",
+    "livecalv4-partial_bandmjsrp0mlowmprotected_onlymnominal-s1303",
+    "livecalv8-sweepmjsrp0mlowmprotected_onlymnominal-s1301",
+    "livecalv8-sweepmjsrp0mlowmprotected_onlymnominal-s1303",
+    "livecalv8-sweepmjsrp5mlowmprotected_onlymnominal-s1302",
+    "livecalv9-intermittentmjsrp0mlowmprotected_onlymnominal-s1301"
+  ],
+  "validation_runs": [
+    "livecalv18-intermittentmjsrp5mlowmprotected_onlymnominal-s1304",
+    "livecalv18-reactivemjsrp5mlowmprotected_onlymnominal-s1304",
+    "livecalv2-barragemjsrp5mlowmprotected_onlymnominal-s1304",
+    "livecalv2-nonemjsrNAmlowmprotected_onlymnominal-s1304",
+    "livecalv4-partial_bandmjsrp5mlowmprotected_onlymnominal-s1304",
+    "livecalv8-sweepmjsrp5mlowmprotected_onlymnominal-s1304"
+  ],
+  "locked_test_runs": [
+    "livecalv18-intermittentmjsrp0mlowmprotected_onlymnominal-s1305",
+    "livecalv18-reactivemjsrp0mlowmprotected_onlymnominal-s1305",
+    "livecalv2-barragemjsrp0mlowmprotected_onlymnominal-s1305",
+    "livecalv2-nonemjsrNAmlowmprotected_onlymnominal-s1305",
+    "livecalv8-partial_bandmjsrp0mlowmprotected_onlymnominal-s1305",
+    "livecalv8-sweepmjsrp0mlowmprotected_onlymnominal-s1305"
+  ],
+  "validation": {
+    "macro_f1": 0.9085411942554799,
+    "balanced_accuracy": 0.9083333333333333,
+    "inference_latency_ms_per_window": 0.08108694444444443,
+    "macro_auroc_ovr": 0.9813541666666666,
+    "multiclass_brier_score": 0.13863944444444445,
+    "expected_calibration_error": 0.02769444444444445,
+    "false_alarm_rate": 0.0,
+    "missed_detection_rate": 0.0,
+    "per_class": {
+      "none": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 80
+      },
+      "barrage": {
+        "precision": 0.875,
+        "recall": 0.7,
+        "support": 20
+      },
+      "partial_band": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 20
+      },
+      "sweep": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 20
+      },
+      "intermittent": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "support": 20
+      },
+      "reactive": {
+        "precision": 0.6896551724137931,
+        "recall": 1.0,
+        "support": 20
+      }
+    },
+    "confusion_matrix": [
+      [
+        80,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        0,
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        20,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        0,
+        0,
+        15,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20
+      ]
+    ],
+    "p_jam_calibration": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 78,
+        "mean_predicted_p_jam": 0.010192307692307695,
+        "observed_jam_rate": 0.0
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 1,
+        "mean_predicted_p_jam": 0.15500000000000003,
+        "observed_jam_rate": 0.0
+      },
+      {
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 1,
+        "mean_predicted_p_jam": 0.39,
+        "observed_jam_rate": 0.0
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 7,
+        "mean_predicted_p_jam": 0.8814285714285715,
+        "observed_jam_rate": 1.0
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 93,
+        "mean_predicted_p_jam": 0.9697311827956989,
+        "observed_jam_rate": 1.0
+      }
+    ]
+  },
+  "locked_test": {
+    "macro_f1": 0.8040724707391375,
+    "balanced_accuracy": 0.8333333333333334,
+    "inference_latency_ms_per_window": 0.07108183333333333,
+    "macro_auroc_ovr": 0.9689843750000001,
+    "multiclass_brier_score": 0.16610222222222223,
+    "expected_calibration_error": 0.02555555555555558,
+    "false_alarm_rate": 0.0,
+    "missed_detection_rate": 0.0,
+    "per_class": {
+      "none": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 80
+      },
+      "barrage": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "support": 20
+      },
+      "partial_band": {
+        "precision": 1.0,
+        "recall": 0.2,
+        "support": 20
+      },
+      "sweep": {
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "support": 20
+      },
+      "intermittent": {
+        "precision": 0.5882352941176471,
+        "recall": 1.0,
+        "support": 20
+      },
+      "reactive": {
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "support": 20
+      }
+    },
+    "confusion_matrix": [
+      [
+        80,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        16,
+        0,
+        0,
+        0,
+        4
+      ],
+      [
+        0,
+        0,
+        4,
+        2,
+        14,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20
+      ]
+    ],
+    "p_jam_calibration": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 75,
+        "mean_predicted_p_jam": 0.012066666666666668,
+        "observed_jam_rate": 0.0
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 3,
+        "mean_predicted_p_jam": 0.15833333333333335,
+        "observed_jam_rate": 0.0
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 2,
+        "mean_predicted_p_jam": 0.2525,
+        "observed_jam_rate": 0.0
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 9,
+        "mean_predicted_p_jam": 0.8788888888888888,
+        "observed_jam_rate": 1.0
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 91,
+        "mean_predicted_p_jam": 0.9821428571428571,
+        "observed_jam_rate": 1.0
+      }
+    ]
+  },
+  "model_file": "/home/deepanramkumar_p/oran-cloud-project/results/training/live_detector/detector_live_calibrated.joblib"
+}

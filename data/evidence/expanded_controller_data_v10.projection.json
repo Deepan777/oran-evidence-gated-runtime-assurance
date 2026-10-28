@@ -1,0 +1,151 @@
+{
+  "scope": "data-only byte-preserving projection of the historical expanded-controller archive",
+  "original_archive_sha256": "0606fea9b8fe2383ff864fd105a7666174394e863a432d2650255ed90c8e1376",
+  "projected_archive_sha256": "4b4dc010b7fa463ef5b33933aeaef0514cae2b7e78f9e4be1d9939b2b341cea5",
+  "retained_files": [
+    {
+      "path": "datasets/metadata/manifests/live_validation_v10/B0_live_validation_runs.csv",
+      "bytes": 68745,
+      "sha256": "52184455873f8476fd405d4e6b1ba59df2ebafbfdd55080da478e6890f385ccb"
+    },
+    {
+      "path": "datasets/metadata/manifests/live_validation_v10/B2_live_validation_runs.csv",
+      "bytes": 70005,
+      "sha256": "8618fb4652a18ad91645133e4981cdbb67665671dec26b888f264e73722e52ed"
+    },
+    {
+      "path": "datasets/metadata/manifests/live_validation_v10/B5_live_validation_runs.csv",
+      "bytes": 73155,
+      "sha256": "ec2a1fe8181645e985a70eee81094b656b530e6c0270c89c8e0dac2b62ab4722"
+    },
+    {
+      "path": "datasets/metadata/manifests/live_validation_v10/P_live_validation_runs.csv",
+      "bytes": 71175,
+      "sha256": "472e3b48960d8f6d0fa3d3139045ee3ca4e82065e74c3d81637b13e2ca9544b7"
+    },
+    {
+      "path": "results/aggregate/figure_source_v10_jammer_robustness.csv",
+      "bytes": 1175,
+      "sha256": "102d9ba24720ab5ab02bb4b794e3f100143453e85428bf2bcdf63f6d18b9b8dd"
+    },
+    {
+      "path": "results/aggregate/figure_source_v10_primary_outcomes.csv",
+      "bytes": 35655,
+      "sha256": "1264fd9e7625e544380585045a02a7d092f431e347f37a97dcd940065a620f7e"
+    },
+    {
+      "path": "results/aggregate/figure_source_v10_xai_metrics.csv",
+      "bytes": 218,
+      "sha256": "e6b1f5d9face8111f279992a75a729748ff96bfecf7e8f3f845041af7fc10e99"
+    },
+    {
+      "path": "results/aggregate/live_validation_v10_evidence_summary.json",
+      "bytes": 3298,
+      "sha256": "8cdc4c737953d8532102db663efcf0d83b4a673a9a0f61b1e6cacfc94248d854"
+    },
+    {
+      "path": "results/aggregate/live_validation_v10_per_run_outcomes.csv",
+      "bytes": 306022,
+      "sha256": "2c73ad32eb8781f8b6b0dc7a7cea1ef247ae9009f27b8256307949b8d3c18b71"
+    },
+    {
+      "path": "results/aggregate/live_validation_v10_records.parquet",
+      "bytes": 22960359,
+      "sha256": "3290da3eaede9a8f3d33f072c10f45a9b4ef8d15ce12467589c5b06307c8764d"
+    },
+    {
+      "path": "results/aggregate/live_validation_v10_run_provenance.csv",
+      "bytes": 239576,
+      "sha256": "816ae7ca5edde316bfaf29530e81dac9b49ac9fe6e91fb6880fdecb45adfabd7"
+    },
+    {
+      "path": "results/aggregate/live_validation_v10_statistics_input.json",
+      "bytes": 36516,
+      "sha256": "bce2a328b82f3183f6d6169cafb18bdf4fe721d4030d61fff1291d378bc353c9"
+    },
+    {
+      "path": "results/aggregate/live_validation_v10_xai_summary.json",
+      "bytes": 494,
+      "sha256": "e4bc6d3caec4adb517592d694d4c2c15791350e3d21244538cae4b1969a8effc"
+    },
+    {
+      "path": "results/evidence_gate/live_validation_v10_evidence_gate.json",
+      "bytes": 611,
+      "sha256": "cd512353a2be67c3cf695342310eb24998310468a99ba394642a00f4f52f9e88"
+    },
+    {
+      "path": "results/raw/LIVE_VALIDATION_V10_B0.json",
+      "bytes": 15229,
+      "sha256": "29a690736fd062195a68f8f615864b8cfc88eb263410ea784a260417a2ddda2e"
+    },
+    {
+      "path": "results/raw/LIVE_VALIDATION_V10_B2.json",
+      "bytes": 15229,
+      "sha256": "4bbb3b436647c27c1e49d916b77bac1ef93050176d88a7714796101020b63b02"
+    },
+    {
+      "path": "results/raw/LIVE_VALIDATION_V10_B5.json",
+      "bytes": 15229,
+      "sha256": "9a8eaace26f35fa4fc9178644119d6399cd8e09a3e369a9af451419bf9a6d258"
+    },
+    {
+      "path": "results/raw/LIVE_VALIDATION_V10_P.json",
+      "bytes": 18089,
+      "sha256": "3d76a3303bcda95a26a85ab94ccacd82602b35b29d5d188f5bbc9ad7d6cc4624"
+    },
+    {
+      "path": "results/statistics/live_validation_v10_stats_report.json",
+      "bytes": 11814,
+      "sha256": "2cead250e877156081b3d5380752a36be068d1d74a293955132e2d4f63d7c1ca"
+    },
+    {
+      "path": "results/statistics/live_validation_v10_traceability_audit.json",
+      "bytes": 208,
+      "sha256": "85be6864c47051e93ccfc364fe3351541232413ae31caa1d0707e31102ebf96f"
+    },
+    {
+      "path": "results/tables/live_validation_v10_planned_comparisons.csv",
+      "bytes": 1181,
+      "sha256": "9296024368b1ae323490ba35d8ea8ac41d3affb67bdb690430b27b92820d8d05"
+    },
+    {
+      "path": "results/tables/live_validation_v10_primary_outcomes.csv",
+      "bytes": 2541,
+      "sha256": "6d4c89d470019a33abef2974d793b9e073918a7fac7d473c35a7103f682551c3"
+    },
+    {
+      "path": "results/tables/live_validation_v10_xai_metrics.csv",
+      "bytes": 218,
+      "sha256": "e6b1f5d9face8111f279992a75a729748ff96bfecf7e8f3f845041af7fc10e99"
+    }
+  ],
+  "excluded_members": [
+    "LIVE_VALIDATION_FREEZE_MANIFEST_V10.yaml",
+    "LIVE_VALIDATION_V10_ANALYSIS_PLAN.yaml",
+    "analysis/build_live_validation_v10_raw_evidence_manifest.py",
+    "analysis/evidence_gate.py",
+    "analysis/live_validation_v10_postprocess.py",
+    "analysis/live_validation_v10_publication.py",
+    "analysis/package_live_validation_v10_release.py",
+    "analysis/statistics.py",
+    "results/LIVE_VALIDATION_V10_FAILURE_ANALYSIS.md",
+    "results/LIVE_VALIDATION_V10_FINAL_RESULTS.md",
+    "results/evidence_gate/LIVE_VALIDATION_V10_EVIDENCE_GATE_REPORT.md",
+    "results/figures/live_validation_v10_jammer_robustness.pdf",
+    "results/figures/live_validation_v10_jammer_robustness.png",
+    "results/figures/live_validation_v10_jammer_robustness.producer.json",
+    "results/figures/live_validation_v10_primary_outcomes.pdf",
+    "results/figures/live_validation_v10_primary_outcomes.png",
+    "results/figures/live_validation_v10_primary_outcomes.producer.json",
+    "results/figures/live_validation_v10_xai_metrics.pdf",
+    "results/figures/live_validation_v10_xai_metrics.png",
+    "results/figures/live_validation_v10_xai_metrics.producer.json",
+    "results/release/live_validation_v10_raw_evidence_manifest.json",
+    "results/release/live_validation_v10_raw_evidence_manifest.json.sha256",
+    "tools/finalize_live_validation_v10.sh",
+    "results/release/live_validation_v10_release_manifest.json"
+  ],
+  "exclusion_rule": "no implementation/writing generators, Markdown narratives, manuscript content or document source",
+  "original_unchanged": true,
+  "measured_values_changed": false
+}

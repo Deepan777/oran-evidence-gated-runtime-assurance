@@ -1,0 +1,793 @@
+diff --git a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp
+index d13de08..53de6a6 100644
+--- a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp
++++ b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp
+@@ -4,6 +4,8 @@
+ 
+ #include "apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h"
+ #include "nlohmann/json.hpp"
++#include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ 
+ using namespace ocudu;
+ 
+@@ -215,6 +217,80 @@ error_type<std::string> rrm_policy_ratio_remote_command::execute(const nlohmann:
+   return make_unexpected("RRM policy ratio remote command procedure failed to be applied by the DU");
+ }
+ 
++error_type<std::string> research_action_remote_command::execute(const nlohmann::json& json)
++{
++  auto action_key = json.find("action");
++  if (action_key == json.end()) {
++    return make_unexpected("'action' is mandatory (A0, A1, A2, A3, or A4)");
++  }
++
++  int action_value = -1;
++  if (action_key->is_string()) {
++    const std::string value = action_key->get<std::string>();
++    if (value.size() == 2 and value[0] == 'A' and value[1] >= '0' and value[1] <= '4') {
++      action_value = value[1] - '0';
++    }
++  } else if (action_key->is_number_integer()) {
++    action_value = action_key->get<int>();
++  }
++  if (action_value < 0 or action_value > 4) {
++    return make_unexpected("'action' must be A0..A4 or integer 0..4");
++  }
++
++  research_action_state state;
++  state.action = static_cast<research_action_id>(action_value);
++
++  auto read_unsigned = [&json](const char* name, unsigned default_value) -> expected<unsigned, std::string> {
++    auto item = json.find(name);
++    if (item == json.end()) {
++      return default_value;
++    }
++    if (!item->is_number_unsigned()) {
++      return make_unexpected(fmt::format("'{}' must be an unsigned integer", name));
++    }
++    return item->get<unsigned>();
++  };
++
++  auto prb_start = read_unsigned("prb_start", state.prb_start);
++  auto prb_stop  = read_unsigned("prb_stop", state.prb_stop);
++  auto mcs_cap   = read_unsigned("mcs_cap", state.mcs_cap);
++  auto slice_min = read_unsigned("slice_min_pct", state.slice_min_pct);
++  auto slice_max = read_unsigned("slice_max_pct", state.slice_max_pct);
++  if (!prb_start || !prb_stop || !mcs_cap || !slice_min || !slice_max) {
++    return make_unexpected("research action parameter has an invalid type");
++  }
++
++  state.prb_start     = static_cast<uint16_t>(prb_start.value());
++  state.prb_stop      = static_cast<uint16_t>(prb_stop.value());
++  state.mcs_cap       = static_cast<uint8_t>(mcs_cap.value());
++  state.slice_min_pct = static_cast<uint8_t>(slice_min.value());
++  state.slice_max_pct = static_cast<uint8_t>(slice_max.value());
++
++  if (research_action_control::prb_control_enabled(state) and
++      (prb_start.value() >= prb_stop.value() or prb_stop.value() > 275U)) {
++    return make_unexpected("A1/A4 require 0 <= prb_start < prb_stop <= 275");
++  }
++  if (research_action_control::mcs_control_enabled(state) and mcs_cap.value() > 28U) {
++    return make_unexpected("A2/A4 require 0 <= mcs_cap <= 28");
++  }
++  if (research_action_control::slice_control_enabled(state) and
++      (slice_min.value() > slice_max.value() or slice_max.value() > 100U)) {
++    return make_unexpected("A3 requires 0 <= slice_min_pct <= slice_max_pct <= 100");
++  }
++
++  state = research_action_control::publish(state);
++  std::printf("RESEARCH_ACTION_APPLIED generation=%u action=A%d prb=[%u,%u) mcs_cap=%u slice=[%u,%u]%%\n",
++              state.generation,
++              action_value,
++              state.prb_start,
++              state.prb_stop,
++              state.mcs_cap,
++              state.slice_min_pct,
++              state.slice_max_pct);
++  std::fflush(stdout);
++  return {};
++}
++
+ /// Parses a NR cell global identifier (PLMN + NCI) from a JSON cell entry.
+ static expected<nr_cell_global_id_t, std::string> parse_cgi(const nlohmann::json& cell)
+ {
+diff --git a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h
+index 4220eb9..3eb0bd5 100644
+--- a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h
++++ b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h
+@@ -45,6 +45,20 @@ public:
+   error_type<std::string> execute(const nlohmann::json& json) override;
+ };
+ 
++/// Lock-free research control for action-explainable anti-jamming experiments.
++class research_action_remote_command : public app_services::remote_command
++{
++public:
++  std::string_view get_name() const override { return "research_action_set"; }
++
++  std::string_view get_description() const override
++  {
++    return "Atomically applies A0-A4 scheduler research actions";
++  }
++
++  error_type<std::string> execute(const nlohmann::json& json) override;
++};
++
+ /// \brief Remote command that updates SIB contents without a cell restart.
+ ///
+ /// Supported SIBs: SIB2 (cell reselection), SIB3 (intra-frequency neighbors), SIB4 (inter-frequency neighbors).
+diff --git a/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp b/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp
+index 39613f0..8946885 100644
+--- a/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp
++++ b/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp
+@@ -259,6 +259,7 @@ o_du_high_unit ocudu::make_o_du_high_unit(const o_du_high_unit_config&  o_du_hig
+       std::make_unique<ssb_modify_remote_command>(odu_unit.o_du_hi->get_du_high().get_du_configurator()));
+   odu_unit.commands.remote.push_back(
+       std::make_unique<rrm_policy_ratio_remote_command>(odu_unit.o_du_hi->get_du_high().get_du_configurator()));
++  odu_unit.commands.remote.push_back(std::make_unique<research_action_remote_command>());
+   odu_unit.commands.remote.push_back(
+       std::make_unique<sib_update_remote_command>(odu_unit.o_du_hi->get_du_high().get_du_configurator()));
+ 
+diff --git a/apps/units/flexible_o_du/split_helpers/flexible_o_du_impl.cpp b/apps/units/flexible_o_du/split_helpers/flexible_o_du_impl.cpp
+index da82d3f..bdeb3f8 100644
+--- a/apps/units/flexible_o_du/split_helpers/flexible_o_du_impl.cpp
++++ b/apps/units/flexible_o_du/split_helpers/flexible_o_du_impl.cpp
+@@ -9,6 +9,8 @@
+ #include "ocudu/phy/upper/upper_phy.h"
+ #include "ocudu/ru/ru.h"
+ #include "ocudu/ru/ru_controller.h"
++#include <chrono>
++#include <thread>
+ 
+ using namespace ocudu;
+ 
+@@ -23,8 +25,19 @@ flexible_o_du_impl::flexible_o_du_impl(unsigned nof_cells_, flexible_o_du_metric
+ 
+ void flexible_o_du_impl::start()
+ {
++  // In blocking software-radio mode the DU cell-start coroutine must enqueue
++  // its MAC activation before the radio begins continuously driving the cell
++  // executor. Starting the DU synchronously without a radio clock deadlocks;
++  // starting the radio first can starve the activation task. Start the radio
++  // shortly after entering DU startup so the already-queued activation is the
++  // first task released by radio time.
++  std::thread radio_start_thread([this]() {
++    std::this_thread::sleep_for(std::chrono::seconds(1));
++    ru->get_controller().get_operation_controller().start();
++  });
++
+   du->get_operation_controller().start();
+-  ru->get_controller().get_operation_controller().start();
++  radio_start_thread.join();
+ }
+ 
+ void flexible_o_du_impl::stop()
+diff --git a/lib/mac/mac_ctrl/ue_creation_procedure.cpp b/lib/mac/mac_ctrl/ue_creation_procedure.cpp
+index c229c2b..cb5c81b 100644
+--- a/lib/mac/mac_ctrl/ue_creation_procedure.cpp
++++ b/lib/mac/mac_ctrl/ue_creation_procedure.cpp
+@@ -15,7 +15,9 @@ void mac_ue_create_request_procedure::operator()(coro_context<async_task<mac_ue_
+   logger.debug("{}: started...", mac_log_prefix(req.ue_index, req.crnti, name()));
+ 
+   // > Create UE in MAC CTRL.
++  logger.info("ue={} rnti={} MAC_CREATE_DIAGNOSTIC ctrl-begin", fmt::underlying(req.ue_index), req.crnti);
+   crnti_assigned = ctrl_unit.add_ue(req.ue_index, req.cell_index, req.crnti);
++  logger.info("ue={} rnti={} MAC_CREATE_DIAGNOSTIC ctrl-done", fmt::underlying(req.ue_index), crnti_assigned);
+   if (crnti_assigned == rnti_t::INVALID_RNTI) {
+     CORO_AWAIT(cancel_ue_creation());
+     CORO_EARLY_RETURN(handle_mac_ue_create_result(false));
+@@ -25,7 +27,13 @@ void mac_ue_create_request_procedure::operator()(coro_context<async_task<mac_ue_
+   req.crnti = crnti_assigned;
+ 
+   // > Create UE DL and UL context and channels.
++  logger.info("ue={} rnti={} MAC_CREATE_DIAGNOSTIC ul-dl-begin", fmt::underlying(req.ue_index), req.crnti);
+   CORO_AWAIT_VALUE(add_mac_ue_result, when_all(create_ul_dl_ue_tasks()));
++  logger.info("ue={} rnti={} MAC_CREATE_DIAGNOSTIC ul-dl-done results={} {}",
++              fmt::underlying(req.ue_index),
++              req.crnti,
++              static_cast<bool>(add_mac_ue_result[0]),
++              static_cast<bool>(add_mac_ue_result[1]));
+   if (not add_mac_ue_result[0] or not add_mac_ue_result[1]) {
+     CORO_AWAIT(cancel_ue_creation());
+     CORO_EARLY_RETURN(handle_mac_ue_create_result(false));
+@@ -33,7 +41,10 @@ void mac_ue_create_request_procedure::operator()(coro_context<async_task<mac_ue_
+   logger.debug("{}: UE context created successfully", mac_log_prefix(req.ue_index, req.crnti, name()));
+ 
+   // > Create UE context in Scheduler.
++  logger.info("ue={} rnti={} MAC_CREATE_DIAGNOSTIC sched-begin", fmt::underlying(req.ue_index), req.crnti);
+   CORO_AWAIT_VALUE(add_sched_ue_result, sched_configurator.handle_ue_creation_request(req));
++  logger.info("ue={} rnti={} MAC_CREATE_DIAGNOSTIC sched-done result={}",
++              fmt::underlying(req.ue_index), req.crnti, add_sched_ue_result);
+   if (not add_sched_ue_result) {
+     // >> Terminate procedure.
+     CORO_AWAIT(cancel_ue_creation());
+diff --git a/lib/mac/mac_dl/mac_cell_processor.cpp b/lib/mac/mac_dl/mac_cell_processor.cpp
+index 3e5af25..04f5684 100644
+--- a/lib/mac/mac_dl/mac_cell_processor.cpp
++++ b/lib/mac/mac_dl/mac_cell_processor.cpp
+@@ -10,6 +10,7 @@
+ #include "ocudu/ran/band_helper.h"
+ #include "ocudu/ran/pdsch/pdsch_constants.h"
+ #include "ocudu/scheduler/result/sched_result.h"
++#include "ocudu/support/async/async_no_op_task.h"
+ #include "ocudu/support/async/async_timer.h"
+ #include "ocudu/support/async/execute_on_blocking.h"
+ #include "ocudu/support/executors/execute_until_success.h"
+@@ -68,22 +69,11 @@ async_task<void> mac_cell_processor::start()
+   // Note: This is done in the control executor context to avoid concurrency with other CTRL procedures.
+   sched.handle_cell_activation(cell_cfg.cell_index);
+ 
+-  return execute_and_continue_on_blocking(
+-      cell_exec,
+-      ctrl_exec,
+-      timers,
+-      [this]() noexcept OCUDU_RTSAN_NONBLOCKING {
+-        if (state != cell_state::inactive) {
+-          // No-op.
+-          return;
+-        }
+-
+-        state = cell_state::active;
+-        logger.info("cell={}: Cell was activated", cell_cfg.cell_index);
+-      },
+-      [this]() {
+-        logger.warning("cell={}: Postponed cell start operation. Cause: Task queue is full", cell_cfg.cell_index);
+-      });
++  if (state == cell_state::inactive) {
++    state = cell_state::active;
++    logger.info("cell={}: Cell was activated", cell_cfg.cell_index);
++  }
++  return launch_no_op_task();
+ }
+ 
+ async_task<void> mac_cell_processor::stop()
+@@ -215,32 +205,21 @@ async_task<bool> mac_cell_processor::add_ue(const mac_ue_create_request& request
+   // > Create a MAC UE DL context.
+   mac_dl_ue_context ue_inst(request);
+ 
+-  // > Update the UE context inside the cell executor.
+-  return defer_and_continue_on_blocking(
+-      cell_exec,
+-      ctrl_exec,
+-      timers,
+-      [this, ue_inst = std::move(ue_inst)]() mutable noexcept OCUDU_RTSAN_NONBLOCKING {
+-        // > Insert UE and DL bearers.
+-
+-        // Note: Ensure we only do so if the cell is active.
+-        if (state != cell_state::active) {
+-          // Note: We do not need to call dl_harq_buffers.deallocate_ue_buffers(...) because the buffers were reset
+-          // on cell deactivation.
+-          return false;
+-        }
++  // Blocking ZeroMQ request/reply mode can quiesce cell_exec after Msg3
++  // until an RRC response is queued. Insert the DL UE while that clock is
++  // paused so UE creation cannot wait on the very next radio transaction it
++  // is responsible for producing.
++  if (state != cell_state::active) {
++    return launch_no_op_task(false);
++  }
+ 
+-        const du_ue_index_t ue_idx = ue_inst.get_ue_index();
+-        const rnti_t        rnti   = ue_inst.get_rnti();
+-        if (ue_mng.add_ue(std::move(ue_inst))) {
+-          logger.debug("ue={} rnti={} proc=\"MAC UE Creation\": MAC UE DL context created successfully.", ue_idx, rnti);
+-          return true;
+-        }
+-        return false;
+-      },
+-      [this, ue_index = request.ue_index]() {
+-        logger.warning("ue={}: Postponed UE creation. Cause: Task queue is full", fmt::underlying(ue_index));
+-      });
++  const du_ue_index_t ue_idx = ue_inst.get_ue_index();
++  const rnti_t        rnti   = ue_inst.get_rnti();
++  const bool          result = ue_mng.add_ue(std::move(ue_inst));
++  if (result) {
++    logger.info("ue={} rnti={} proc=\"MAC UE Creation\": MAC UE DL context created successfully.", ue_idx, rnti);
++  }
++  return launch_no_op_task(result);
+ }
+ 
+ async_task<void> mac_cell_processor::remove_ue(const mac_ue_delete_request& request)
+@@ -279,18 +258,14 @@ async_task<bool> mac_cell_processor::addmod_bearers(du_ue_index_t
+ {
+   // Note: logical_channels must outlive the returned async_task completion.
+ 
+-  return defer_and_continue_on_blocking(
+-      cell_exec,
+-      ctrl_exec,
+-      timers,
+-      [this, ue_index, logical_channels]() noexcept OCUDU_RTSAN_NONBLOCKING {
+-        // Configure logical channels.
+-        return state == cell_state::active and ue_mng.addmod_bearers(ue_index, logical_channels);
+-      },
+-      [this, ue_index]() {
+-        logger.warning("ue={}: Postponed UE bearer add/mod operation. Cause: Task queue is full",
+-                       fmt::underlying(ue_index));
+-      });
++  // In blocking ZMQ request/reply mode, the cell executor is quiescent until
++  // the RRC reconfiguration that this operation enables is transmitted.  Do
++  // the small repository update synchronously to break that circular wait.
++  const bool result = state == cell_state::active and ue_mng.addmod_bearers(ue_index, logical_channels);
++  logger.info("ue={} proc=\"MAC UE Reconfiguration\": MAC UE DL bearers updated result={}",
++              fmt::underlying(ue_index),
++              result);
++  return launch_no_op_task(result);
+ }
+ 
+ async_task<bool> mac_cell_processor::remove_bearers(du_ue_index_t ue_index, span<const lcid_t> lcids_to_rem)
+diff --git a/lib/mac/mac_sched/ocudu_scheduler_adapter.cpp b/lib/mac/mac_sched/ocudu_scheduler_adapter.cpp
+index 8acdd37..2103bfe 100644
+--- a/lib/mac/mac_sched/ocudu_scheduler_adapter.cpp
++++ b/lib/mac/mac_sched/ocudu_scheduler_adapter.cpp
+@@ -3,6 +3,7 @@
+ // Portions of this file may implement 3GPP specifications, which may be subject to additional licensing requirements.
+ 
+ #include "ocudu_scheduler_adapter.h"
++#include "ocudu/support/async/async_no_op_task.h"
+ #include "ocudu/scheduler/result/sched_result.h"
+ #include "ocudu/scheduler/scheduler_factory.h"
+ #include "ocudu/support/async/async_timer.h"
+@@ -104,18 +105,12 @@ async_task<bool> ocudu_scheduler_adapter::handle_ue_creation_request(const mac_u
+ 
+ async_task<bool> ocudu_scheduler_adapter::handle_ue_reconfiguration_request(const mac_ue_reconfiguration_request& msg)
+ {
+-  return launch_async([this, msg](coro_context<async_task<bool>>& ctx) {
+-    CORO_BEGIN(ctx);
+-
+-    // Reconfigure UE in the scheduler.
+-    sched_impl->handle_ue_reconfiguration_request(make_scheduler_ue_reconfiguration_request(msg));
+-
+-    // Await Scheduler notification.
+-    CORO_AWAIT(sched_cfg_notif_map[msg.ue_index].ue_config_ready);
+-    sched_cfg_notif_map[msg.ue_index].ue_config_ready.reset();
+-
+-    CORO_RETURN(true);
+-  });
++  // Blocking ZeroMQ request/reply transport stops producing slot indications
++  // while the peer awaits the RRC reconfiguration enabled by this request.
++  // Enqueue the scheduler update, but acknowledge it immediately so the RRC
++  // message can be generated and the radio clock can resume.
++  sched_impl->handle_ue_reconfiguration_request(make_scheduler_ue_reconfiguration_request(msg));
++  return launch_no_op_task(true);
+ }
+ 
+ async_task<void> ocudu_scheduler_adapter::handle_ue_removal_request(const mac_ue_delete_request& msg)
+diff --git a/lib/mac/mac_ul/mac_ul_processor.cpp b/lib/mac/mac_ul/mac_ul_processor.cpp
+index 963c47b..8295a78 100644
+--- a/lib/mac/mac_ul/mac_ul_processor.cpp
++++ b/lib/mac/mac_ul/mac_ul_processor.cpp
+@@ -5,6 +5,7 @@
+ #include "mac_ul_processor.h"
+ #include "ocudu/adt/format.h"
+ #include "ocudu/ocudulog/ocudulog.h"
++#include "ocudu/support/async/async_no_op_task.h"
+ #include "ocudu/support/async/execute_on_blocking.h"
+ 
+ using namespace ocudu;
+@@ -20,6 +21,7 @@ mac_ul_processor::mac_ul_processor(const mac_ul_config& cfg_) :
+ async_task<bool> mac_ul_processor::add_ue(const mac_ue_create_request& request)
+ {
+   // Update UE executor to match new PCell.
++  logger.info("ue={} rnti={} MAC_CREATE_DIAGNOSTIC ul-entry", fmt::underlying(request.ue_index), request.crnti);
+   cfg.ue_exec_mapper.rebind_executors(request.ue_index, request.cell_index);
+   task_executor& ul_exec = cfg.ue_exec_mapper.ctrl_executor(request.ue_index);
+ 
+@@ -37,15 +39,14 @@ async_task<bool> mac_ul_processor::add_ue(const mac_ue_create_request& request)
+ async_task<bool> mac_ul_processor::addmod_bearers(du_ue_index_t                                  ue_index,
+                                                   const std::vector<mac_logical_channel_config>& ul_logical_channels)
+ {
+-  return execute_and_continue_on_blocking(
+-      cfg.ue_exec_mapper.ctrl_executor(ue_index),
+-      cfg.ctrl_exec,
+-      cfg.timers,
+-      [this, ue_index, ul_logical_channels]() { return ue_manager.addmod_bearers(ue_index, ul_logical_channels); },
+-      [this, ue_index]() {
+-        logger.warning("ue={}: Postponed UE bearer add/mod operation. Cause: Task queue is full",
+-                       fmt::underlying(ue_index));
+-      });
++  // See the matching DL-side note: a blocking ZMQ clock cannot advance while
++  // control waits for the bearer update that is needed to create the next DL
++  // RRC message.
++  const bool result = ue_manager.addmod_bearers(ue_index, ul_logical_channels);
++  logger.info("ue={} proc=\"MAC UE Reconfiguration\": MAC UE UL bearers updated result={}",
++              fmt::underlying(ue_index),
++              result);
++  return launch_no_op_task(result);
+ }
+ 
+ async_task<bool> mac_ul_processor::remove_bearers(du_ue_index_t ue_index, span<const lcid_t> lcids_to_rem)
+diff --git a/lib/phy/lower/lower_phy_baseband_processor.cpp b/lib/phy/lower/lower_phy_baseband_processor.cpp
+index d167e8b..c4f77ae 100644
+--- a/lib/phy/lower/lower_phy_baseband_processor.cpp
++++ b/lib/phy/lower/lower_phy_baseband_processor.cpp
+@@ -62,6 +62,8 @@ void lower_phy_baseband_processor::start(baseband_gateway_timestamp init_time, b
+ 
+ void lower_phy_baseband_processor::stop()
+ {
++  first_rx_received.store(true, std::memory_order_release);
++  first_rx_cvar.notify_all();
+   rx_state.request_stop();
+   tx_state.request_stop();
+   rx_state.wait_stop();
+@@ -75,6 +77,15 @@ void lower_phy_baseband_processor::dl_process(baseband_gateway_timestamp timesta
+     return;
+   }
+ 
++  // A software/ZMQ radio has no hardware clock. Do not let the downlink
++  // timeline run ahead on executor timeouts before the first receive buffer
++  // establishes radio time; otherwise the scheduler's slot-zero SSB resource
++  // grids arrive after lower PHY has already consumed those slots as zeros.
++  if (!first_rx_received.load(std::memory_order_acquire)) {
++    std::unique_lock<std::mutex> lock(first_rx_mutex);
++    first_rx_cvar.wait(lock, [this]() { return first_rx_received.load(std::memory_order_acquire); });
++  }
++
+   // Throttling mechanism to keep a maximum latency of one millisecond in the transmit buffer based on the latest
+   // received timestamp.
+   {
+@@ -152,6 +163,10 @@ void lower_phy_baseband_processor::ul_process()
+   baseband_gateway_receiver::metadata rx_metadata = receiver.receive(rx_buffer->get_writer());
+   ru_tracer << trace_event("receive_baseband", tp);
+ 
++  if (!first_rx_received.exchange(true, std::memory_order_acq_rel)) {
++    first_rx_cvar.notify_all();
++  }
++
+   // Update last timestamp.
+   last_rx_timestamp.store(rx_metadata.ts + rx_buffer->get_nof_samples(), std::memory_order_release);
+ 
+diff --git a/lib/phy/lower/lower_phy_baseband_processor.h b/lib/phy/lower/lower_phy_baseband_processor.h
+index 0c2803a..275ff23 100644
+--- a/lib/phy/lower/lower_phy_baseband_processor.h
++++ b/lib/phy/lower/lower_phy_baseband_processor.h
+@@ -200,6 +200,11 @@ private:
+   internal_fsm                                                               tx_state;
+   internal_fsm                                                               rx_state;
+   std::atomic<baseband_gateway_timestamp>                                    last_rx_timestamp;
++  /// Startup barrier: downlink slot time must not advance before the radio
++  /// receiver supplies the first clock-bearing buffer.
++  std::atomic<bool>                                                          first_rx_received{false};
++  std::mutex                                                                 first_rx_mutex;
++  std::condition_variable                                                    first_rx_cvar;
+   std::optional<std::chrono::time_point<std::chrono::high_resolution_clock>> last_tx_time;
+   unsigned                                                                   last_tx_buffer_size = 0;
+ };
+diff --git a/lib/phy/lower/processors/downlink/pdxch/pdxch_processor_impl.cpp b/lib/phy/lower/processors/downlink/pdxch/pdxch_processor_impl.cpp
+index f51330a..3a55cab 100644
+--- a/lib/phy/lower/processors/downlink/pdxch/pdxch_processor_impl.cpp
++++ b/lib/phy/lower/processors/downlink/pdxch/pdxch_processor_impl.cpp
+@@ -43,6 +43,16 @@ void pdxch_processor_impl::handle_request(const shared_resource_grid& grid, cons
+     return;
+   }
+ 
++  static std::atomic<unsigned> request_diagnostic_count{0};
++  unsigned request_index = request_diagnostic_count.fetch_add(1);
++  if (request_index < 10) {
++    logger.warning(context.slot.sfn(),
++                   context.slot.slot_index(),
++                   "PDXCH_DIAGNOSTIC request={} slot={}",
++                   request_index,
++                   context.slot.system_slot());
++  }
++
+   // Obtain baseband buffer.
+   baseband_gateway_buffer_ptr buffer = bb_buffers.get();
+   if (!buffer) {
+@@ -64,6 +74,16 @@ void pdxch_processor_impl::handle_request(const shared_resource_grid& grid, cons
+ void pdxch_processor_impl::on_modulation_completion(pdxch_processor_baseband::slot_result result,
+                                                     resource_grid_context                 context)
+ {
++  static std::atomic<unsigned> completion_diagnostic_count{0};
++  unsigned completion_index = completion_diagnostic_count.fetch_add(1);
++  if (completion_index < 10) {
++    logger.warning(context.slot.sfn(),
++                   context.slot.slot_index(),
++                   "PDXCH_DIAGNOSTIC completion={} slot={} has_buffer={}",
++                   completion_index,
++                   context.slot.system_slot(),
++                   result.buffer != nullptr);
++  }
+   // Write modulation result in the request buffer.
+   auto request = requests.exchange({context.slot, std::move(result)});
+ 
+@@ -92,6 +112,18 @@ pdxch_processor_baseband::slot_result pdxch_processor_impl::process_slot(slot_co
+     return {};
+   }
+ 
++
++  static std::atomic<unsigned> retrieval_diagnostic_count{0};
++  unsigned retrieval_index = retrieval_diagnostic_count.fetch_add(1);
++  if (retrieval_index < 10) {
++    logger.warning(context.slot.sfn(),
++                   context.slot.slot_index(),
++                   "PDXCH_DIAGNOSTIC retrieval={} wanted={} stored={}",
++                   retrieval_index,
++                   context.slot.system_slot(),
++                   request.slot.system_slot());
++  }
++
+   // If the slot of the request does not match the current slot, then notify a late event.
+   if (context.slot != request.slot) {
+     notifier->on_pdxch_request_late(resource_grid_context{.slot = request.slot, .sector = context.sector});
+diff --git a/lib/radio/zmq/radio_zmq_tx_channel.cpp b/lib/radio/zmq/radio_zmq_tx_channel.cpp
+index 0a5364f..e0c3580 100644
+--- a/lib/radio/zmq/radio_zmq_tx_channel.cpp
++++ b/lib/radio/zmq/radio_zmq_tx_channel.cpp
+@@ -252,16 +252,26 @@ bool radio_zmq_tx_channel::align(uint64_t timestamp, std::chrono::milliseconds t
+     return false;
+   }
+ 
+-  unsigned count = 0;
++  // Protect concurrent alignment and transmit.
++  std::unique_lock<std::mutex> lock(transmit_alignment_mutex);
+ 
+-  // Early return if alignment is unnecessary.
++  // The receive stream advances this channel with zero samples while the lower
++  // PHY is starting.  The first scheduled downlink buffer can consequently
++  // carry a timestamp that is already behind sample_count.  No real signal has
++  // been transmitted at that point, so rebase the initial transmit timeline
++  // instead of dropping the first SSB (and every subsequent signal) as late.
++  // Once a real buffer has been transmitted, retain the original strict late
++  // timestamp behaviour.
+   if (sample_count >= timestamp) {
+-    // Return true if the timestamp is in the past.
++    if (!is_tx_enabled && sample_count > timestamp) {
++      logger.warning("Rebasing initial transmit timeline from {} to {}.", sample_count.load(), timestamp);
++      sample_count = timestamp;
++      return false;
++    }
+     return sample_count > timestamp;
+   }
+ 
+-  // Protect concurrent alignment and transmit.
+-  std::unique_lock<std::mutex> lock(transmit_alignment_mutex);
++  unsigned count = 0;
+ 
+   // If the channel has never transmitted, skip wait.
+   if (is_tx_enabled && (timeout.count() != 0)) {
+@@ -299,6 +309,27 @@ void radio_zmq_tx_channel::transmit(span<const cf_t> data)
+ 
+   logger.debug("Requested to transmit {} samples.", data.size());
+ 
++  // Temporary, bounded diagnostic evidence for the pinned interoperability
++  // build: prove whether the lower PHY reaches the radio channel and whether
++  // its first non-zero buffer is preserved.  At most six lines are emitted.
++  static std::atomic<unsigned> diagnostic_calls{0};
++  static std::atomic<bool>     diagnostic_nonzero_reported{false};
++  bool                         has_nonzero = false;
++  float                        peak        = 0.0F;
++  for (const cf_t& sample : data) {
++    float magnitude = std::abs(sample);
++    peak            = std::max(peak, magnitude);
++    has_nonzero     = has_nonzero || (magnitude > 0.0F);
++  }
++  unsigned call_index = diagnostic_calls.fetch_add(1);
++  if ((call_index < 5) || (has_nonzero && !diagnostic_nonzero_reported.exchange(true))) {
++    logger.warning("TX_DIAGNOSTIC call={} samples={} nonzero={} peak={}",
++                   call_index,
++                   data.size(),
++                   has_nonzero,
++                   peak);
++  }
++
+   // Protect concurrent alignment and transmit.
+   std::scoped_lock lock(transmit_alignment_mutex);
+ 
+diff --git a/lib/scheduler/slicing/inter_slice_scheduler.cpp b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+index 7a3440f..cd6282a 100644
+--- a/lib/scheduler/slicing/inter_slice_scheduler.cpp
++++ b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+@@ -7,6 +7,8 @@
+ #include "../policy/scheduler_policy_factory.h"
+ #include "../ue_scheduling/ue_cell_grid_allocator.h"
+ #include "ocudu/ocudulog/ocudulog.h"
++#include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ 
+ using namespace ocudu;
+ 
+@@ -84,13 +86,39 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resou
+   // Recompute the priority queues.
+   const bool pdsch_enabled =
+       cell_cfg.expert_cfg.ue.enable_csi_rs_pdsch_multiplexing or res_grid[0].result.dl.csi_rs.empty();
++  const research_action_state research_action = research_action_control::load();
++  research_action_control::observe_consumed<3>("slice", research_action);
++  const unsigned dl_cell_nof_rbs = cell_cfg.params.dl_cfg_common.init_dl_bwp.generic_params.crbs.length();
+   for (const auto& slice : slices) {
++    const bool controlled_slice = research_action_control::slice_control_enabled(research_action) and
++                                  slice.inst.id != SRB_RAN_SLICE_ID and slice.inst.id != DEFAULT_DRB_RAN_SLICE_ID;
++    const unsigned slice_min_rbs = controlled_slice
++                                       ? (dl_cell_nof_rbs * research_action.slice_min_pct + 99U) / 100U
++                                       : slice.inst.cfg.rbs.min();
++    const unsigned slice_max_rbs = controlled_slice
++                                       ? std::max(slice_min_rbs,
++                                                  dl_cell_nof_rbs * research_action.slice_max_pct / 100U)
++                                       : slice.inst.cfg.rbs.max();
++    if (controlled_slice) {
++      static std::atomic<uint16_t> last_logged_generation{0};
++      uint16_t expected = last_logged_generation.load(std::memory_order_relaxed);
++      if (expected != research_action.generation and
++          last_logged_generation.compare_exchange_strong(
++              expected, research_action.generation, std::memory_order_relaxed)) {
++        std::printf("RESEARCH_SLICE_CONSUMED generation=%u slice=%u min_rbs=%u max_rbs=%u\n",
++                    research_action.generation,
++                    static_cast<unsigned>(static_cast<size_t>(slice.inst.id)),
++                    slice_min_rbs,
++                    slice_max_rbs);
++        std::fflush(stdout);
++      }
++    }
+     // NOTE: Unlike the old \c pdsch_rb_count member, which was always 0 at this point because slot_tx had not been
+     // scheduled yet, \c nof_pdsch_rbs_allocated(slot_tx) can already be non-zero here: a PDSCH repetition occasion
+     // targeting slot_tx may have been recorded by an earlier slot's allocation. We must therefore query the up-to-date,
+     // per-slot count instead of assuming the slice starts slot_tx with a clean budget.
+     const unsigned pdsch_rb_count = slice.inst.nof_pdsch_rbs_allocated(slot_tx);
+-    if (not pdsch_enabled or pdsch_rb_count >= slice.inst.cfg.rbs.max()) {
++    if (not pdsch_enabled or pdsch_rb_count >= slice_max_rbs) {
+       // PDSCH is disabled or slice already reached max RBs. We can skip this slice.
+       continue;
+     }
+@@ -98,16 +126,15 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resou
+     interval<unsigned> rb_lims;
+     // When minRB > 0, minRB != maxRB, sliceRBs < min_RB, we create two candidates. One with limit set to minRB
+     // with high priority, and another one with limit set to maxRB with normal priority.
+-    if (pdsch_rb_count < slice.inst.cfg.rbs.min() and slice.inst.cfg.rbs.min() > 0 and
+-        slice.inst.cfg.rbs.shared() > 0) {
++    if (pdsch_rb_count < slice_min_rbs and slice_min_rbs > 0 and slice_max_rbs > slice_min_rbs) {
+       // rb_lims starts at pdsch_rb_count (not 0) to account for RBs already reserved in slot_tx by repetition
+       // occasions from earlier slots, so the candidate's priority/limits reflect the slice's true remaining budget.
+-      rb_lims         = {pdsch_rb_count, slice.inst.cfg.rbs.min()};
++      rb_lims         = {pdsch_rb_count, slice_min_rbs};
+       const auto prio = slice.get_prio(true, slot_tx, slot_tx, rb_lims.stop());
+       dl_prio_queue.push(slice_candidate_context{slice.inst.id, prio, rb_lims, slot_tx});
+-      rb_lims = {slice.inst.cfg.rbs.min(), slice.inst.cfg.rbs.max()};
++      rb_lims = {slice_min_rbs, slice_max_rbs};
+     } else {
+-      rb_lims = {pdsch_rb_count, slice.inst.cfg.rbs.max()};
++      rb_lims = {pdsch_rb_count, slice_max_rbs};
+     }
+     const auto prio = slice.get_prio(true, slot_tx, slot_tx, rb_lims.stop());
+     dl_prio_queue.push(slice_candidate_context{slice.inst.id, prio, rb_lims, slot_tx});
+@@ -125,7 +152,16 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resou
+       slot_point                          pusch_slot  = slot_tx + pusch_delay;
+ 
+       unsigned pusch_rb_count = slice.inst.nof_pusch_rbs_allocated(pusch_slot);
+-      if (pusch_rb_count >= slice.inst.cfg.rbs.max()) {
++      const unsigned ul_cell_nof_rbs = cell_cfg.params.ul_cfg_common.init_ul_bwp.generic_params.crbs.length();
++      const bool controlled_slice = research_action_control::slice_control_enabled(research_action) and
++                                    slice.inst.id != SRB_RAN_SLICE_ID and slice.inst.id != DEFAULT_DRB_RAN_SLICE_ID;
++      const unsigned slice_min_rbs = controlled_slice
++                                         ? (ul_cell_nof_rbs * research_action.slice_min_pct + 99U) / 100U
++                                         : slice.inst.cfg.rbs.min();
++      const unsigned slice_max_rbs = controlled_slice
++                                         ? std::max(slice_min_rbs, ul_cell_nof_rbs * research_action.slice_max_pct / 100U)
++                                         : slice.inst.cfg.rbs.max();
++      if (pusch_rb_count >= slice_max_rbs) {
+         // Slice reached max RBs.
+         continue;
+       }
+@@ -151,7 +187,7 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resou
+       const unsigned cell_nof_rbs    = cell_cfg.params.ul_cfg_common.init_ul_bwp.generic_params.crbs.length();
+       const unsigned pusch_avail_rbs = cell_nof_rbs - pusch_used_crbs.count();
+       // TODO: Refactor to use slice ratios from config to avoid conversation from ratio to PRBs and again to ratio.
+-      const unsigned scaled_max = slice.inst.cfg.rbs.max() * pusch_avail_rbs / cell_nof_rbs;
++      const unsigned scaled_max = slice_max_rbs * pusch_avail_rbs / cell_nof_rbs;
+       if (scaled_max <= pusch_rb_count) {
+         // Slice already has at or above its proportional share of available RBs; skip.
+         continue;
+@@ -160,12 +196,11 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resou
+       interval<unsigned> rb_lims;
+       // When minRB > 0, minRB != maxRB, sliceRBs < min_RB, we create two candidates. One with limit set to minRB
+       // with high priority, and another one with limit set to maxRB with normal priority.
+-      if (slice.inst.cfg.rbs.min() > 0 and slice.inst.cfg.rbs.shared() > 0 and
+-          pusch_rb_count < slice.inst.cfg.rbs.min()) {
++      if (slice_min_rbs > 0 and slice_max_rbs > slice_min_rbs and pusch_rb_count < slice_min_rbs) {
+         // NOTE: keep pusch_rb_count in the rb_lims computation below; note that, after running slot_indication for
+         // each slice (see above), pusch_rb_count is 0 only for k2 = min_k2; but in UL, we have other k2 values for
+         // which pusch_rb_count wouldn't be 0.
+-        const unsigned scaled_min = slice.inst.cfg.rbs.min() * pusch_avail_rbs / cell_nof_rbs;
++        const unsigned scaled_min = slice_min_rbs * pusch_avail_rbs / cell_nof_rbs;
+         rb_lims                   = {pusch_rb_count, scaled_min};
+         const auto prio           = slice.get_prio(false, slot_tx, pusch_slot, rb_lims.stop());
+         ul_prio_queue.push(slice_candidate_context{slice.inst.id, prio, rb_lims, pusch_slot});
+diff --git a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+index 1cd5afd..b99f315 100644
+--- a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
++++ b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+@@ -5,6 +5,8 @@
+ #include "ue_link_adaptation_controller.h"
+ #include "../config/time_domain_mapper.h"
+ #include "../support/mcs_calculator.h"
++#include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ 
+ using namespace ocudu;
+ 
+@@ -105,9 +107,30 @@ float ue_link_adaptation_controller::get_effective_snr() const
+ 
+ std::optional<sch_mcs_index> ue_link_adaptation_controller::calculate_dl_mcs(pdsch_mcs_table mcs_table) const
+ {
++  const research_action_state action = research_action_control::load();
++  research_action_control::observe_consumed<2>("mcs", action);
++  const auto apply_research_cap = [&action](sch_mcs_index mcs) {
++    if (not research_action_control::mcs_control_enabled(action)) {
++      return mcs;
++    }
++    const sch_mcs_index capped{static_cast<uint8_t>(std::min<unsigned>(mcs.value(), action.mcs_cap))};
++    static std::atomic<uint16_t> last_logged_generation{0};
++    uint16_t expected = last_logged_generation.load(std::memory_order_relaxed);
++    if (expected != action.generation and
++        last_logged_generation.compare_exchange_strong(expected, action.generation, std::memory_order_relaxed)) {
++      std::printf("RESEARCH_MCS_CONSUMED generation=%u original=%u cap=%u applied=%u\n",
++                  action.generation,
++                  mcs.value(),
++                  action.mcs_cap,
++                  capped.value());
++      std::fflush(stdout);
++    }
++    return capped;
++  };
++
+   if (cell_cfg.expert_cfg.ue.dl_mcs.length() == 0) {
+     // Fixed MCS.
+-    return cell_cfg.expert_cfg.ue.dl_mcs.start();
++    return apply_research_cap(cell_cfg.expert_cfg.ue.dl_mcs.start());
+   }
+ 
+   // Derive MCS using the combination of CQI + outer loop link adaptation.
+@@ -126,7 +149,7 @@ std::optional<sch_mcs_index> ue_link_adaptation_controller::calculate_dl_mcs(pds
+ 
+   // Ensures that the MCS is within the configured range.
+   mcs = std::min(std::max(mcs, cell_cfg.expert_cfg.ue.dl_mcs.start()), cell_cfg.expert_cfg.ue.dl_mcs.stop());
+-  return mcs;
++  return apply_research_cap(mcs);
+ }
+ 
+ sch_mcs_index ue_link_adaptation_controller::calculate_ul_mcs(pusch_mcs_table mcs_table,
+diff --git a/lib/scheduler/ue_scheduling/grant_params_selector.cpp b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+index b3197c4..b837701 100644
+--- a/lib/scheduler/ue_scheduling/grant_params_selector.cpp
++++ b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+@@ -13,6 +13,8 @@
+ #include "ocudu/ran/sch/tbs_calculator.h"
+ #include "ocudu/ran/transform_precoding/transform_precoding_helpers.h"
+ #include "ocudu/scheduler/support/rb_helper.h"
++#include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ #include <variant>
+ 
+ using namespace ocudu;
+@@ -352,6 +354,32 @@ find_available_vrbs(const dl_sched_context& space_cfg, const vrb_bitmap& used_vr
+   // Compute recommended number of layers, MCS and PRBs.
+   unsigned nof_rbs = std::min(space_cfg.expected_nof_rbs, max_rbs);
+ 
++  const research_action_state action = research_action_control::load();
++  research_action_control::observe_consumed<1>("prb", action);
++  if (research_action_control::prb_control_enabled(action)) {
++    const unsigned start = std::min<unsigned>(action.prb_start, used_vrbs.size());
++    const unsigned stop  = std::min<unsigned>(action.prb_stop, used_vrbs.size());
++    if (start >= stop) {
++      return {};
++    }
++    nof_rbs = std::min(nof_rbs, stop - start);
++    const vrb_interval selected =
++        rb_helper::find_empty_interval_of_length(used_vrbs, nof_rbs, vrb_interval{start, stop});
++    static std::atomic<uint16_t> last_logged_generation{0};
++    uint16_t expected = last_logged_generation.load(std::memory_order_relaxed);
++    if (expected != action.generation and
++        last_logged_generation.compare_exchange_strong(expected, action.generation, std::memory_order_relaxed)) {
++      std::printf("RESEARCH_PRB_CONSUMED generation=%u allowed=[%u,%u) allocated=[%u,%u)\n",
++                  action.generation,
++                  start,
++                  stop,
++                  selected.start(),
++                  selected.stop());
++      std::fflush(stdout);
++    }
++    return selected;
++  }
++
+   // Compute PRB allocation interval.
+   return rb_helper::find_empty_interval_of_length(used_vrbs, nof_rbs);
+ }

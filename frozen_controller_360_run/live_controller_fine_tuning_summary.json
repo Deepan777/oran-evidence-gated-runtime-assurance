@@ -1,0 +1,55 @@
+{
+  "status": "LIVE_CONTROLLER_BOUNDED_FINE_TUNING_COMPLETE",
+  "not_confirmatory": true,
+  "policy_status": "CANDIDATE_REQUIRES_LIVE_VALIDATION_AND_FREEZE",
+  "reward_normalizers_training_only": {
+    "throughput_p95": 4.99468,
+    "latency_p95": 2869.2374864652415
+  },
+  "train": {
+    "transitions": 228,
+    "executed_action_ids": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "validation": {
+    "transitions": 47,
+    "executed_action_ids": [
+      0
+    ]
+  },
+  "proposed": {
+    "gradient_steps": 300,
+    "mean_loss": 0.035371466283880486,
+    "replay_size": 228,
+    "file": "results/training/live_controller_recalibrated/md3qn_per_live_candidate.pt",
+    "sha256": "713b48f1a16fdae31c37cf5b6ed2a8757fa80facbd4e99de3a5e64d74621e498"
+  },
+  "standard_dqn": {
+    "gradient_steps": 300,
+    "mean_loss": 0.08394258837914094,
+    "file": "results/training/live_controller_recalibrated/standard_dqn_live_candidate.pt",
+    "sha256": "3079e9c38f751b39a24aa57c3bb4ec6389ccd08951445cace0da06f9e293b874"
+  },
+  "prb_only_masked_dqn": {
+    "gradient_steps": 300,
+    "mean_loss": 0.04784177250228822,
+    "transitions": 141,
+    "executed_action_ids": [
+      0,
+      1
+    ],
+    "action_space": [
+      0,
+      1
+    ],
+    "file": "results/training/live_controller_recalibrated/prb_only_masked_dqn_live_candidate.pt",
+    "sha256": "958ba0fc13d6fe505fb45e65bcbe5a59676161e4725ee5c3b1c42a8893ccdd68"
+  },
+  "state_schema_sha256": "4062f2e60173e85061be675eabacfd4a2dc7ad73585c3e4727ab6e0004fbb114",
+  "initialization_sha256": "2e9c6057f796ce42d137ba0119ab7a91773babaab1f9fcc830b1b0ce05676b89"
+}

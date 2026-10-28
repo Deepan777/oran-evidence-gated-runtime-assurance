@@ -1,0 +1,40 @@
+{
+  "build_and_radio_validation": "Use the separately packaged binary/image attestations and phase freeze/progress records; this source diagnosis is not evidence of build or integrated-run success.",
+  "diagnosed_date": "2026-10-27",
+  "historical_inference_boundary": "The same writer appears in older archived cohorts. Its is_attached=0 flag alone cannot establish NR detachment. Historical outage labels that depend on that flag require a separate audit using available native NR records and service evidence; do not relabel or fabricate unrecorded NR state. The new smoke is an infrastructure failure and is ineligible as a functioning guarded evaluation.",
+  "observed_smoke": {
+    "guard_rejections_non_finite_safety_observation": 45,
+    "measurement_complete_windows": 45,
+    "raw_file_sha256": {
+      "live-xapp-decisions.jsonl": "4614e6e826bbdd5356c76cbb6456d5a84c24b9a61ef88bbd78cbbb1862f24bc9",
+      "srsue.full.log": "833d96771716675608a728cc0532d11d4924e1d70713c0c9025dd3cc5a52503e",
+      "srsue_metrics.csv": "5d34b066e895bc23a8cd68ca55d3fec448152ce57c0face3d5ae940307492c1b"
+    },
+    "receiver_csv_rows": 115,
+    "receiver_csv_rows_is_attached_zero": 115,
+    "receiver_csv_rows_is_attached_zero_with_positive_native_downlink_bitrate": 103,
+    "run_id": "cg-20261023-smoke-none-guarded_policy-s9301"
+  },
+  "pinned_srsran_commit": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16",
+  "record_role": "source/measurement provenance for a telemetry infrastructure correction",
+  "schema_version": 1,
+  "source_correction": {
+    "description": "Create a local RRC snapshot for NR CSV emission and map only its shared-writer state field from metrics.stack.rrc_nr.state == RRC_NR_STATE_CONNECTED. Pass that snapshot only for NR carriers. LTE handling, CSV columns, raw RF values, policy checkpoint, thresholds, and scenario factors remain unchanged.",
+    "file": "patches/srsran4g/metrics_csv.cc",
+    "native_api_verified": [
+      "stack_metrics_t contains distinct rrc and rrc_nr members",
+      "rrc_nr_metrics_t contains native rrc_nr_state_t state",
+      "rrc_nr::get_metrics assigns m.state from the actual rrc_nr state"
+    ],
+    "semantics": "is_attached denotes carrier-specific native RRC CONNECTED state. NR IDLE and CONNECTED_INACTIVE produce zero. The state is not inferred from bitrate, signal quality, desired configuration, or a requested connection.",
+    "sha256_after": "15f90e7e575a642d5f4c3c58f2fb280373fd1f9405894259bf4b95b73b981f9a",
+    "sha256_before": "3f3f6b8499afc65adcad4231b374c1402b4fe8fda222fa85484a9563872136ad"
+  },
+  "source_observation": "The shared CSV writer exports is_attached from the supplied LTE-shaped RRC snapshot. The NR carrier branch supplied metrics.stack.rrc, the LTE RRC state, even though its PHY and MAC data came from phy_nr and mac_nr. In NR standalone operation LTE can remain IDLE while the native NR RRC is CONNECTED.",
+  "telemetry_consequence": "The Python parser correctly associates values with named CSV columns. _telemetry_window sees the erroneous is_attached=0 and removes receiver-derived measurements, including ue_dl_bler. The guard captures measured BLER before policy imputation; missing BLER is NaN and produces non_finite_safety_observation. The policy's substituted BLER remains explicitly labeled training_mean and cannot supply guard evidence.",
+  "upstream_sources": [
+    "https://github.com/srsran/srsRAN_4G/blob/6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16/srsue/hdr/ue_metrics_interface.h",
+    "https://github.com/srsran/srsRAN_4G/blob/6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16/srsue/hdr/stack/rrc_nr/rrc_nr_metrics.h",
+    "https://github.com/srsran/srsRAN_4G/blob/6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16/srsue/src/stack/rrc_nr/rrc_nr.cc"
+  ]
+}

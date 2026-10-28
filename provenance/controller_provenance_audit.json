@@ -1,0 +1,146 @@
+{
+  "campaign": "360-run matched controller evaluation",
+  "checkpoint": {
+    "frozen_sha256": "713b48f1a16fdae31c37cf5b6ed2a8757fa80facbd4e99de3a5e64d74621e498",
+    "hash_match": true,
+    "path": "results/training/live_controller_recalibrated/md3qn_per_live_candidate.pt",
+    "recovered_sha256": "713b48f1a16fdae31c37cf5b6ed2a8757fa80facbd4e99de3a5e64d74621e498"
+  },
+  "fine_tuning": {
+    "reward_normalizers_training_only": {
+      "latency_p95": 2869.2374864652415,
+      "throughput_p95": 4.99468
+    },
+    "selection_boundary": "The recovered summary records a candidate and training loss but no comparative checkpoint-selection ledger; no post hoc selection criterion is inferred.",
+    "status": "CANDIDATE_REQUIRES_LIVE_VALIDATION_AND_FREEZE",
+    "summary_path": "results/training/live_controller_recalibrated/live_controller_fine_tuning_summary.json",
+    "summary_sha256": "74df31874de83cbd556431ef464278df8945052272cceaca0c1bb7ddeaf8db3f",
+    "train": {
+      "executed_action_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitions": 228
+    },
+    "training": {
+      "gradient_steps": 300,
+      "mean_loss": 0.035371466283880486,
+      "replay_size": 228
+    },
+    "validation": {
+      "executed_action_ids": [
+        0
+      ],
+      "transitions": 47
+    }
+  },
+  "freeze_manifest": "LIVE_VALIDATION_FREEZE_MANIFEST_V10.yaml",
+  "historical_correspondence": "The frozen 360-run manifest and recovered bytes match for checkpoint and schema. This does not retrospectively prove that the same binary generated every earlier historical decision cohort.",
+  "preprocessing_schema": {
+    "clip": [
+      -8.0,
+      8.0
+    ],
+    "feature_count": 27,
+    "features": [
+      "p_jam",
+      "jammer_class_none",
+      "jammer_class_barrage",
+      "jammer_class_partial_band",
+      "jammer_class_sweep",
+      "jammer_class_intermittent",
+      "jammer_class_reactive",
+      "sinr_db",
+      "cqi",
+      "rsrp_dbfs",
+      "rsrq_db",
+      "bler",
+      "harq_nack_ratio",
+      "dl_throughput_mbps",
+      "rlc_drop_rate",
+      "rlc_sdu_delay_ms",
+      "prb_utilization",
+      "clean_prb_fraction",
+      "scheduler_queue_backlog_bytes",
+      "jammer_occupancy_fraction",
+      "jammer_subband_start_norm",
+      "jammer_subband_end_norm",
+      "previous_action_a0",
+      "previous_action_a1",
+      "previous_action_a2",
+      "previous_action_a3",
+      "previous_action_a4"
+    ],
+    "frozen_sha256": "127719f66f1b3bc3622473089c8b94206dfe65fdd9cd212a7b51a2d773946fc5",
+    "hash_match": true,
+    "means": [
+      0.556861111111111,
+      0.4431388888888888,
+      0.11224074074074074,
+      0.10994444444444446,
+      0.11191666666666666,
+      0.11135185185185185,
+      0.11140740740740741,
+      36.43367962962962,
+      8.333333333333334,
+      13.715370370370369,
+      0.0,
+      0.35055185185185184,
+      0.43548077149986253,
+      0.9407722962962963,
+      0.033633372217819445,
+      346.05266600019553,
+      0.006543151517271746,
+      0.8422171748959857,
+      41902.188888888886,
+      0.15778282510401412,
+      0.04878301065176067,
+      0.13280080302026823,
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "missing_value_boundary": "Runtime logs show causal source-specific fallback or training-mean substitution; no universal sentinel is claimed as measured evidence.",
+    "path": "results/training/live_controller_recalibrated_v2/state_schema.json",
+    "recovered_sha256": "127719f66f1b3bc3622473089c8b94206dfe65fdd9cd212a7b51a2d773946fc5",
+    "scales": [
+      0.487934525402996,
+      0.487934525402996,
+      0.2973630674709749,
+      0.30302486859605154,
+      0.30034745696843745,
+      0.29265724848218483,
+      0.29506631511492576,
+      33.270497719661925,
+      7.888106377466156,
+      9.186179476874175,
+      1e-06,
+      0.4470291306030086,
+      0.46408702508783395,
+      1.7635003334731503,
+      0.12597546651071304,
+      1521.5261346130353,
+      0.002850023589565274,
+      0.10525554141885458,
+      100462.87683289833,
+      0.10525554141885458,
+      0.08965490976883089,
+      0.17691543079579855,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4
+    ]
+  },
+  "scaler": {
+    "path": "results/training/live_controller_recalibrated_v2/scaler.pkl",
+    "relation": "byte-identical to recalibrated scaler.pkl; numerical values are also explicit in state_schema.json",
+    "sha256": "ebf2363fe396f04166b4990fe84d80062e3433101a3d1eacc2623817b925d9df"
+  }
+}

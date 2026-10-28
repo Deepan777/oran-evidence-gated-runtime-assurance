@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "scope": "guard.decide only on identical unique measured-input harness observations; no policy, preprocessing, logging, adapter, network, readback, or radio effects included",
+  "implementation_sha256": {
+    "src/controller/safety_guard.py": "12545e152e7ca07c49f2be6a187e4eb3d3fea97801f7b4aac8e1fdf7fd18e4af",
+    "src/xapp/adapters/actions.py": "0062c9dfaef6e93881ad1e373203f4ca3c4e72fdfc5e93029f828e64ce7b38d1",
+    "src/xapp/adapters/ocudu_websocket.py": "bfcd1b80162c1567873f129695f718cef83a44146a1642f54751e1e40f4eb016",
+    "experiments/live/run_xapp_loop.py": "4258e8fc1ce00117bfdc59b6d63f8f88e92faa8eada919f606c36111b6335f28"
+  },
+  "configuration": {
+    "calibration_windows": 10,
+    "sustained_evidence_windows": 3,
+    "maximum_action_windows": 5,
+    "cooldown_windows": 3,
+    "minimum_spectral_excess": 0.05,
+    "minimum_spectral_divergence": 0.35,
+    "throughput_degradation_ratio": 0.8,
+    "rollback_throughput_ratio": 0.5,
+    "bler_degradation_threshold": 0.05,
+    "latency_degradation_ratio": 2.0,
+    "rollback_latency_ratio": 3.0
+  },
+  "repetitions": 30,
+  "independent_unit": "fresh Python process, order counterbalanced",
+  "decisions_per_repetition": 5000,
+  "individual_decision_timing": {
+    "guard": {
+      "mean_ms": 0.09745519866666667,
+      "median_ms": 0.0934,
+      "p95_ms": 0.1144,
+      "p99_ms": 0.1782
+    },
+    "bypass": {
+      "mean_ms": 0.0007608206666666668,
+      "median_ms": 0.0007,
+      "p95_ms": 0.0008,
+      "p99_ms": 0.0014
+    }
+  },
+  "raw_repetition_means": [
+    {
+      "process_repetition": 0,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.0950131,
+      "bypass_mean_ms": 0.0007441600000000001,
+      "paired_increment_ms": 0.09426894000000001
+    },
+    {
+      "process_repetition": 1,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09377226000000001,
+      "bypass_mean_ms": 0.0007314600000000001,
+      "paired_increment_ms": 0.0930408
+    },
+    {
+      "process_repetition": 2,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.0934227,
+      "bypass_mean_ms": 0.0007308600000000001,
+      "paired_increment_ms": 0.09269184
+    },
+    {
+      "process_repetition": 3,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.0945377,
+      "bypass_mean_ms": 0.0007287200000000001,
+      "paired_increment_ms": 0.09380898
+    },
+    {
+      "process_repetition": 4,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09493896,
+      "bypass_mean_ms": 0.0007342400000000002,
+      "paired_increment_ms": 0.09420472
+    },
+    {
+      "process_repetition": 5,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.1003515,
+      "bypass_mean_ms": 0.0007469800000000001,
+      "paired_increment_ms": 0.09960452
+    },
+    {
+      "process_repetition": 6,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09691284,
+      "bypass_mean_ms": 0.00075872,
+      "paired_increment_ms": 0.09615412
+    },
+    {
+      "process_repetition": 7,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09720222,
+      "bypass_mean_ms": 0.00075556,
+      "paired_increment_ms": 0.09644666
+    },
+    {
+      "process_repetition": 8,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09505634,
+      "bypass_mean_ms": 0.0007732,
+      "paired_increment_ms": 0.09428314
+    },
+    {
+      "process_repetition": 9,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09613484,
+      "bypass_mean_ms": 0.00074182,
+      "paired_increment_ms": 0.09539302
+    },
+    {
+      "process_repetition": 10,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.10230624,
+      "bypass_mean_ms": 0.0008371400000000001,
+      "paired_increment_ms": 0.1014691
+    },
+    {
+      "process_repetition": 11,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.10279464,
+      "bypass_mean_ms": 0.0008541800000000002,
+      "paired_increment_ms": 0.10194046000000001
+    },
+    {
+      "process_repetition": 12,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.1019641,
+      "bypass_mean_ms": 0.0007554800000000001,
+      "paired_increment_ms": 0.10120862
+    },
+    {
+      "process_repetition": 13,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.0960036,
+      "bypass_mean_ms": 0.0007342200000000001,
+      "paired_increment_ms": 0.09526938
+    },
+    {
+      "process_repetition": 14,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09659812,
+      "bypass_mean_ms": 0.0007411200000000001,
+      "paired_increment_ms": 0.095857
+    },
+    {
+      "process_repetition": 15,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.1000991,
+      "bypass_mean_ms": 0.0007611400000000001,
+      "paired_increment_ms": 0.09933796
+    },
+    {
+      "process_repetition": 16,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.0948451,
+      "bypass_mean_ms": 0.0007550600000000001,
+      "paired_increment_ms": 0.09409004
+    },
+    {
+      "process_repetition": 17,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09663804,
+      "bypass_mean_ms": 0.0008098400000000001,
+      "paired_increment_ms": 0.09582819999999999
+    },
+    {
+      "process_repetition": 18,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09457912,
+      "bypass_mean_ms": 0.0007449600000000001,
+      "paired_increment_ms": 0.09383416
+    },
+    {
+      "process_repetition": 19,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09553106,
+      "bypass_mean_ms": 0.00074618,
+      "paired_increment_ms": 0.09478488
+    },
+    {
+      "process_repetition": 20,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09623276,
+      "bypass_mean_ms": 0.00074854,
+      "paired_increment_ms": 0.09548422
+    },
+    {
+      "process_repetition": 21,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09732014,
+      "bypass_mean_ms": 0.0007645800000000002,
+      "paired_increment_ms": 0.09655556
+    },
+    {
+      "process_repetition": 22,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09848094,
+      "bypass_mean_ms": 0.00074314,
+      "paired_increment_ms": 0.0977378
+    },
+    {
+      "process_repetition": 23,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.10584322000000002,
+      "bypass_mean_ms": 0.0007596600000000001,
+      "paired_increment_ms": 0.10508356000000002
+    },
+    {
+      "process_repetition": 24,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.10172247999999999,
+      "bypass_mean_ms": 0.00078324,
+      "paired_increment_ms": 0.10093923999999999
+    },
+    {
+      "process_repetition": 25,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.0968104,
+      "bypass_mean_ms": 0.00076796,
+      "paired_increment_ms": 0.09604244
+    },
+    {
+      "process_repetition": 26,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09860118,
+      "bypass_mean_ms": 0.0007751200000000001,
+      "paired_increment_ms": 0.09782605999999999
+    },
+    {
+      "process_repetition": 27,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09448318,
+      "bypass_mean_ms": 0.0007522000000000001,
+      "paired_increment_ms": 0.09373098
+    },
+    {
+      "process_repetition": 28,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09640285999999999,
+      "bypass_mean_ms": 0.0007534800000000001,
+      "paired_increment_ms": 0.09564937999999999
+    },
+    {
+      "process_repetition": 29,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09905722,
+      "bypass_mean_ms": 0.0007916600000000001,
+      "paired_increment_ms": 0.09826556
+    }
+  ],
+  "paired_increment_between_process_repetitions": {
+    "mean_ms": 0.09669437800000001,
+    "median_ms": 0.0958426,
+    "p95_ms": 0.10172834800000001,
+    "p99_ms": 0.10417206100000002
+  },
+  "paired_increment_mean_95ci": [
+    0.09566051680000004,
+    0.09782634835000002
+  ],
+  "allocation_peak_increment_bytes_1000_decisions": 167638,
+  "environment": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "clock": "perf_counter_ns"
+  }
+}

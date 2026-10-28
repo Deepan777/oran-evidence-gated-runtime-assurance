@@ -1,0 +1,17 @@
+{
+  "results\\aggregate\\live_validation_v10_records.parquet": "3290da3eaede9a8f3d33f072c10f45a9b4ef8d15ce12467589c5b06307c8764d",
+  "datasets\\metadata\\manifests\\live_validation_v10\\B0_live_validation_runs.csv": "52184455873f8476fd405d4e6b1ba59df2ebafbfdd55080da478e6890f385ccb",
+  "datasets\\metadata\\manifests\\live_validation_v10\\B2_live_validation_runs.csv": "8618fb4652a18ad91645133e4981cdbb67665671dec26b888f264e73722e52ed",
+  "datasets\\metadata\\manifests\\live_validation_v10\\B5_live_validation_runs.csv": "ec2a1fe8181645e985a70eee81094b656b530e6c0270c89c8e0dac2b62ab4722",
+  "datasets\\metadata\\manifests\\live_validation_v10\\P_live_validation_runs.csv": "472e3b48960d8f6d0fa3d3139045ee3ca4e82065e74c3d81637b13e2ca9544b7",
+  "results\\release\\live_validation_v10_raw_evidence_manifest.json": "5452fae6afb306c78ecb9a6fe64e3083922e8306e61dcd315ed7ed352bc7594c",
+  "revision_2026-10-22\\reproducibility\\controller_package_360_run\\run_xapp_loop.py": "da537592f7894b6aeed49dd13849eaeacb221f5ca7427babaa81a30f3374c572",
+  "data/local_measurement_amendment1/results/raw/iq-broker-live-cg-20261027m1-fault-partial-guarded_policy-s9401/corrected_guard_attestation.json": "d83c272ed605ed1d5e98760d3f5566342b2bb521c00a28ac80d930d9259719a2",
+  "data/local_measurement_amendment1/results/raw/iq-broker-live-cg-20261027m1-fault-partial-guarded_policy-s9401/live-xapp-decisions.jsonl": "a3591abc91ff28df8e701ba4c5a87f9ef283c1819f266d100cf1565a69417096",
+  "data/local_measurement_amendment1/results/raw/iq-broker-live-cg-20261027m1-fault-partial-guarded_policy-s9401/loop-stage-timings.jsonl": "3caf3b566ad2fde6e808fd3cace58971351e0c96654547a655a698862e803dd7",
+  "data/local_measurement_amendment1/results/raw/iq-broker-live-cg-20261027m1-smoke-partial-guarded_policy-s9302/live-xapp-decisions.jsonl": "b3f51105e8fa2a29f318fc0d3bc6b8ce9a72ee3cb8597d19e298aaf3c311d6c5",
+  "data/local_measurement_amendment1/results/raw/iq-broker-live-cg-20261027m1-smoke-partial-guarded_policy-s9302/run_metadata.json": "b6b65cfb61bd625365ff9e6779aa8b12f0496fc457e53ccd9a9ae0f2be913ca0",
+  "experiments\\live\\run_xapp_loop.py": "9cd62afa471a8f746feda262fbb25a66b168a11f45b31bcbffbfd55e6a75a7cd",
+  "src\\xapp\\adapters\\ocudu_websocket.py": "69fd4d108766ab9b692096ed39717eb2a83ebec9fc9a32971c80699ab101700b",
+  "src\\controller\\safety_guard.py": "12545e152e7ca07c49f2be6a187e4eb3d3fea97801f7b4aac8e1fdf7fd18e4af"
+}

@@ -24,7 +24,7 @@ REQUIRED_COLUMNS = (
 )
 
 
-def parse_srsue_csv(header: str, row: str) -> SrsUeMetricSample:
+def parse_srsue_csv(header: str, row: str, *, allow_unbounded_sinr: bool = False) -> SrsUeMetricSample:
     """Parse one data row without silently coercing ``n/a`` measurements."""
     columns = next(csv.reader([header], delimiter=";"))
     values = next(csv.reader([row], delimiter=";"))
@@ -47,10 +47,16 @@ def parse_srsue_csv(header: str, row: str) -> SrsUeMetricSample:
     timestamp_ns = round(finite("timestamp_epoch_ms") * 1_000_000.0)
     if timestamp_ns < 0:
         raise ValueError("srsUE timestamp must be non-negative")
+    attached = finite("is_attached") if "is_attached" in document else 1.0
+    native_sinr = float(document["dl_snr"])
+    unbounded_sinr = allow_unbounded_sinr and native_sinr == float("inf") and attached == 1.0
     return SrsUeMetricSample(
         timestamp_ns=timestamp_ns,
         values={
-            "sinr_db": finite("dl_snr"),
+            # Positive infinity is an explicitly observed, unbounded native
+            # estimate, not a finite SNR value. Never cap it or call a policy
+            # substitution measured. This option is prospective and opt-in.
+            **({"sinr_positive_infinity_observed": 1.0} if unbounded_sinr else {"sinr_db": finite("dl_snr")}),
             # The ZMQ software receiver has no calibrated RF front-end. Its
             # native signal level is therefore dBFS and must not be called dBm.
             "rsrp_dbfs": finite("rsrp"),
@@ -64,6 +70,6 @@ def parse_srsue_csv(header: str, row: str) -> SrsUeMetricSample:
             # observation from finite placeholder values emitted after the
             # receiver has detached.  Legacy fixture streams without this
             # optional column are attached by construction.
-            "receiver_attached": finite("is_attached") if "is_attached" in document else 1.0,
+            "receiver_attached": attached,
         },
     )

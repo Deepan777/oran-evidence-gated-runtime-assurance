@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "analysis_status": "RETROSPECTIVE_CENSORING_CORRECTION",
+  "source_report_sha256": "fbb17546594a2a7f8bd184e2d1eab770770b6e1888cf55a13291430c5944dffd",
+  "runs": 84,
+  "matched_blocks": 24,
+  "definition": {
+    "original_prespecified_threshold": "first recovery window >=90% of run-specific pre-interference mean goodput; throughput-only, no three-window or delay requirement",
+    "time_origin": "cessation of interference, start of first recovery window",
+    "event_time": "end of first qualifying one-second window",
+    "horizon_seconds": 5,
+    "non_event_handling": "right-censored at 5 s; former assigned 6-s values are not events",
+    "restricted_mean": "E[min(T,5s)], arithmetic mean under common complete five-second follow-up",
+    "retrospective_changes": "explicit event/censor records, horizon-correct RMTR, exact McNemar test for recovery probability; original threshold preserved",
+    "multiplicity": "four A1/A2/A3/A4 versus A0 exact paired recovery tests Holm-adjusted within the recovery endpoint family, as the frozen plan specifies endpoint-wise families; RMTR is supplementary",
+    "bootstrap": "Binary recovery probability: 10,000 paired matched-block resamples, seeds 5200..5203. Supplementary RMTR: 20,000 paired matched-block resamples, seeds 5300..5303. Both use 2.5/97.5 percentile bounds; all methods within each comparison remain paired."
+  },
+  "method_summaries": {
+    "A0": {
+      "runs": 24,
+      "events": 19,
+      "censored": 5,
+      "restricted_mean_5s": 2.0
+    },
+    "A1": {
+      "runs": 6,
+      "events": 4,
+      "censored": 2,
+      "restricted_mean_5s": 2.5
+    },
+    "A2": {
+      "runs": 24,
+      "events": 19,
+      "censored": 5,
+      "restricted_mean_5s": 2.0833333333333335
+    },
+    "A3": {
+      "runs": 24,
+      "events": 19,
+      "censored": 5,
+      "restricted_mean_5s": 2.3333333333333335
+    },
+    "A4": {
+      "runs": 6,
+      "events": 5,
+      "censored": 1,
+      "restricted_mean_5s": 2.6666666666666665
+    }
+  },
+  "paired_comparisons": [
+    {
+      "method": "A1",
+      "reference": "A0",
+      "test": "exact_two_sided_McNemar_conditional_binomial",
+      "p_value": 1.0,
+      "n_pairs": 6,
+      "paired_counts": {
+        "both_recover": 4,
+        "left_only": 0,
+        "right_only": 1,
+        "neither_recovers": 1
+      },
+      "mean_difference": -0.16666666666666666,
+      "paired_block_bootstrap_ci": [
+        -0.5,
+        0.0
+      ],
+      "restricted_mean_difference_seconds": 0.6666666666666666,
+      "restricted_mean_paired_bootstrap_95ci": [
+        0.0,
+        1.6666666666666667
+      ],
+      "rmtr_wilcoxon": {
+        "statistic": 0.0,
+        "p_value": 0.5,
+        "rank_biserial": 1.0,
+        "n_pairs": 6
+      },
+      "holm_within_recovery_endpoint_family": {
+        "index": 0,
+        "raw_p": 1.0,
+        "adjusted_p": 1.0,
+        "significant": false
+      }
+    },
+    {
+      "method": "A2",
+      "reference": "A0",
+      "test": "exact_two_sided_McNemar_conditional_binomial",
+      "p_value": 1.0,
+      "n_pairs": 24,
+      "paired_counts": {
+        "both_recover": 16,
+        "left_only": 3,
+        "right_only": 3,
+        "neither_recovers": 2
+      },
+      "mean_difference": 0.0,
+      "paired_block_bootstrap_ci": [
+        -0.20833333333333334,
+        0.20833333333333334
+      ],
+      "restricted_mean_difference_seconds": 0.08333333333333333,
+      "restricted_mean_paired_bootstrap_95ci": [
+        -0.625,
+        0.7916666666666666
+      ],
+      "rmtr_wilcoxon": {
+        "statistic": 12.0,
+        "p_value": 0.7316005889599013,
+        "rank_biserial": 0.14285714285714285,
+        "n_pairs": 24
+      },
+      "holm_within_recovery_endpoint_family": {
+        "index": 1,
+        "raw_p": 1.0,
+        "adjusted_p": 1.0,
+        "significant": false
+      }
+    },
+    {
+      "method": "A3",
+      "reference": "A0",
+      "test": "exact_two_sided_McNemar_conditional_binomial",
+      "p_value": 1.0,
+      "n_pairs": 24,
+      "paired_counts": {
+        "both_recover": 16,
+        "left_only": 3,
+        "right_only": 3,
+        "neither_recovers": 2
+      },
+      "mean_difference": 0.0,
+      "paired_block_bootstrap_ci": [
+        -0.20833333333333334,
+        0.20833333333333334
+      ],
+      "restricted_mean_difference_seconds": 0.3333333333333333,
+      "restricted_mean_paired_bootstrap_95ci": [
+        -0.4583333333333333,
+        1.125
+      ],
+      "rmtr_wilcoxon": {
+        "statistic": 24.0,
+        "p_value": 0.41989738471895155,
+        "rank_biserial": 0.2727272727272727,
+        "n_pairs": 24
+      },
+      "holm_within_recovery_endpoint_family": {
+        "index": 2,
+        "raw_p": 1.0,
+        "adjusted_p": 1.0,
+        "significant": false
+      }
+    },
+    {
+      "method": "A4",
+      "reference": "A0",
+      "test": "exact_two_sided_McNemar_conditional_binomial",
+      "p_value": 1.0,
+      "n_pairs": 6,
+      "paired_counts": {
+        "both_recover": 4,
+        "left_only": 1,
+        "right_only": 1,
+        "neither_recovers": 0
+      },
+      "mean_difference": 0.0,
+      "paired_block_bootstrap_ci": [
+        -0.5,
+        0.5
+      ],
+      "restricted_mean_difference_seconds": 0.8333333333333334,
+      "restricted_mean_paired_bootstrap_95ci": [
+        -1.0,
+        2.3333333333333335
+      ],
+      "rmtr_wilcoxon": {
+        "statistic": 3.0,
+        "p_value": 0.625,
+        "rank_biserial": 0.4,
+        "n_pairs": 6
+      },
+      "holm_within_recovery_endpoint_family": {
+        "index": 3,
+        "raw_p": 1.0,
+        "adjusted_p": 1.0,
+        "significant": false
+      }
+    }
+  ],
+  "preserved_other_endpoints": {
+    "interference_goodput_mbps": {
+      "A1": {
+        "bootstrap_95pct_ci_mean": [
+          -0.0003890259144808173,
+          0.000929172930803907
+        ],
+        "holm_adjusted_p": 1.0,
+        "matched_blocks": 6,
+        "mean_improvement": 0.0002392935750585749,
+        "median_improvement": 7.401568254322989e-05,
+        "positive_blocks": 3,
+        "wilcoxon_p_two_sided": 0.84375
+      },
+      "A2": {
+        "bootstrap_95pct_ci_mean": [
+          0.001423845456723485,
+          0.006267919250705267
+        ],
+        "holm_adjusted_p": 0.004951953887939453,
+        "matched_blocks": 24,
+        "mean_improvement": 0.0036822804742354157,
+        "median_improvement": 0.0006855561781459755,
+        "positive_blocks": 20,
+        "wilcoxon_p_two_sided": 0.0012379884719848633
+      },
+      "A3": {
+        "bootstrap_95pct_ci_mean": [
+          -0.0001780608267906776,
+          0.0003302706133345092
+        ],
+        "holm_adjusted_p": 1.0,
+        "matched_blocks": 24,
+        "mean_improvement": 7.317369148776612e-05,
+        "median_improvement": -5.229854783427313e-06,
+        "positive_blocks": 12,
+        "wilcoxon_p_two_sided": 0.746925950050354
+      },
+      "A4": {
+        "bootstrap_95pct_ci_mean": [
+          -0.0011215297507704012,
+          0.00046522939140376996
+        ],
+        "holm_adjusted_p": 1.0,
+        "matched_blocks": 6,
+        "mean_improvement": -0.0002224577233856448,
+        "median_improvement": -3.0199092366837554e-05,
+        "positive_blocks": 3,
+        "wilcoxon_p_two_sided": 1.0
+      }
+    },
+    "interference_jitter_ms": {
+      "A1": {
+        "bootstrap_95pct_ci_mean": [
+          -163.84282658638782,
+          -30.37573910096039
+        ],
+        "holm_adjusted_p": 0.125,
+        "matched_blocks": 6,
+        "mean_improvement": -91.32588935831035,
+        "median_improvement": -89.15497032065616,
+        "positive_blocks": 0,
+        "wilcoxon_p_two_sided": 0.03125
+      },
+      "A2": {
+        "bootstrap_95pct_ci_mean": [
+          -70.69552211753664,
+          0.13843608710193386
+        ],
+        "holm_adjusted_p": 0.65625,
+        "matched_blocks": 24,
+        "mean_improvement": -34.635437102598694,
+        "median_improvement": -1.2652318514923444,
+        "positive_blocks": 11,
+        "wilcoxon_p_two_sided": 0.2405325174331665
+      },
+      "A3": {
+        "bootstrap_95pct_ci_mean": [
+          -25.02532395812885,
+          21.282701217259085
+        ],
+        "holm_adjusted_p": 0.746925950050354,
+        "matched_blocks": 24,
+        "mean_improvement": -0.6382013579886266,
+        "median_improvement": 0.08778459122819726,
+        "positive_blocks": 12,
+        "wilcoxon_p_two_sided": 0.746925950050354
+      },
+      "A4": {
+        "bootstrap_95pct_ci_mean": [
+          -88.41276970704077,
+          12.377143975824637
+        ],
+        "holm_adjusted_p": 0.65625,
+        "matched_blocks": 6,
+        "mean_improvement": -38.82970024213089,
+        "median_improvement": -32.84148483858713,
+        "positive_blocks": 1,
+        "wilcoxon_p_two_sided": 0.21875
+      }
+    },
+    "interference_loss_percent": {
+      "A1": {
+        "bootstrap_95pct_ci_mean": [
+          -1.9692550477686355,
+          -0.11690025950039333
+        ],
+        "holm_adjusted_p": 0.375,
+        "matched_blocks": 6,
+        "mean_improvement": -0.9707763299981504,
+        "median_improvement": -0.36406251231114556,
+        "positive_blocks": 1,
+        "wilcoxon_p_two_sided": 0.09375
+      },
+      "A2": {
+        "bootstrap_95pct_ci_mean": [
+          -36.79800549125632,
+          -7.277300907064733
+        ],
+        "holm_adjusted_p": 0.375,
+        "matched_blocks": 24,
+        "mean_improvement": -21.810980422238433,
+        "median_improvement": -0.39820625170946927,
+        "positive_blocks": 9,
+        "wilcoxon_p_two_sided": 0.12084019184112549
+      },
+      "A3": {
+        "bootstrap_95pct_ci_mean": [
+          -0.18041167451706344,
+          0.6135402979565832
+        ],
+        "holm_adjusted_p": 0.49820621940631193,
+        "matched_blocks": 24,
+        "mean_improvement": 0.20958759278425074,
+        "median_improvement": 0.20960899303115108,
+        "positive_blocks": 15,
+        "wilcoxon_p_two_sided": 0.24910310970315597
+      },
+      "A4": {
+        "bootstrap_95pct_ci_mean": [
+          -1.1684321837765328,
+          0.47278560803525316
+        ],
+        "holm_adjusted_p": 0.49820621940631193,
+        "matched_blocks": 6,
+        "mean_improvement": -0.47115367829140214,
+        "median_improvement": -0.8815054066462048,
+        "positive_blocks": 1,
+        "wilcoxon_p_two_sided": 0.4375
+      }
+    },
+    "recovery_to_90pct_seconds": {
+      "A1": {
+        "bootstrap_95pct_ci_mean": [
+          -2.1666666666666665,
+          0.0
+        ],
+        "holm_adjusted_p": 0.718849979515999,
+        "matched_blocks": 6,
+        "mean_improvement": -0.8333333333333334,
+        "median_improvement": 0.0,
+        "positive_blocks": 0,
+        "wilcoxon_p_two_sided": 0.17971249487899976
+      },
+      "A2": {
+        "bootstrap_95pct_ci_mean": [
+          -1.0,
+          0.8333333333333334
+        ],
+        "holm_adjusted_p": 1.0,
+        "matched_blocks": 24,
+        "mean_improvement": -0.08333333333333333,
+        "median_improvement": 0.0,
+        "positive_blocks": 3,
+        "wilcoxon_p_two_sided": 0.7316005889599013
+      },
+      "A3": {
+        "bootstrap_95pct_ci_mean": [
+          -1.2916666666666667,
+          0.625
+        ],
+        "holm_adjusted_p": 1.0,
+        "matched_blocks": 24,
+        "mean_improvement": -0.3333333333333333,
+        "median_improvement": 0.0,
+        "positive_blocks": 4,
+        "wilcoxon_p_two_sided": 0.41989738471895155
+      },
+      "A4": {
+        "bootstrap_95pct_ci_mean": [
+          -2.6666666666666665,
+          1.3333333333333333
+        ],
+        "holm_adjusted_p": 1.0,
+        "matched_blocks": 6,
+        "mean_improvement": -0.8333333333333334,
+        "median_improvement": -1.0,
+        "positive_blocks": 1,
+        "wilcoxon_p_two_sided": 0.5807121621890252
+      }
+    }
+  },
+  "plan_typo": "The plan's descriptive goodput sentence says 20 seconds, but the frozen phase manifest and actual records use 15 interference seconds. Analyses retain the actual 15 seconds."
+}

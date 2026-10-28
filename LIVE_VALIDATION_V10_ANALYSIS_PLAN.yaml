@@ -1,0 +1,126 @@
+schema_version: 1
+status: FROZEN_BEFORE_ANY_V10_OUTCOME
+campaign: LIVE_VALIDATION_V10
+frozen_utc: 2026-08-25T16:09:31Z
+freeze_context:
+  accepted_runs_when_frozen: {B0: 0, B2: 0, B5: 0, P: 0}
+  v10_outcomes_observed: false
+  rationale: >-
+    V10 preserves the complete V9 scientific design but versions a method-neutral
+    implementation correction to the already frozen receiver_detached_outage class.
+    V9 row livev9-b0-confirmatory-barragemjsrp10mhighmprotected_onlymdegraded-s1010
+    completed all 120 radio windows but exposed four windows in which native
+    is_attached=0 coexisted with a measured gNB-side buffered-SDU delay. The V9
+    implementation incorrectly required no successful SDU before classifying a
+    detached receiver window as evidence-complete, although the predeclared V9
+    analysis plan defined receiver detachment itself as the outage condition.
+    V10 retains raw missing receiver metrics as missing, retains every measured
+    network metric, synthesizes nothing, and accepts the detached-outage class only
+    when native attachment status, scheduler, RLC, IQ, and radio-clock evidence are
+    present. All V9 outcomes are development evidence and ineligible. No scenario,
+    controller, action, radio profile, outcome, threshold, or statistical test changes.
+
+replication_unit: matched_scenario_id_and_seed
+methods: [P, B0, B2, B5]
+strongest_relevant_baseline_rule: >-
+  For each outcome, select the non-proposed method with the best mean in the
+  predeclared direction over all 90 matched blocks. Report comparisons to all
+  baselines; gate support uses the selected strongest baseline only.
+
+window_definitions:
+  duration_seconds: 120
+  pre_jam: [0, 20]
+  jammer_on: [20, 100]
+  recovery: [100, 120]
+  latency_sla_ms: 20.0
+  latency_sla_source: existing frozen controller reward and environment implementation
+
+primary_outcomes:
+  protected_flow_latency_violation_rate:
+    formula: >-
+      fraction_of_jammer_on_windows_with_rlc_sdu_delay_ms_gt_20_or_with
+      right_censored_no_successful_sdu_or_receiver_detached_outage_status
+    direction: lower
+    practical_significance: {type: absolute_difference, minimum: 0.05}
+  protected_flow_throughput_retention:
+    formula: mean_jammer_on_dl_throughput_mbps_divided_by_mean_pre_jam_dl_throughput_mbps
+    direction: higher
+    practical_significance: {type: relative_difference, minimum: 0.05}
+  protected_flow_packet_or_rlc_drop_rate:
+    formula: mean_jammer_on_rlc_drop_rate
+    direction: lower
+    practical_significance: {type: absolute_difference, minimum: 0.01}
+  recovery_time:
+    formula: >-
+      seconds_from_recovery_start_to_first_three_consecutive_windows_with
+      dl_throughput_at_least_90_percent_of_pre_jam_mean_and
+      rlc_sdu_delay_ms_at_most_20; unrecovered_is_20_seconds
+    direction: lower
+    practical_significance: {type: absolute_seconds, minimum: 1.0}
+
+statistical_plan:
+  alpha: 0.05
+  omnibus: friedman
+  planned_pairs: [[P, B0], [P, B2], [P, B5]]
+  pairwise: paired_wilcoxon_signed_rank
+  multiple_testing: holm_bonferroni_across_all_primary_outcome_planned_pairs
+  effect_size: paired_rank_biserial
+  bootstrap_iterations: 10000
+  confidence: 0.95
+  support_rule: >-
+    A primary outcome is supported only when the proposed method is better than
+    the strongest baseline in the declared direction, the Holm-adjusted p-value
+    is at most 0.05, the paired effect has the expected sign, and the mean effect
+    reaches the practical-significance cutoff.
+
+robustness_gate:
+  no_jam_regression:
+    maximum_relative_throughput_loss: 0.05
+    maximum_absolute_latency_violation_increase: 0.05
+    maximum_absolute_drop_rate_increase: 0.05
+  multiple_jammer_conditions:
+    minimum_jammer_families_with_favorable_median_effect: 3
+    minimum_jsr_levels_with_favorable_median_effect: 2
+  independent_seeds:
+    minimum_fraction_of_seeds_with_favorable_median_effect: 0.60
+
+xai_gate:
+  population: every_accepted_P_decision_with_at_least_two_feasible_actions
+  top_k: 3
+  deterministic_stability_perturbation_fraction_of_schema_range: 0.01
+  faithfulness:
+    metric: median_top_k_q_gap_perturbation_effect_divided_by_bottom_k_effect
+    minimum_ratio: 1.5
+  stability:
+    metric_spearman: median_absolute_attribution_rank_spearman
+    minimum_spearman: 0.80
+    metric_jaccard: median_top_k_jaccard
+    minimum_jaccard: 0.60
+  counterfactual: {metric: valid_fraction, minimum: 0.80}
+  operational_latency:
+    metric: p95_total_end_to_end_loop_latency_ms
+    maximum_ms: 1000.0
+
+integrity:
+  synthetic_frames_allowed: false
+  incomplete_windows_allowed: false
+  evidence_complete_outage_windows_allowed: true
+  raw_missing_outage_metrics_synthesized: false
+  accepted_outage_classes:
+    - right_censored_no_successful_sdu
+    - receiver_detached_outage
+  receiver_detached_outage_evidence: >-
+    native is_attached=0 plus present scheduler, RLC, IQ and radio-clock evidence;
+    a measured gNB-side buffered-SDU delay is retained and does not negate native
+    receiver detachment
+  controller_missing_value_policy: frozen_causal_training_mean_then_previous_measured_with_provenance
+  native_receiver_attachment_policy: >-
+    retain finite detached RF placeholders only in the decision audit, exclude them
+    from controller features, and use the frozen causal imputer with provenance
+  ood_guard_profile: physical_plausibility_with_shift_audit
+  training_range_crossings: audit_only_distribution_shift_warnings
+  hard_input_rejection: nonfinite_malformed_or_physically_impossible_only
+  skipped_or_missing_decisions_allowed: false
+  unacknowledged_actions_allowed: false
+  post_hoc_outcome_or_threshold_changes_allowed: false
+  rejected_v3_v4_v5_v6_v7_v8_v9_evidence_eligible: false

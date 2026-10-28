@@ -2,7 +2,7 @@ from __future__ import annotations
 import json, pathlib
 
 def main() -> None:
-    root=pathlib.Path('<project-root>')
+    root=pathlib.Path('/home/deepanramkumar_p/oran-cloud-project')
     src=root/'results/training/live_controller_recalibrated/state_schema.json'
     out=root/'results/training/live_controller_recalibrated_v2'
     out.mkdir(parents=True,exist_ok=True)

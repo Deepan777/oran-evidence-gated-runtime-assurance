@@ -3,7 +3,7 @@ import json, pathlib
 from experiments.collection.build_live_run_records import build_records
 
 def main() -> None:
-    root = pathlib.Path('<project-root>')
+    root = pathlib.Path('/home/deepanramkumar_p/oran-cloud-project')
     total = 0; usable = []
     for p in sorted((root/'results/raw').glob('iq-broker-live-*')):
         meta = p/'run_metadata.json'; dec = p/'live-xapp-decisions.jsonl'

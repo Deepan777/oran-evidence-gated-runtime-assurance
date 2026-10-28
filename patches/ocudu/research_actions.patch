@@ -1,0 +1,383 @@
+diff --git a/include/ocudu/scheduler/research_action_control.h b/include/ocudu/scheduler/research_action_control.h
+new file mode 100644
+index 0000000000..31ddef6f99
+--- /dev/null
++++ b/include/ocudu/scheduler/research_action_control.h
+@@ -0,0 +1,86 @@
++// SPDX-License-Identifier: BSD-3-Clause-Open-MPI
++#pragma once
++
++#include <atomic>
++#include <cstdint>
++
++namespace ocudu {
++
++enum class research_action_id : uint8_t { a0 = 0, a1 = 1, a2 = 2, a3 = 3, a4 = 4 };
++
++struct research_action_state {
++  research_action_id action          = research_action_id::a0;
++  uint16_t           prb_start       = 0;
++  uint16_t           prb_stop        = 275;
++  uint8_t            mcs_cap         = 28;
++  uint8_t            slice_min_pct   = 10;
++  uint8_t            slice_max_pct   = 100;
++  uint16_t           generation      = 0;
++};
++
++namespace research_action_control {
++
++inline uint64_t pack(const research_action_state& state)
++{
++  return (static_cast<uint64_t>(state.action) & 0x7U) |
++         ((static_cast<uint64_t>(state.prb_start) & 0x1ffU) << 3U) |
++         ((static_cast<uint64_t>(state.prb_stop) & 0x1ffU) << 12U) |
++         ((static_cast<uint64_t>(state.mcs_cap) & 0x1fU) << 21U) |
++         ((static_cast<uint64_t>(state.slice_min_pct) & 0x7fU) << 26U) |
++         ((static_cast<uint64_t>(state.slice_max_pct) & 0x7fU) << 33U) |
++         (static_cast<uint64_t>(state.generation) << 48U);
++}
++
++inline research_action_state unpack(uint64_t value)
++{
++  research_action_state state;
++  state.action        = static_cast<research_action_id>(value & 0x7U);
++  state.prb_start     = static_cast<uint16_t>((value >> 3U) & 0x1ffU);
++  state.prb_stop      = static_cast<uint16_t>((value >> 12U) & 0x1ffU);
++  state.mcs_cap       = static_cast<uint8_t>((value >> 21U) & 0x1fU);
++  state.slice_min_pct = static_cast<uint8_t>((value >> 26U) & 0x7fU);
++  state.slice_max_pct = static_cast<uint8_t>((value >> 33U) & 0x7fU);
++  state.generation    = static_cast<uint16_t>(value >> 48U);
++  return state;
++}
++
++inline std::atomic<uint64_t>& storage()
++{
++  static std::atomic<uint64_t> value{pack(research_action_state{})};
++  return value;
++}
++
++inline research_action_state load()
++{
++  return unpack(storage().load(std::memory_order_acquire));
++}
++
++inline research_action_state publish(research_action_state state)
++{
++  state.generation = static_cast<uint16_t>(load().generation + 1U);
++  storage().store(pack(state), std::memory_order_release);
++  return state;
++}
++
++inline bool prb_control_enabled(const research_action_state& state)
++{
++  return state.action == research_action_id::a1 || state.action == research_action_id::a4;
++}
++
++inline bool mcs_control_enabled(const research_action_state& state)
++{
++  return state.action == research_action_id::a2 || state.action == research_action_id::a4;
++}
++
++inline bool slice_control_enabled(const research_action_state& state)
++{
++  return state.action == research_action_id::a3;
++}
++
++} // namespace research_action_control
++} // namespace ocudu
+diff --git a/lib/scheduler/ue_scheduling/grant_params_selector.cpp b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+index 4fefb58f0e..9f6f9b1d7c 100644
+--- a/lib/scheduler/ue_scheduling/grant_params_selector.cpp
++++ b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+@@ -13,6 +13,7 @@
+ #include "ocudu/ran/sch/tbs_calculator.h"
+ #include "ocudu/ran/transform_precoding/transform_precoding_helpers.h"
+ #include "ocudu/scheduler/support/rb_helper.h"
++#include "ocudu/scheduler/research_action_control.h"
+ #include <variant>
+@@ -351,9 +352,20 @@ find_available_vrbs(const dl_sched_context& space_cfg, const vrb_bitmap& used_vrb
+   // Compute recommended number of layers, MCS and PRBs.
+   unsigned nof_rbs = std::min(space_cfg.expected_nof_rbs, max_rbs);
+ 
++  const research_action_state action = research_action_control::load();
++  if (research_action_control::prb_control_enabled(action)) {
++    const unsigned start = std::min<unsigned>(action.prb_start, used_vrbs.size());
++    const unsigned stop  = std::min<unsigned>(action.prb_stop, used_vrbs.size());
++    if (start >= stop) {
++      return {};
++    }
++    nof_rbs = std::min(nof_rbs, stop - start);
++    return rb_helper::find_empty_interval_of_length(used_vrbs, nof_rbs, vrb_interval{start, stop});
++  }
++
+   // Compute PRB allocation interval.
+   return rb_helper::find_empty_interval_of_length(used_vrbs, nof_rbs);
+ }
+diff --git a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+index 17278cfa25..7a8ef8db8a 100644
+--- a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
++++ b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+@@ -5,5 +5,6 @@
+ #include "ue_link_adaptation_controller.h"
+ #include "../config/time_domain_mapper.h"
+ #include "../support/mcs_calculator.h"
++#include "ocudu/scheduler/research_action_control.h"
+ 
+ using namespace ocudu;
+@@ -105,9 +106,16 @@ float ue_link_adaptation_controller::get_effective_snr() const
+ 
+ std::optional<sch_mcs_index> ue_link_adaptation_controller::calculate_dl_mcs(pdsch_mcs_table mcs_table) const
+ {
++  const research_action_state action = research_action_control::load();
++  const auto apply_research_cap = [&action](sch_mcs_index mcs) {
++    return research_action_control::mcs_control_enabled(action)
++               ? sch_mcs_index{static_cast<uint8_t>(std::min<unsigned>(mcs.value(), action.mcs_cap))}
++               : mcs;
++  };
++
+   if (cell_cfg.expert_cfg.ue.dl_mcs.length() == 0) {
+     // Fixed MCS.
+-    return cell_cfg.expert_cfg.ue.dl_mcs.start();
++    return apply_research_cap(cell_cfg.expert_cfg.ue.dl_mcs.start());
+   }
+ 
+   // Derive MCS using the combination of CQI + outer loop link adaptation.
+@@ -126,7 +134,7 @@ std::optional<sch_mcs_index> ue_link_adaptation_controller::calculate_dl_mcs(pdsc
+ 
+   // Ensures that the MCS is within the configured range.
+   mcs = std::min(std::max(mcs, cell_cfg.expert_cfg.ue.dl_mcs.start()), cell_cfg.expert_cfg.ue.dl_mcs.stop());
+-  return mcs;
++  return apply_research_cap(mcs);
+ }
+diff --git a/lib/scheduler/slicing/inter_slice_scheduler.cpp b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+index 1c73c34c70..97650be760 100644
+--- a/lib/scheduler/slicing/inter_slice_scheduler.cpp
++++ b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+@@ -8,6 +8,7 @@
+ #include "../config/time_domain_mapper.h"
+ #include "../policy/scheduler_policy_factory.h"
+ #include "../ue_scheduling/ue_cell_grid_allocator.h"
+ #include "ocudu/ocudulog/ocudulog.h"
++#include "ocudu/scheduler/research_action_control.h"
+ 
+ using namespace ocudu;
+ 
+@@ -84,13 +85,24 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resour
+   // Recompute the priority queues.
+   const bool pdsch_enabled =
+       cell_cfg.expert_cfg.ue.enable_csi_rs_pdsch_multiplexing or res_grid[0].result.dl.csi_rs.empty();
++  const research_action_state research_action = research_action_control::load();
++  const unsigned dl_cell_nof_rbs = cell_cfg.params.dl_cfg_common.init_dl_bwp.generic_params.crbs.length();
+   for (const auto& slice : slices) {
++    const bool controlled_slice = research_action_control::slice_control_enabled(research_action) and
++                                  slice.inst.id != SRB_RAN_SLICE_ID and slice.inst.id != DEFAULT_DRB_RAN_SLICE_ID;
++    const unsigned slice_min_rbs = controlled_slice
++                                       ? (dl_cell_nof_rbs * research_action.slice_min_pct + 99U) / 100U
++                                       : slice.inst.cfg.rbs.min();
++    const unsigned slice_max_rbs = controlled_slice
++                                       ? std::max(slice_min_rbs,
++                                                  dl_cell_nof_rbs * research_action.slice_max_pct / 100U)
++                                       : slice.inst.cfg.rbs.max();
+     // NOTE: Unlike the old \c pdsch_rb_count member, which was always 0 at this point because slot_tx had not been
+     // scheduled yet, \c nof_pdsch_rbs_allocated(slot_tx) can already be non-zero here: a PDSCH repetition occasion
+     // targeting slot_tx may have been recorded by an earlier slot's allocation. We must therefore query the up-to-date,
+     // per-slot count instead of assuming the slice starts slot_tx with a clean budget.
+     const unsigned pdsch_rb_count = slice.inst.nof_pdsch_rbs_allocated(slot_tx);
+-    if (not pdsch_enabled or pdsch_rb_count >= slice.inst.cfg.rbs.max()) {
++    if (not pdsch_enabled or pdsch_rb_count >= slice_max_rbs) {
+       // PDSCH is disabled or slice already reached max RBs. We can skip this slice.
+       continue;
+     }
+@@ -98,16 +110,15 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resour
+     interval<unsigned> rb_lims;
+     // When minRB > 0, minRB != maxRB, sliceRBs < min_RB, we create two candidates. One with limit set to minRB
+     // with high priority, and another one with limit set to maxRB with normal priority.
+-    if (pdsch_rb_count < slice.inst.cfg.rbs.min() and slice.inst.cfg.rbs.min() > 0 and
+-        slice.inst.cfg.rbs.shared() > 0) {
++    if (pdsch_rb_count < slice_min_rbs and slice_min_rbs > 0 and slice_max_rbs > slice_min_rbs) {
+       // rb_lims starts at pdsch_rb_count (not 0) to account for RBs already reserved in slot_tx by repetition
+       // occasions from earlier slots, so the candidate's priority/limits reflect the slice's true remaining budget.
+-      rb_lims         = {pdsch_rb_count, slice.inst.cfg.rbs.min()};
++      rb_lims         = {pdsch_rb_count, slice_min_rbs};
+       const auto prio = slice.get_prio(true, slot_tx, slot_tx, rb_lims.stop());
+       dl_prio_queue.push(slice_candidate_context{slice.inst.id, prio, rb_lims, slot_tx});
+-      rb_lims = {slice.inst.cfg.rbs.min(), slice.inst.cfg.rbs.max()};
++      rb_lims = {slice_min_rbs, slice_max_rbs};
+     } else {
+-      rb_lims = {pdsch_rb_count, slice.inst.cfg.rbs.max()};
++      rb_lims = {pdsch_rb_count, slice_max_rbs};
+     }
+     const auto prio = slice.get_prio(true, slot_tx, slot_tx, rb_lims.stop());
+     dl_prio_queue.push(slice_candidate_context{slice.inst.id, prio, rb_lims, slot_tx});
+@@ -124,8 +135,15 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resour
+       slot_point                          pusch_slot  = slot_tx + pusch_delay;
+ 
+       unsigned pusch_rb_count = slice.inst.nof_pusch_rbs_allocated(pusch_slot);
+-      if (pusch_rb_count >= slice.inst.cfg.rbs.max()) {
++      const unsigned ul_cell_nof_rbs = cell_cfg.params.ul_cfg_common.init_ul_bwp.generic_params.crbs.length();
++      const bool controlled_slice = research_action_control::slice_control_enabled(research_action) and
++                                    slice.inst.id != SRB_RAN_SLICE_ID and slice.inst.id != DEFAULT_DRB_RAN_SLICE_ID;
++      const unsigned slice_min_rbs = controlled_slice
++                                         ? (ul_cell_nof_rbs * research_action.slice_min_pct + 99U) / 100U
++                                         : slice.inst.cfg.rbs.min();
++      const unsigned slice_max_rbs = controlled_slice
++                                         ? std::max(slice_min_rbs, ul_cell_nof_rbs * research_action.slice_max_pct / 100U)
++                                         : slice.inst.cfg.rbs.max();
++      if (pusch_rb_count >= slice_max_rbs) {
+         // Slice reached max RBs.
+         continue;
+       }
+@@ -151,7 +169,6 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resour
+       const unsigned cell_nof_rbs    = cell_cfg.params.ul_cfg_common.init_ul_bwp.generic_params.crbs.length();
+       const unsigned pusch_avail_rbs = cell_nof_rbs - pusch_used_crbs.count();
+       // TODO: Refactor to use slice ratios from config to avoid conversation from ratio to PRBs and again to ratio.
+-      const unsigned scaled_max = slice.inst.cfg.rbs.max() * pusch_avail_rbs / cell_nof_rbs;
++      const unsigned scaled_max = slice_max_rbs * pusch_avail_rbs / cell_nof_rbs;
+       if (scaled_max <= pusch_rb_count) {
+         // Slice already has at or above its proportional share of available RBs; skip.
+         continue;
+@@ -160,12 +177,11 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resour
+       interval<unsigned> rb_lims;
+       // When minRB > 0, minRB != maxRB, sliceRBs < min_RB, we create two candidates. One with limit set to minRB
+       // with high priority, and another one with limit set to maxRB with normal priority.
+-      if (slice.inst.cfg.rbs.min() > 0 and slice.inst.cfg.rbs.shared() > 0 and
+-          pusch_rb_count < slice.inst.cfg.rbs.min()) {
++      if (slice_min_rbs > 0 and slice_max_rbs > slice_min_rbs and pusch_rb_count < slice_min_rbs) {
+         // NOTE: keep pusch_rb_count in the rb_lims computation below; note that, after running slot_indication for
+         // each slice (see above), pusch_rb_count is 0 only for k2 = min_k2; but in UL, we have other k2 values for
+         // which pusch_rb_count wouldn't be 0.
+-        const unsigned scaled_min = slice.inst.cfg.rbs.min() * pusch_avail_rbs / cell_nof_rbs;
++        const unsigned scaled_min = slice_min_rbs * pusch_avail_rbs / cell_nof_rbs;
+         rb_lims                   = {pusch_rb_count, scaled_min};
+         const auto prio           = slice.get_prio(false, slot_tx, pusch_slot, rb_lims.stop());
+         ul_prio_queue.push(slice_candidate_context{slice.inst.id, prio, rb_lims, pusch_slot});
+diff --git a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h
+index d8cc32cd1a..973c5cf456 100644
+--- a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h
++++ b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h
+@@ -47,6 +47,20 @@ public:
+   error_type<std::string> execute(const nlohmann::json& json) override;
+ };
+ 
++/// Lock-free research control for action-explainable anti-jamming experiments.
++class research_action_remote_command : public app_services::remote_command
++{
++public:
++  std::string_view get_name() const override { return "research_action_set"; }
++
++  std::string_view get_description() const override
++  {
++    return "Atomically applies A0-A4 scheduler research actions";
++  }
++
++  error_type<std::string> execute(const nlohmann::json& json) override;
++};
++
+ /// \brief Remote command that updates SIB contents without a cell restart.
+ ///
+ /// Supported SIBs: SIB2 (cell reselection), SIB3 (intra-frequency neighbors), SIB4 (inter-frequency neighbors).
+diff --git a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp
+index e77ab9b49b..85805488a6 100644
+--- a/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp
++++ b/apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.cpp
+@@ -8,6 +8,8 @@
+ 
+ #include "apps/units/flexible_o_du/o_du_high/du_high/commands/du_high_remote_commands.h"
+ #include "nlohmann/json.hpp"
++#include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ 
+ using namespace ocudu;
+ 
+@@ -222,6 +224,88 @@ error_type<std::string> rrm_policy_ratio_remote_command::execute(const nlohmann::
+   return make_unexpected("RRM policy ratio remote command procedure failed to be applied by the DU");
+ }
+ 
++error_type<std::string> research_action_remote_command::execute(const nlohmann::json& json)
++{
++  auto action_key = json.find("action");
++  if (action_key == json.end()) {
++    return make_unexpected("'action' is mandatory (A0, A1, A2, A3, or A4)");
++  }
++
++  int action_value = -1;
++  if (action_key->is_string()) {
++    const std::string value = action_key->get<std::string>();
++    if (value.size() == 2 and value[0] == 'A' and value[1] >= '0' and value[1] <= '4') {
++      action_value = value[1] - '0';
++    }
++  } else if (action_key->is_number_integer()) {
++    action_value = action_key->get<int>();
++  }
++  if (action_value < 0 or action_value > 4) {
++    return make_unexpected("'action' must be A0..A4 or integer 0..4");
++  }
++
++  research_action_state state;
++  state.action = static_cast<research_action_id>(action_value);
++
++  auto read_unsigned = [&json](const char* name, unsigned default_value) -> expected<unsigned, std::string> {
++    auto item = json.find(name);
++    if (item == json.end()) {
++      return default_value;
++    }
++    if (!item->is_number_unsigned()) {
++      return make_unexpected(fmt::format("'{}' must be an unsigned integer", name));
++    }
++    return item->get<unsigned>();
++  };
++
++  auto prb_start = read_unsigned("prb_start", state.prb_start);
++  auto prb_stop  = read_unsigned("prb_stop", state.prb_stop);
++  auto mcs_cap   = read_unsigned("mcs_cap", state.mcs_cap);
++  auto slice_min = read_unsigned("slice_min_pct", state.slice_min_pct);
++  auto slice_max = read_unsigned("slice_max_pct", state.slice_max_pct);
++  if (!prb_start || !prb_stop || !mcs_cap || !slice_min || !slice_max) {
++    return make_unexpected("research action parameter has an invalid type");
++  }
++
++  state.prb_start     = static_cast<uint16_t>(prb_start.value());
++  state.prb_stop      = static_cast<uint16_t>(prb_stop.value());
++  state.mcs_cap       = static_cast<uint8_t>(mcs_cap.value());
++  state.slice_min_pct = static_cast<uint8_t>(slice_min.value());
++  state.slice_max_pct = static_cast<uint8_t>(slice_max.value());
++
++  if (research_action_control::prb_control_enabled(state) and
++      (prb_start.value() >= prb_stop.value() or prb_stop.value() > 275U)) {
++    return make_unexpected("A1/A4 require 0 <= prb_start < prb_stop <= 275");
++  }
++  if (research_action_control::mcs_control_enabled(state) and mcs_cap.value() > 28U) {
++    return make_unexpected("A2/A4 require 0 <= mcs_cap <= 28");
++  }
++  if (research_action_control::slice_control_enabled(state) and
++      (slice_min.value() > slice_max.value() or slice_max.value() > 100U)) {
++    return make_unexpected("A3 requires 0 <= slice_min_pct <= slice_max_pct <= 100");
++  }
++
++  state = research_action_control::publish(state);
++  std::printf("RESEARCH_ACTION_APPLIED generation=%u action=A%d prb=[%u,%u) mcs_cap=%u slice=[%u,%u]%%\n",
++              state.generation,
++              action_value,
++              state.prb_start,
++              state.prb_stop,
++              state.mcs_cap,
++              state.slice_min_pct,
++              state.slice_max_pct);
++  std::fflush(stdout);
++  return {};
++}
++
+ /// Parses a NR cell global identifier (PLMN + NCI) from a JSON cell entry.
+ static expected<nr_cell_global_id_t, std::string> parse_cgi(const nlohmann::json& cell)
+ {
+diff --git a/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp b/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp
+index 9be7e64554..03cb68b447 100644
+--- a/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp
++++ b/apps/units/flexible_o_du/o_du_high/o_du_high_unit_factory.cpp
+@@ -280,6 +280,7 @@ o_du_high_unit ocudu::make_o_du_high_unit(const o_du_high_unit_config&  o_du_high
+   odu_unit.commands.remote.push_back(
+       std::make_unique<rrm_policy_ratio_remote_command>(odu_unit.o_du_hi->get_du_high().get_du_configurator()));
++  odu_unit.commands.remote.push_back(std::make_unique<research_action_remote_command>());
+   odu_unit.commands.remote.push_back(
+       std::make_unique<sib_update_remote_command>(odu_unit.o_du_hi->get_du_high().get_du_configurator()));
+ 

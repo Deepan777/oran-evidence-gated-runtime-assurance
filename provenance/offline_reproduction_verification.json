@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "all_manifest_file_hashes",
+      "passed": true,
+      "files": 369
+    },
+    {
+      "name": "frozen_cpu_inference",
+      "passed": true
+    },
+    {
+      "name": "corrected_components",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 24.902438402175903,
+      "log": "corrected_components.log"
+    },
+    {
+      "name": "expanded_recovery",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 15.951359748840332,
+      "log": "expanded_recovery.log"
+    },
+    {
+      "name": "actuator_recovery",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 5.886118412017822,
+      "log": "actuator_recovery.log"
+    },
+    {
+      "name": "receiver_metadata_sensitivity",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 8.27857232093811,
+      "log": "receiver_metadata_sensitivity.log"
+    }
+  ],
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "packages": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.1",
+    "scipy": "1.17.1",
+    "torch": "2.13.0+cu126",
+    "scikit-learn": "1.8.0",
+    "pyarrow": "16.0.0",
+    "pytest": "9.0.3",
+    "PyYAML": "6.0.1",
+    "joblib": "1.5.3"
+  },
+  "scope": "offline inference, component behavior and aggregate analysis; no full radio rerun"
+}

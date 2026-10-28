@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Please cite this software and data when using the release."
+title: "Evidence-Gated Runtime Assurance for Autonomous O-RAN Control: Code and Data"
+type: software
+version: "1.3.0"
+authors:
+  - family-names: Deepanramkumar
+    given-names: P.
+    affiliation: Vellore Institute of Technology
+  - family-names: "Helen Sharmila"
+    given-names: A.
+    affiliation: Vellore Institute of Technology
+license: CC-BY-4.0
+repository-code: "https://github.com/Deepan777/oran-evidence-gated-runtime-assurance"
+# TODO: add the version-specific doi after the deposit is made.

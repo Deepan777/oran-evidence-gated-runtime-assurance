@@ -1,0 +1,625 @@
+{
+  "schema_version": 1,
+  "analysis_status": "POST_REVIEW_CENSORING_CORRECTION_NOT_PRESPECIFIED",
+  "input": {
+    "path": "results/aggregate/live_validation_v10_records.parquet",
+    "sha256": "3290da3eaede9a8f3d33f072c10f45a9b4ef8d15ce12467589c5b06307c8764d",
+    "runs": 360,
+    "windows": 43200,
+    "matched_blocks": 90
+  },
+  "recovery_definition": {
+    "time_origin": "start of the first one-second recovery window",
+    "threshold": "at least 90% of run-specific mean pre-interference throughput and RLC delay <=20 ms",
+    "persistence": "three consecutive observable one-second recovery windows",
+    "event_time": "end of the third qualifying one-second window",
+    "observation_horizon_seconds": 20.0,
+    "non_event_handling": "right-censored at 20 s; not described as recovery at 20 s"
+  },
+  "primary_family": {
+    "description": "Four outcomes; 12 planned P-versus-baseline comparisons Holm-adjusted together",
+    "statistics": {
+      "schema_version": 1,
+      "confidence": 0.95,
+      "outcomes": {
+        "protected_flow_latency_violation_rate": {
+          "methods": [
+            "P",
+            "B0",
+            "B2",
+            "B5"
+          ],
+          "direction": "lower",
+          "n_matched_blocks": 90,
+          "friedman": {
+            "statistic": 12.010575793184627,
+            "p_value": 0.007347019970181587
+          },
+          "summaries": {
+            "P": {
+              "mean": 0.6972222222222222,
+              "bootstrap_ci": [
+                0.6638888888888889,
+                0.7324999999999999
+              ],
+              "median": 0.60625,
+              "iqr": [
+                0.565625,
+                0.865625
+              ]
+            },
+            "B0": {
+              "mean": 0.6351388888888888,
+              "bootstrap_ci": [
+                0.5637465277777778,
+                0.7027777777777777
+              ],
+              "median": 0.6375,
+              "iqr": [
+                0.5375,
+                0.95
+              ]
+            },
+            "B2": {
+              "mean": 0.6859722222222223,
+              "bootstrap_ci": [
+                0.6516666666666666,
+                0.7223611111111111
+              ],
+              "median": 0.5875,
+              "iqr": [
+                0.55,
+                0.825
+              ]
+            },
+            "B5": {
+              "mean": 0.7029166666666666,
+              "bootstrap_ci": [
+                0.6702777777777779,
+                0.736670138888889
+              ],
+              "median": 0.61875,
+              "iqr": [
+                0.575,
+                0.8562500000000001
+              ]
+            }
+          },
+          "planned_comparisons": [
+            {
+              "left": "P",
+              "right": "B0",
+              "statistic": 1498.0,
+              "p_value": 0.10855738954683726,
+              "rank_biserial": 0.19914461373964182,
+              "n_pairs": 90,
+              "holm": {
+                "index": 0,
+                "raw_p": 0.10855738954683726,
+                "adjusted_p": 0.7599017268278608,
+                "significant": false
+              }
+            },
+            {
+              "left": "P",
+              "right": "B2",
+              "statistic": 1148.0,
+              "p_value": 0.03455345133576713,
+              "rank_biserial": 0.27341772151898736,
+              "n_pairs": 90,
+              "holm": {
+                "index": 1,
+                "raw_p": 0.03455345133576713,
+                "adjusted_p": 0.276427610686137,
+                "significant": false
+              }
+            },
+            {
+              "left": "P",
+              "right": "B5",
+              "statistic": 1360.5,
+              "p_value": 0.5951290805263874,
+              "rank_biserial": -0.07006151742993848,
+              "n_pairs": 90,
+              "holm": {
+                "index": 2,
+                "raw_p": 0.5951290805263874,
+                "adjusted_p": 1.0,
+                "significant": false
+              }
+            }
+          ],
+          "relative_improvements_vs_first_method": [
+            {
+              "method": "B0",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            },
+            {
+              "method": "B2",
+              "mean_relative_improvement": -0.02752989844354833,
+              "bootstrap_ci": [
+                -0.05304730849119398,
+                -0.0020436999224654412
+              ]
+            },
+            {
+              "method": "B5",
+              "mean_relative_improvement": 0.002578383486457355,
+              "bootstrap_ci": [
+                -0.020225903889783726,
+                0.025475985470373354
+              ]
+            }
+          ]
+        },
+        "protected_flow_throughput_retention": {
+          "methods": [
+            "P",
+            "B0",
+            "B2",
+            "B5"
+          ],
+          "direction": "higher",
+          "n_matched_blocks": 90,
+          "friedman": {
+            "statistic": 4.403890160183042,
+            "p_value": 0.2210249499415677
+          },
+          "summaries": {
+            "P": {
+              "mean": 0.4105457682888337,
+              "bootstrap_ci": [
+                0.36133899709602996,
+                0.45667529769397314
+              ],
+              "median": 0.5137686725496822,
+              "iqr": [
+                0.2211609140180943,
+                0.5755209937006219
+              ]
+            },
+            "B0": {
+              "mean": 0.48525010821099407,
+              "bootstrap_ci": [
+                0.38561888880840417,
+                0.5940625900987052
+              ],
+              "median": 0.4680921052631578,
+              "iqr": [
+                0.02246732026143791,
+                0.6270424836601306
+              ]
+            },
+            "B2": {
+              "mean": 0.3811716862969571,
+              "bootstrap_ci": [
+                0.3387287510497282,
+                0.42259379503682815
+              ],
+              "median": 0.46989332672406703,
+              "iqr": [
+                0.2479462545252019,
+                0.5230776764896992
+              ]
+            },
+            "B5": {
+              "mean": 0.38438273445619925,
+              "bootstrap_ci": [
+                0.3344965074322786,
+                0.43527447347393766
+              ],
+              "median": 0.48328388372893016,
+              "iqr": [
+                0.1335090342443284,
+                0.5411184210526314
+              ]
+            }
+          },
+          "planned_comparisons": [
+            {
+              "left": "P",
+              "right": "B0",
+              "statistic": 1869.0,
+              "p_value": 0.7111469404315158,
+              "rank_biserial": -0.045454545454545456,
+              "n_pairs": 90,
+              "holm": {
+                "index": 3,
+                "raw_p": 0.7111469404315158,
+                "adjusted_p": 1.0,
+                "significant": false
+              }
+            },
+            {
+              "left": "P",
+              "right": "B2",
+              "statistic": 1390.0,
+              "p_value": 0.026570373456325656,
+              "rank_biserial": 0.27377220480668757,
+              "n_pairs": 90,
+              "holm": {
+                "index": 4,
+                "raw_p": 0.026570373456325656,
+                "adjusted_p": 0.2391333611069309,
+                "significant": false
+              }
+            },
+            {
+              "left": "P",
+              "right": "B5",
+              "statistic": 1304.0,
+              "p_value": 0.009829859215955772,
+              "rank_biserial": 0.3187042842215256,
+              "n_pairs": 90,
+              "holm": {
+                "index": 5,
+                "raw_p": 0.009829859215955772,
+                "adjusted_p": 0.09829859215955772,
+                "significant": false
+              }
+            }
+          ],
+          "relative_improvements_vs_first_method": [
+            {
+              "method": "B0",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            },
+            {
+              "method": "B2",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            },
+            {
+              "method": "B5",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            }
+          ]
+        },
+        "protected_flow_packet_or_rlc_drop_rate": {
+          "methods": [
+            "P",
+            "B0",
+            "B2",
+            "B5"
+          ],
+          "direction": "lower",
+          "n_matched_blocks": 90,
+          "friedman": {
+            "statistic": 36.000000000001386,
+            "p_value": 7.488376948790431e-08
+          },
+          "summaries": {
+            "P": {
+              "mean": 0.0,
+              "bootstrap_ci": [
+                0.0,
+                0.0
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.0
+              ]
+            },
+            "B0": {
+              "mean": 0.009405881328277505,
+              "bootstrap_ci": [
+                0.0025733586107867423,
+                0.020543960802538112
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.0
+              ]
+            },
+            "B2": {
+              "mean": 0.0,
+              "bootstrap_ci": [
+                0.0,
+                0.0
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.0
+              ]
+            },
+            "B5": {
+              "mean": 0.0,
+              "bootstrap_ci": [
+                0.0,
+                0.0
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "planned_comparisons": [
+            {
+              "left": "P",
+              "right": "B0",
+              "statistic": 0.0,
+              "p_value": 0.002217721464237049,
+              "rank_biserial": -1.0,
+              "n_pairs": 90,
+              "holm": {
+                "index": 6,
+                "raw_p": 0.002217721464237049,
+                "adjusted_p": 0.02439493610660754,
+                "significant": true
+              }
+            },
+            {
+              "left": "P",
+              "right": "B2",
+              "statistic": 0.0,
+              "p_value": 1.0,
+              "rank_biserial": 0.0,
+              "n_pairs": 90,
+              "holm": {
+                "index": 7,
+                "raw_p": 1.0,
+                "adjusted_p": 1.0,
+                "significant": false
+              }
+            },
+            {
+              "left": "P",
+              "right": "B5",
+              "statistic": 0.0,
+              "p_value": 1.0,
+              "rank_biserial": 0.0,
+              "n_pairs": 90,
+              "holm": {
+                "index": 8,
+                "raw_p": 1.0,
+                "adjusted_p": 1.0,
+                "significant": false
+              }
+            }
+          ],
+          "relative_improvements_vs_first_method": [
+            {
+              "method": "B0",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            },
+            {
+              "method": "B2",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            },
+            {
+              "method": "B5",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            }
+          ]
+        },
+        "recovery_probability_by_20s": {
+          "methods": [
+            "P",
+            "B0",
+            "B2",
+            "B5"
+          ],
+          "direction": "higher",
+          "n_matched_blocks": 90,
+          "friedman": {
+            "statistic": 69.00000000000101,
+            "p_value": 6.988237517738711e-15
+          },
+          "summaries": {
+            "P": {
+              "mean": 0.0,
+              "bootstrap_ci": [
+                0.0,
+                0.0
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.0
+              ]
+            },
+            "B0": {
+              "mean": 0.25555555555555554,
+              "bootstrap_ci": [
+                0.16666666666666666,
+                0.34444444444444444
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.75
+              ]
+            },
+            "B2": {
+              "mean": 0.0,
+              "bootstrap_ci": [
+                0.0,
+                0.0
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.0
+              ]
+            },
+            "B5": {
+              "mean": 0.0,
+              "bootstrap_ci": [
+                0.0,
+                0.0
+              ],
+              "median": 0.0,
+              "iqr": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "planned_comparisons": [
+            {
+              "left": "P",
+              "right": "B0",
+              "statistic": 0.0,
+              "p_value": 1.62001398246647e-06,
+              "rank_biserial": -1.0,
+              "n_pairs": 90,
+              "holm": {
+                "index": 9,
+                "raw_p": 1.62001398246647e-06,
+                "adjusted_p": 1.944016778959764e-05,
+                "significant": true
+              }
+            },
+            {
+              "left": "P",
+              "right": "B2",
+              "statistic": 0.0,
+              "p_value": 1.0,
+              "rank_biserial": 0.0,
+              "n_pairs": 90,
+              "holm": {
+                "index": 10,
+                "raw_p": 1.0,
+                "adjusted_p": 1.0,
+                "significant": false
+              }
+            },
+            {
+              "left": "P",
+              "right": "B5",
+              "statistic": 0.0,
+              "p_value": 1.0,
+              "rank_biserial": 0.0,
+              "n_pairs": 90,
+              "holm": {
+                "index": 11,
+                "raw_p": 1.0,
+                "adjusted_p": 1.0,
+                "significant": false
+              }
+            }
+          ],
+          "relative_improvements_vs_first_method": [
+            {
+              "method": "B0",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            },
+            {
+              "method": "B2",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            },
+            {
+              "method": "B5",
+              "status": "NOT_REPORTED_BASELINE_NEAR_ZERO"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "supplementary_restricted_mean": {
+    "status": "post-review supplementary estimand; excluded from the prespecified multiplicity family",
+    "summaries": {
+      "P": {
+        "n": 90,
+        "events": 0,
+        "recovery_probability_by_20s": 0.0,
+        "restricted_mean_time_to_recovery_20s": 20.0,
+        "bootstrap_ci": [
+          20.0,
+          20.0
+        ]
+      },
+      "B0": {
+        "n": 90,
+        "events": 23,
+        "recovery_probability_by_20s": 0.25555555555555554,
+        "restricted_mean_time_to_recovery_20s": 16.333333333333332,
+        "bootstrap_ci": [
+          14.944444444444445,
+          17.622222222222224
+        ]
+      },
+      "B2": {
+        "n": 90,
+        "events": 0,
+        "recovery_probability_by_20s": 0.0,
+        "restricted_mean_time_to_recovery_20s": 20.0,
+        "bootstrap_ci": [
+          20.0,
+          20.0
+        ]
+      },
+      "B5": {
+        "n": 90,
+        "events": 0,
+        "recovery_probability_by_20s": 0.0,
+        "restricted_mean_time_to_recovery_20s": 20.0,
+        "bootstrap_ci": [
+          20.0,
+          20.0
+        ]
+      }
+    },
+    "paired_comparisons": [
+      {
+        "contrast": "P-B0",
+        "mean_difference": 3.6666666666666665,
+        "paired_block_bootstrap_ci": [
+          2.3333333333333335,
+          5.055555555555555
+        ],
+        "wilcoxon": {
+          "statistic": 0.0,
+          "p_value": 2.2363287522999623e-05,
+          "rank_biserial": 1.0,
+          "n_pairs": 90
+        }
+      },
+      {
+        "contrast": "P-B2",
+        "mean_difference": 0.0,
+        "paired_block_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "wilcoxon": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "rank_biserial": 0.0,
+          "n_pairs": 90
+        }
+      },
+      {
+        "contrast": "P-B5",
+        "mean_difference": 0.0,
+        "paired_block_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "wilcoxon": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "rank_biserial": 0.0,
+          "n_pairs": 90
+        }
+      }
+    ]
+  },
+  "correction_of_original_claim": {
+    "original_capped_mean_difference_P_minus_B0_seconds": 4.433333333333334,
+    "corrected_restricted_mean_difference_P_minus_B0_seconds": 3.666666666666668,
+    "interpretation": "The original cap was not an exact recovery time. The corrected primary result is the fixed-horizon event probability; the restricted-mean contrast is supplementary."
+  },
+  "metric_audit": {
+    "latency_violation_threshold_ms": 20.0,
+    "latency_outage_handling": "non-finite delay, right-censored no-successful-SDU windows, and receiver-detached outages count as violations",
+    "throughput_retention_denominator": "run-specific mean pre-interference protected-flow throughput",
+    "drop_definition": "mean interference-phase RLC drop rate; not IP packet loss",
+    "bootstrap_unit": "matched scenario-seed block"
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "assurance_mechanism": "historical guard present",
+    "cohort": "historical focused safeguard study",
+    "implementation_identity": "decision logs and qualification manifest preserved; source bundle not tied by a per-run source hash",
+    "scientific_use": "proposal interception and execution-record alignment; sparse mechanism comparison",
+    "selection_mode": "safeguarded_policy",
+    "size": "6 safeguarded runs / 180 windows (3 no-interference + 3 partial-band)"
+  },
+  {
+    "assurance_mechanism": "not active in P selection mode; evaluates learned-policy efficacy, not guard authorization",
+    "cohort": "360-run matched controller evaluation",
+    "implementation_identity": "frozen run loop da537592f7894b6aeed49dd13849eaeacb221f5ca7427babaa81a30f3374c572 recovered exactly; final audit inspected later workspace source 17d52470a89f134943213852740bfe7aa8ba38ccd502fa8f86c58d34d1cba74a",
+    "scientific_use": "negative policy-efficacy result with corrected censored recovery analysis",
+    "selection_mode": "policy for P rows",
+    "size": "360 runs / 43,200 windows / 90 matched blocks"
+  },
+  {
+    "assurance_mechanism": "phase-constrained action requests; acknowledgement is not independent state readback",
+    "cohort": "exploratory fixed-actuator study",
+    "implementation_identity": "release archive and per-run evidence manifest verified",
+    "scientific_use": "exploratory actuator characterization",
+    "selection_mode": "bounded_action_probe",
+    "size": "84 runs / 2,520 windows / 24 matched blocks"
+  },
+  {
+    "assurance_mechanism": "not a radio-service or E2 experiment",
+    "cohort": "command-transport impairment study",
+    "implementation_identity": "released script and attempt ledger hashed",
+    "scientific_use": "request/acknowledgement latency and timeout boundary",
+    "selection_mode": "isolated command client",
+    "size": "8 conditions x 40 attempts"
+  },
+  {
+    "assurance_mechanism": "corrected unknown-state, parameter-match, restoration and distinct-window persistence semantics",
+    "cohort": "component timing and fault tests",
+    "implementation_identity": "corrected source and tests in revision package",
+    "scientific_use": "component behavior only; no new radio-service efficacy claim",
+    "selection_mode": "component replay",
+    "size": "30 paired timing repetitions; corrected semantic/deduplication unit tests"
+  }
+]

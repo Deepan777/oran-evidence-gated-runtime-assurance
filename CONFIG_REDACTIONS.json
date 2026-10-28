@@ -1,0 +1,14 @@
+[
+  {
+    "change": "subscriber identity/authentication fields replaced with operator-fill placeholders; radio scientific parameters unchanged",
+    "path": "config/baseline/srsue_nr_sa_zmq_direct.conf",
+    "released_sha256": "ba4aab346dc1c9d34bea9070e2943605cd2531239baff9413899769d09bee455",
+    "source_sha256": "3706428f0bcc936469b0dbed117caf95cf5705df74382c6a3fdd4a8759ecd169"
+  },
+  {
+    "change": "subscriber identity/authentication fields replaced with operator-fill placeholders; radio scientific parameters unchanged",
+    "path": "config/baseline/srsue_nr_sa_zmq_proxy.conf",
+    "released_sha256": "0bc43e42eeb3963241b5b3e6063994097fba1b45b2fb8c8fa2429cf6b0443893",
+    "source_sha256": "49b14e74d222a5cb58e6925e3754e9cc4bcb0a5fc82837532d4ebf256fda4f08"
+  }
+]

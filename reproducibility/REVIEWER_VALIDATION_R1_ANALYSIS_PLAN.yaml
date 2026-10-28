@@ -1,0 +1,90 @@
+schema_version: 1
+study_name: "Reviewer-response actuator and transport robustness characterization"
+evidence_role: "EXPLORATORY_REVIEWER_RESPONSE_NEW_DATA"
+created_utc: "2026-10-20T08:20:00Z"
+execution_revision: "ELIGIBILITY_CORRECTION_R2"
+correction_record: "reproducibility/REVIEWER_VALIDATION_R1_SMOKE_CORRECTION.json"
+
+rationale: >-
+  This bounded study answers reviewer requests for actuator-level behavior across
+  interference bandwidth, interference power, offered load, channel attenuation,
+  and command-transport impairments. It is separate from V10 and from the stopped
+  CEE engineering qualification. It cannot reverse either frozen negative result
+  and is not eligible for a new confirmatory superiority claim.
+
+radio_design:
+  manifest: "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1.csv"
+  matched_block_unit: "one unique seed for one jammer_type x JSR x load x attenuation cell"
+  factors:
+    jammer_type: [partial_band, barrage]
+    jsr_db: [0, 5]
+    traffic_load: [low, medium, high]
+    attenuation: [nominal, degraded]
+    service_mix: [protected_plus_background]
+  actions:
+    A0: "no-op reference; eligible in every block"
+    A1: "localized PRB avoidance; eligible only for partial-band interference at +5 dB JSR"
+    A2: "MCS back-off; eligible in every block"
+    A3: "protected-slice PRB boost; eligible in every block"
+    A4: "combined localized PRB avoidance and MCS back-off; eligible only for partial-band interference at +5 dB JSR"
+  expected_matched_blocks: 24
+  expected_rows: 84
+  windows_per_row: 30
+  phases_seconds: {pre_interference: 10, interference: 15, recovery: 5}
+  action_application: "forced only during the prespecified interference phase; A0 before and after"
+  ordering: "deterministically shuffled within each matched block"
+
+acceptance_gate:
+  - "exactly 30 measured, radio-covered, protected-traffic-covered windows"
+  - "zero synthetic clock-fill or uplink-silence frames"
+  - "verified protected service session and pre-interference delivery"
+  - "all 30 controller decisions present and acknowledged"
+  - "requested action executed only within its eligible probe phase"
+  - "A0 restoration acknowledged during recovery"
+  - "every rejected or interrupted attempt retained and excluded"
+
+analysis:
+  independent_unit: "matched factor block, never a one-second window"
+  reference: A0
+  primary_descriptive_endpoint: "mean protected UDP goodput during the 20-second interference phase"
+  secondary_endpoints:
+    - "mean protected packet-loss percentage during interference"
+    - "mean protected jitter during interference"
+    - "time to recover 90% of pre-interference goodput, right-censored after five seconds"
+    - "action acknowledgement latency"
+  contrasts:
+    A1: "6 observable +5 dB partial-band blocks versus matched A0"
+    A2: "24 blocks versus matched A0"
+    A3: "24 blocks versus matched A0"
+    A4: "6 observable +5 dB partial-band blocks versus matched A0"
+  uncertainty: "paired block bootstrap confidence intervals with a fixed seed"
+  tests: "two-sided paired Wilcoxon signed-rank tests; Holm adjustment within each endpoint family"
+  subgroup_reporting: "descriptive factor-stratified summaries only; no subgroup significance claims"
+  missingness: "no imputation; report rejected, incomplete, and accepted rows separately"
+
+transport_impairment_design:
+  scope: >-
+    The production WebSocket command client is exercised against a protocol-valid
+    acknowledgement server while Linux netem controls loopback delay, jitter,
+    loss, duplication, and reordering. This isolates command-path robustness; it
+    does not claim radio-service performance under backhaul impairment.
+  attempts_per_condition: 40
+  conditions:
+    - baseline
+    - delay_50ms
+    - delay_100ms_jitter_20ms
+    - loss_1pct
+    - loss_5pct
+    - loss_10pct
+    - reorder_10pct
+    - duplicate_5pct
+  endpoints: [acknowledgement_success_rate, round_trip_latency_ms, timeout_or_error_class]
+
+reporting_constraints:
+  - "preserve all V3-V10 and qualification evidence unchanged"
+  - "preserve the rejected 0 dB A1 smoke and both superseded freeze files unchanged"
+  - "do not label reviewer-response data confirmatory"
+  - "do not select or omit conditions after observing outcomes"
+  - "do not claim application of parameters beyond the acknowledgement evidence actually returned"
+  - "report negative, null, failed, and censored outcomes without replacement"
+

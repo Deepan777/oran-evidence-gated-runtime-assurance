@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "scope": "compiled software identities; no independent physical radio proof",
+  "source_commits": {
+    "ocudu": "fa4c9fa445a37fea681c9a75ee2fc70f9814ae06",
+    "srsran4g": "6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16"
+  },
+  "sha256": {
+    "external/ocudu/include/ocudu/scheduler/research_action_control.h": "dee4e871fc2c93b69ffe7cda47a40cfb49e1f9a41ba3460ef252ebf17776c761",
+    "external/ocudu/lib/scheduler/ue_scheduling/grant_params_selector.cpp": "a17ec1a2dc5c0825c8179ecd5593f0f47a730fcea527e95b6877e45f9b6961ff",
+    "external/ocudu/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp": "833235a4b3b65af821c988b6041c31c5404a2e64fe21e67c9c16806ab40b27aa",
+    "external/ocudu/lib/scheduler/slicing/inter_slice_scheduler.cpp": "ebf5121d74595d169d164a67ead90ac4a3f7266879b92524e39c205b703b4bb4",
+    "external/srsran4g/srsue/src/metrics_csv.cc": "15f90e7e575a642d5f4c3c58f2fb280373fd1f9405894259bf4b95b73b981f9a",
+    "results/corrected_guard_backend/gnb": "73e24bda002f2fa306d2ebcc91986bec9a14783609584cdc62b0a60d9e4c38d3",
+    "results/corrected_guard_backend/ue-nr-attachment/srsue": "43ac9ed06f571360425084abfe0743487ce19b8a8d8a3691825b89c49185e684",
+    "external/ocudu/build-codex-gnb/CMakeCache.txt": "cfcf76e8c0785539cb946399a72cbab5f085af6b794be7287da7331d156b7815",
+    "external/srsran4g/build-codex-zmq/CMakeCache.txt": "b4d1c206ba12f993c1950826131c68d0bd4d0e208aa7a9dad461616a3d1b8cd4"
+  },
+  "image_ids": {
+    "ocudu-gnb-zmq:consumer-readback-20261023": "sha256:1d7125738a48cba08ef41c8d833991ec400c807435116fb782a27c05b94eee87",
+    "srsue-zmq:telemetry-nr-attachment-20261027": "sha256:dae98d99363a5e3ce1888a41a804027ef18591fc719fa10dac8bfeb432a6e084"
+  },
+  "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "platform": "Linux-7.0.0-1014-gcp-x86_64-with-glibc2.39",
+  "scheduler_readback": {
+    "observed": "configuration actually loaded by PRB, MCS and slice scheduler consumers",
+    "association": "same gNB process, complete parameters, generation matching post-command publication, fresh timestamps",
+    "trust": "shared gNB process and local log collector; not authenticated remote telemetry or physical-effect verification"
+  },
+  "receiver_state_fix": {
+    "signal": "native NR RRC CONNECTED state for NR CSV rows; LTE path unchanged",
+    "not_inferred_from": [
+      "traffic success",
+      "RF level",
+      "desired connection state"
+    ],
+    "guard_thresholds_changed": false
+  }
+}

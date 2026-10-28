@@ -1,0 +1,38 @@
+FROM ubuntu:24.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG OCUDU_COMMIT=fa4c9fa445a37fea681c9a75ee2fc70f9814ae06
+
+LABEL org.opencontainers.image.title="OCUDU gNB ZeroMQ research build" \
+      org.opencontainers.image.revision="${OCUDU_COMMIT}" \
+      org.opencontainers.image.patch="radio-before-du-startup"
+
+COPY docker/scripts/ /src/docker/scripts/
+RUN /src/docker/scripts/install_dependencies.sh build \
+    && /src/docker/scripts/install_docker_dependencies.sh build \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends libzmq3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+ADD . /src
+RUN /src/docker/scripts/builder.sh \
+      -c gcc \
+      -m "-j2 gnb" \
+      -DBUILD_TESTING=OFF \
+      -DWERROR=OFF \
+      -DENABLE_ZEROMQ=ON \
+      -DENABLE_UHD=OFF \
+      -DENABLE_SIDEKIQ=OFF \
+      -DENABLE_DPDK=OFF \
+      -DENABLE_MKL=OFF \
+      -DENABLE_ARMPL=OFF \
+      -DENABLE_LIBNUMA=OFF \
+      -DENABLE_EXPORT=OFF \
+      -DENABLE_TRX_DRIVER=OFF \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/opt/ocudu \
+      /src \
+    && mkdir -p /opt/ocudu/bin \
+    && cp /src/build/apps/gnb/gnb /opt/ocudu/bin/gnb
+
+ENTRYPOINT ["/opt/ocudu/bin/gnb"]

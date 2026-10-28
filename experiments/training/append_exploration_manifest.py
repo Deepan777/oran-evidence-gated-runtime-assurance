@@ -2,7 +2,7 @@ from __future__ import annotations
 import csv, pathlib
 
 def main() -> None:
-    root = pathlib.Path('<project-root>')
+    root = pathlib.Path('/home/deepanramkumar_p/oran-cloud-project')
     src = root/'datasets/metadata/manifests/live_exploration_runs.csv'
     dst = root/'datasets/metadata/manifests/live_exploration_runs_recalibrated.csv'
     with src.open(newline='') as f:
@@ -16,9 +16,9 @@ def main() -> None:
         'attenuation':'nominal','seed':seed,'run_length_seconds':'30','pre_jam_seconds':'5' if action != '1' else '10',
         'jammer_on_seconds':'20' if action != '1' else '10','recovery_seconds':'5' if action != '1' else '10','evidence_class':'development_live_exploration',
         'generalization_holdout':'False','partition':'train','ENABLE_LIVE_XAPP':'1','LIVE_XAPP_XAI':'0',
-        'DETECTOR_MODEL':'results/results/training/live_detector/detector_live_calibrated.joblib',
-        'CONTROLLER_MODEL':'results/results/training/live_controller/md3qn_per_live_initialization.pt',
-        'STATE_SCHEMA':'results/results/training/live_controller_recalibrated/state_schema.json',
+        'DETECTOR_MODEL':'/home/deepanramkumar_p/oran-cloud-project/results/training/live_detector/detector_live_calibrated.joblib',
+        'CONTROLLER_MODEL':'/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller/md3qn_per_live_initialization.pt',
+        'STATE_SCHEMA':'/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller_recalibrated/state_schema.json',
         'LIVE_XAPP_SELECTION_MODE':'forced_exploration','LIVE_XAPP_FORCED_ACTION_ID':action,'UE_TIMEOUT_MS':'5000','baseline_training_role':''
       })
     with dst.open('w',newline='') as f:

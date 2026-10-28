@@ -1,0 +1,12 @@
+diff --git a/lib/scheduler/slicing/inter_slice_scheduler.cpp b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+--- a/lib/scheduler/slicing/inter_slice_scheduler.cpp
++++ b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+@@ -106,7 +106,7 @@ void inter_slice_scheduler::slot_indication(slot_point slot_tx, const cell_resour
+           last_logged_generation.compare_exchange_strong(
+               expected, research_action.generation, std::memory_order_relaxed)) {
+         std::printf("RESEARCH_SLICE_CONSUMED generation=%u slice=%u min_rbs=%u max_rbs=%u\n",
+                     research_action.generation,
+-                    static_cast<unsigned>(slice.inst.id),
++                    static_cast<unsigned>(static_cast<size_t>(slice.inst.id)),
+                     slice_min_rbs,
+                     slice_max_rbs);

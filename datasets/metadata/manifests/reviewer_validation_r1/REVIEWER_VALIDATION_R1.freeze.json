@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-10-20T08:20:00Z",
+  "evidence_role": "EXPLORATORY_REVIEWER_RESPONSE_NEW_DATA",
+  "execution_revision": "ELIGIBILITY_CORRECTION_R2",
+  "expected_windows": 2520,
+  "manifest": "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1.csv",
+  "matched_blocks": 24,
+  "prohibited_use": "not eligible to overturn V10 or qualification futility decisions",
+  "rows": 84,
+  "schema_version": 1,
+  "source_sha256": {
+    "analysis/reviewer_validation_r1_postprocess.py": "41c95dbcf1e0aa98bc3cffab8f65850a80f681d8ec4cf8c20da2669aab8341bc",
+    "configs/experiments/protocol.yaml": "084c605c11fd0bf484026ed42face9bfd8906890447efa8565788c461f9f97c0",
+    "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1.csv": "4613659344b16c96f570d837b6dad4296d03d1955e2e97babb6b8ffb6fea7afc",
+    "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1_SUPERSEDED_SMOKE.csv": "2c121749a54b7d8b3fc299374958bd0bb7edfe24424a71c8a289a051196f4fdc",
+    "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1_SUPERSEDED_SMOKE.freeze.json": "b04066d4b2361e11c05c7df420f676bf63ecccd74cdf20cd200b52843d9b5714",
+    "experiments/collection/run_manifest.py": "75a855099e8725e5553a9b191774032a4f201db2013ccc64cbb25b511dfe116d",
+    "experiments/generate_reviewer_validation_r1.py": "4a979be46fb6be66ff8b1569903074f856dc4a3adde1feeab2a052cc3aef2cd2",
+    "reproducibility/REVIEWER_VALIDATION_R1_ANALYSIS_PLAN.yaml": "5cffa4c0d0d63f984e474cb4ebed98d4411df7346dd63be515569965c6d286b7",
+    "reproducibility/REVIEWER_VALIDATION_R1_SMOKE_CORRECTION.json": "df15e423446961254e3b90bba4d2ec26045df52196634f47b72cde84a00e2ec6",
+    "tools/finalize_reviewer_validation_r1.py": "f17828fdd89155b71bf17b1c21e7f11056f42a5e77643f5f6c0660b5380396ff",
+    "tools/install_reviewer_validation_r1_service.sh": "ba05c091dcc385f14c52daa9e473635fd80a75236c8940ee9e85066ea9c608b4",
+    "tools/run_command_impairment_study.py": "f0e5585e9ddc9a515d0d96ae1264715983785081eab0ade2aa9d45ee1e0691b1",
+    "tools/run_live_pilot_scenario.sh": "9c15aeb4fec9f4455a378b25cb88561c226d6a7aabce40bd836362aead293bc5",
+    "tools/run_reviewer_validation_r1.sh": "c6d21ce79510c1adfe1a4109cf58f60460ea6cd9f2d80bc6337aaff654981813",
+    "tools/run_reviewer_validation_r1_resilient.py": "fe0770ac0e166d8ea4eb683ee0ae0b618e65d57bc70e1c43fbdd58e2cac59d25"
+  },
+  "windows_per_row": 30
+}

@@ -23,7 +23,7 @@ class FakeResponse:
         return json.dumps(self.payload).encode("utf-8")
 
 
-def test_http_backend_requires_matching_action_ack(monkeypatch: object) -> None:
+def test_http_backend_preserves_reported_action_and_parameters(monkeypatch: object) -> None:
     captured: dict[str, object] = {}
 
     def fake_open(request: object, timeout: float) -> FakeResponse:
@@ -41,17 +41,19 @@ def test_http_backend_requires_matching_action_ack(monkeypatch: object) -> None:
     result = backend.apply(Action.MCS_BACKOFF, {"backoff_levels": 4})
     request = captured["request"]
     assert result.accepted
-    assert result.applied_parameters == {"backoff_levels": 4}
+    assert result.reported_action is Action.MCS_BACKOFF
+    assert result.reported_parameters == {"backoff_levels": 4}
     assert request.get_header("Authorization") == "Bearer secret"  # type: ignore[union-attr]
 
 
-def test_http_backend_rejects_mismatched_ack(monkeypatch: object) -> None:
+def test_http_backend_exposes_mismatched_ack_for_adapter_integrity_check(monkeypatch: object) -> None:
     monkeypatch.setattr(  # type: ignore[attr-defined]
         "src.xapp.adapters.http_backend.urlopen",
         lambda request, timeout: FakeResponse({"status": "applied", "action": "NO_OP"}),
     )
     backend = HttpResearchHookBackend(HttpHookConfig("http://127.0.0.1:9060", "secret"))
     result = backend.apply(Action.PRB_AVOID_SHIFT, {})
-    assert not result.accepted
-    assert result.applied_parameters == {}
+    assert result.accepted
+    assert result.reported_action is Action.NO_OP
+    assert result.reported_parameters == {}
 

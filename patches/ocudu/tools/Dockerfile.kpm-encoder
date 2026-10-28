@@ -1,0 +1,14 @@
+FROM ocudu-gnb-zmq:git-fa4c9fa445a3-radiofix-macfix AS build
+COPY encode_kpm_subscription.cpp /src/tests/unittests/e2/encode_kpm_subscription.cpp
+RUN printf '\nadd_executable(encode_kpm_subscription encode_kpm_subscription.cpp)\n' >> /src/tests/unittests/e2/CMakeLists.txt && \
+    printf 'target_link_libraries(encode_kpm_subscription ocudulog ocudu_e2 e2ap_asn1 ocudu_pcap ocudu_gateway ocudu_support e2_test_helpers GTest::gtest GTest::gtest_main)\n' >> /src/tests/unittests/e2/CMakeLists.txt && \
+    printf 'target_include_directories(encode_kpm_subscription PRIVATE ${CMAKE_SOURCE_DIR})\n' >> /src/tests/unittests/e2/CMakeLists.txt && \
+    if [ ! -f /src/build-kpm/CMakeCache.txt ]; then cmake -S /src -B /src/build-kpm \
+      -DBUILD_TESTING=ON -DWERROR=OFF -DENABLE_ZEROMQ=ON -DENABLE_UHD=OFF \
+      -DENABLE_DPDK=OFF -DENABLE_MKL=OFF -DENABLE_ARMPL=OFF -DENABLE_LIBNUMA=OFF \
+      -DENABLE_EXPORT=OFF -DENABLE_TRX_DRIVER=OFF -DCMAKE_BUILD_TYPE=Release; fi && \
+    cmake --build /src/build-kpm --target encode_kpm_subscription -- -j2
+
+FROM ocudu-gnb-zmq:git-fa4c9fa445a3-radiofix-macfix
+COPY --from=build /src/build-kpm/tests/unittests/e2/encode_kpm_subscription /usr/local/bin/encode_kpm_subscription
+ENTRYPOINT ["/usr/local/bin/encode_kpm_subscription"]

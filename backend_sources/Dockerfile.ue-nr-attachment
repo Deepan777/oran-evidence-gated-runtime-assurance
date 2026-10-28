@@ -1,0 +1,4 @@
+FROM srsue-zmq:git-6bcbd9e5bf86-telemetry-v2-iperf3-buffer16384
+COPY srsue /usr/local/bin/srsue
+LABEL org.opencontainers.image.telemetry-fix="NR CSV attachment flag uses native NR RRC CONNECTED state; no RF/traffic inference"
+ENTRYPOINT ["/usr/local/bin/srsue"]

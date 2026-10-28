@@ -2,7 +2,7 @@ from __future__ import annotations
 import csv, pathlib, yaml, shutil
 
 def main() -> None:
-    root=pathlib.Path('<project-root>')
+    root=pathlib.Path('/home/deepanramkumar_p/oran-cloud-project')
     old=root/'datasets/metadata/manifests/live_validation'
     new=root/'datasets/metadata/manifests/live_validation_v2'
     new.mkdir(parents=True,exist_ok=True)
@@ -10,11 +10,11 @@ def main() -> None:
         rows=list(csv.DictReader((old/f'{method}_live_validation_runs.csv').open(newline='')))
         for row in rows:
             if method=='P':
-                row['STATE_SCHEMA']='results/results/training/live_controller_recalibrated_v2/state_schema.json'
-                row['CONTROLLER_MODEL']='results/results/training/live_controller_recalibrated/md3qn_per_live_candidate.pt'
+                row['STATE_SCHEMA']='/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller_recalibrated_v2/state_schema.json'
+                row['CONTROLLER_MODEL']='/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller_recalibrated/md3qn_per_live_candidate.pt'
             elif method=='B5':
-                row['STATE_SCHEMA']='results/results/training/live_controller_recalibrated_v2/state_schema.json'
-                row['CONTROLLER_MODEL']='results/results/training/live_controller_recalibrated/prb_only_masked_dqn_live_candidate.pt'
+                row['STATE_SCHEMA']='/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller_recalibrated_v2/state_schema.json'
+                row['CONTROLLER_MODEL']='/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller_recalibrated/prb_only_masked_dqn_live_candidate.pt'
         with (new/f'{method}_live_validation_runs.csv').open('w',newline='') as f:
             w=csv.DictWriter(f,fieldnames=rows[0].keys()); w.writeheader(); w.writerows(rows)
     doc=yaml.safe_load((root/'LIVE_VALIDATION_FREEZE_MANIFEST.yaml').read_text())
