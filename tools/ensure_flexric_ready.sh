@@ -2,7 +2,7 @@
 # Ensure the pinned near-RT RIC is listening before a disposable radio run.
 set -euo pipefail
 
-PROJECT=/home/deepanramkumar_p/oran-cloud-project
+PROJECT=/home/OPERATOR_USER/oran-cloud-project
 CONTAINER=oran-nearrt-ric
 IMAGE=oai-flexric:git-ef6d722f2219
 CONFIG="$PROJECT/external/flexric/flexric.conf"

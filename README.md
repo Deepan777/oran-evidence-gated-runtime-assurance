@@ -1,8 +1,8 @@
 # Evidence-Gated Runtime Assurance for Autonomous O-RAN Control: Code and Data
 
-Version 1.3.0
+Version 1.4.0
 
-Archived code and data: https://doi.org/10.5281/zenodo.23683142
+Release code and data: https://github.com/Deepan777/oran-evidence-gated-runtime-assurance/releases/tag/v1.4.0
 
 This software separates a controller's proposed radio action from permission to execute it. The runtime checks measured spectral and service evidence, temporal persistence and action feasibility, records command acknowledgement and scheduler-consumer readback, and requests baseline restoration when execution state is uncertain or a configured boundary is crossed. Readback verifies consumed software configuration within the local trust domain; it is not an independent measurement of a physical radio effect.
 
@@ -75,3 +75,21 @@ Project-authored code and data are licensed under Creative Commons Attribution 4
 ## Changes from 1.2.0
 
 Version 1.3.0 adds corrected execution-state and consumer-readback semantics, the recovered frozen controller and numerical preprocessing, explicit recovery events and right censoring, receiver-metadata sensitivity, separate actuator and transport evidence, preserved component benchmark records, corrected-loop evidence and record-based timing/rollback/common-path audits. It retains original observations and distinguishes recovered artifacts from unavailable historical attestations. See `CHANGELOG.md`.
+
+## Study V continuation
+
+69 attempted executions are retained: 64 accepted and 5 rejected. Primary: 45/48 accepted unique rows and 10 complete blocks (4 without, 6 with interference). No run is replaced or promoted. All 36 primary and 16 exploratory adjusted p-values are 1.0000; these results do not establish service superiority. Recovery is assessed by 10 seconds, not invented 20-second follow-up. G-pre is exploratory throughout.
+
+Create a fresh Python 3.11 environment, install the exact offline dependencies and reproduce from packaged files only:
+
+```bash
+python -m venv .validation-env
+# Activate the environment for your operating system, then:
+python -m pip install -r validation/requirements_v140.txt
+python validation/validate_v140.py --output validation/recomputed_validation_report.json
+python scripts/reproduce_prospective_v14.py --output reproduction_outputs/study_v_v14
+```
+
+The frozen comparison implementation is `analysis/prospective_comparison_v14.py`. The reproduction wrapper explicitly selects the archived Wilcoxon approximation when paired differences contain zeros, preserving the original output under newer SciPy defaults. Bootstrap resampling uses 10,000 matched blocks; windows are not independent replications.
+
+All native records are processed one run at a time without starting radio or cloud processes. The 54 available native attestations are retained. The earlier 15 lack native execution attestations; 69 post-collection archive-integrity records are labelled preservation-only and do not invent historical execution proof. `WITHHELD_REDACTED_FILES.json` and the projection ledger list privacy-only changes and ancillary omissions, with hashes, never secret values. Operator paths and subscriber identities/keys require operator-supplied settings. Original measurements, failures and acceptance states remain preserved. Earlier v1.3.0 is archived at https://doi.org/10.5281/zenodo.23683142; the shared concept DOI is https://doi.org/10.5281/zenodo.23525401.

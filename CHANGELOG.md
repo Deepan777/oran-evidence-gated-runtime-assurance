@@ -1,3 +1,7 @@
+# Version 1.4.0
+
+Study V continuation; all 69 attempts and five rejections retained; frozen 36-test primary and exploratory 16-test analyses; live fault and interception replications; G-pre reference variant; offline packaged-data validation; privacy projection and per-file checksums. No new results imputed or edited.
+
 # Changelog
 
 ## 1.3.0

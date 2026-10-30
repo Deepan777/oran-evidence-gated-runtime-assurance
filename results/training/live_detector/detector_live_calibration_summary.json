@@ -318,5 +318,5 @@
       }
     ]
   },
-  "model_file": "/home/deepanramkumar_p/oran-cloud-project/results/training/live_detector/detector_live_calibrated.joblib"
+  "model_file": "/home/OPERATOR_USER/oran-cloud-project/results/training/live_detector/detector_live_calibrated.joblib"
 }

@@ -2,7 +2,7 @@
 # Run one immutable pilot manifest row against the native OCUDU/srsUE radio.
 set -euo pipefail
 
-PROJECT=/home/deepanramkumar_p/oran-cloud-project
+PROJECT=/home/OPERATOR_USER/oran-cloud-project
 RUN_ID=${RUN_ID:?RUN_ID is required}
 SCENARIO_ID=${SCENARIO_ID:?SCENARIO_ID is required}
 JAMMER=${JAMMER:?JAMMER is required}

@@ -1,0 +1,33 @@
+{
+  "selected_source_commit_files": [
+    {
+      "source_commit": "6eb3c4a7eed52860cb425142436f907ee5cea923",
+      "source_path": "docs/protocol_amendment_v1.4.md",
+      "package_path": "docs/protocol_amendment_v1.4.md",
+      "original_sha256": "0a5c17385cd19176e07b5f6839d85996fdb6b58f6fe4fdfe07c61b5cd3eec50d",
+      "public_sha256": "0a5c17385cd19176e07b5f6839d85996fdb6b58f6fe4fdfe07c61b5cd3eec50d",
+      "privacy_projected": false
+    },
+    {
+      "source_commit": "32dda78dc4b9cb7abc8a92dc390c4599112fc5da",
+      "source_path": "tools/run_live_pilot_scenario_v14.sh",
+      "package_path": "tools/run_live_pilot_scenario_v14.sh",
+      "original_sha256": "7791225b27a942baa22e5b654ef2f7e17d8e3c83ce40415825cab0ebe99b2e7d",
+      "public_sha256": "461eac46d8828734fb33f923668d7117521a9834a17bc653a3e918300627d40a",
+      "privacy_projected": true
+    },
+    {
+      "source_commit": "32dda78dc4b9cb7abc8a92dc390c4599112fc5da",
+      "source_path": "results/prospective_comparison_v14/20261030/freeze.json",
+      "package_path": "provenance/prospective_v14_freeze.json",
+      "original_sha256": "920aeef857c53f96dc6e4738906cddd7dbfb02eaf30158dcfc996e9e52e08945",
+      "public_sha256": "920aeef857c53f96dc6e4738906cddd7dbfb02eaf30158dcfc996e9e52e08945",
+      "privacy_projected": false
+    }
+  ],
+  "license_sha256": "93a5347f595d2f508a16ed67b0157c55c64211149d88b406849dd04ebc7f5d3a",
+  "same_license_as_v130": true,
+  "baseline_snapshot": "fb5ed1197e24202e1b407c2d3f18980fcfa19d0c",
+  "research_commit_scope": "Selected scientific source identities only; unrelated research history and documents are not included",
+  "measured_values_modified": false
+}

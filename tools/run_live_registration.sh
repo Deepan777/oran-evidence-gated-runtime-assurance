@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT=/home/deepanramkumar_p/oran-cloud-project
+PROJECT=/home/OPERATOR_USER/oran-cloud-project
 JAMMER="${JAMMER:-none}"
 JSR_DB="${JSR_DB:-0}"
 SEED="${SEED:-1001}"

@@ -20,9 +20,9 @@ SUPERSEDED_MANIFEST = OUT_DIR / "REVIEWER_VALIDATION_R1_SUPERSEDED_SMOKE.csv"
 SUPERSEDED_FREEZE = OUT_DIR / "REVIEWER_VALIDATION_R1_SUPERSEDED_SMOKE.freeze.json"
 
 UE_IMAGE = "srsue-zmq:git-6bcbd9e5bf86-telemetry-v2-iperf3-buffer16384"
-STATE_SCHEMA = "/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller_recalibrated_v2/state_schema.json"
-DETECTOR = "/home/deepanramkumar_p/oran-cloud-project/results/training/live_detector/detector_live_calibrated.joblib"
-CONTROLLER = "/home/deepanramkumar_p/oran-cloud-project/results/training/live_controller_recalibrated/md3qn_per_live_candidate.pt"
+STATE_SCHEMA = "/home/OPERATOR_USER/oran-cloud-project/results/training/live_controller_recalibrated_v2/state_schema.json"
+DETECTOR = "/home/OPERATOR_USER/oran-cloud-project/results/training/live_detector/detector_live_calibrated.joblib"
+CONTROLLER = "/home/OPERATOR_USER/oran-cloud-project/results/training/live_controller_recalibrated/md3qn_per_live_candidate.pt"
 
 FIELDS = (
     "run_id", "block_id", "scenario_id", "jammer_type", "jammer_bandwidth_class",
