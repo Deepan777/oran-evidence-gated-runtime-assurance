@@ -1,0 +1,272 @@
+{
+  "run_id": "v14-20261030-cg-b03-r1-fixed_a2-s9505",
+  "kind": "post_collection_archive_preservation_only",
+  "native_execution_attestation_available": true,
+  "historical_execution_proof_inferred": false,
+  "original_members": [
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/background_udp.json",
+      "bytes": 75974,
+      "sha256": "be3b2a08c31833963d61394a93a280858c04a5d3da8011d54a567ac293e95db8",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/broker-scheduling.txt",
+      "bytes": 46,
+      "sha256": "4051745a5ec6f5a7771c26ef8e109da91836e87d5b63777685463ffb25b725c6",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/broker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/broker.pid",
+      "bytes": 6,
+      "sha256": "1c70c0ac7ba50a53b338f3878da6c6d0e8aeeef6fccf4f59a3de9337d6ac1d11",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/broker_status.jsonl",
+      "bytes": 37285,
+      "sha256": "67df6e13f0c0496b9e465ed3398753769f72e09074b9df27067704b236904d6c",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/client-exit-status.txt",
+      "bytes": 155,
+      "sha256": "c288f789761d5bcb2716169f1f2200cff818acf1d4bfe1f2a7ae7957fae54e12",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/command-transport.jsonl",
+      "bytes": 12478,
+      "sha256": "4e2c07860d7b25f5962ec97ef36892153e0a26b536fd92729af4c9bd0a955997",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/container-resource-snapshot.jsonl",
+      "bytes": 395,
+      "sha256": "33171d8856e447d9bb4c50cc154a014fe4749eff2525fc301dc1dff8dc6b27f6",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/experiment.start",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/gnb-container-inspect.json",
+      "bytes": 8679,
+      "sha256": "3f3df5850b4d1725a654450a0851dcba9e8018aa89aeeb524fa91351553d625d",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/gnb.full.log",
+      "bytes": 1524429,
+      "sha256": "b0dad5a26b4ebeb2071dc28c58d26f088edb3c53992fabb082b92d258219ccf4",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/gnb.log",
+      "bytes": 1449607,
+      "sha256": "3a8aca27af824efce1b4bee2d8a9eceb4f4b2c3081f34f1a2fd9c63eb77d65f1",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/gnb_container_id.txt",
+      "bytes": 65,
+      "sha256": "c08fe6ec357b04a6919e18c79f736042e9f7545ef18e62dc1ab44117f7738747",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/gnb_mac.pcap",
+      "bytes": 14765658,
+      "sha256": "3992f554b3569184803b5409e402f9f27c29dd476a01a0325b0e3eb7306732ad",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/gnb_ngap.pcap",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/iperf-background-server.log",
+      "bytes": 7684,
+      "sha256": "72ce114f604595777b22e642fe4b19ff70ef3e9008b64060198fea9b14a119ef",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/iperf-protected-server.log",
+      "bytes": 7683,
+      "sha256": "62f095a6481a04700e827cec3ffa493e273cfabf55c563e363c984b7333d980e",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/iq-spectral-estimator.jsonl",
+      "bytes": 29289,
+      "sha256": "381bfcc67b480e1541608b3f0750dd150fed0910f65752a979976d5ace98c3c5",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/jammer_truth.jsonl",
+      "bytes": 18146804,
+      "sha256": "721ede4e71ce636c53c10b36a0f295a52e2aed9d2e566a0ff411a6dfad5b1d3a",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/live-xapp-decisions.jsonl",
+      "bytes": 192774,
+      "sha256": "fee7a1680f1e38c7c98f2288c74890301a4bc26f451815c15b742598b8a4da17",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/live-xapp.log",
+      "bytes": 31,
+      "sha256": "83e766f467b652343b50afbacc0ab11aa114b62da45bc14e4425e308bf32513a",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/loop-stage-timings.jsonl",
+      "bytes": 3118,
+      "sha256": "de2bbd24274e66b48dc2f8e912e360bac74a0e14f8d41e13ad073f514c46bf1f",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/metrics-capture.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/ocudu-metrics.jsonl",
+      "bytes": 1179719,
+      "sha256": "27bff617dbac60ffe6d1c8eab1e9d95e106d2fdfd2be899ff052f47f5548f406",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/protected-client-start-ns.txt",
+      "bytes": 20,
+      "sha256": "818007a769184cb978d147ed99dfb1bda7d7f44037ca07bd439ad113108f56f8",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/protected-traffic-status.json",
+      "bytes": 18090,
+      "sha256": "076a56094d6a25f9ee55b2cd27fe13f4c4b2b54327db70726df204f644c247ca",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/protected-traffic-validator.log",
+      "bytes": 18091,
+      "sha256": "deb922c6e6c076d2692db4e962c92b656c2597bf752baf33b996354c8dd61665",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/protected_ping.txt",
+      "bytes": 9468,
+      "sha256": "14c64519e02263e5c32b5ef892e2b15b5f21d327785a0287b5707b62db0b2707",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/protected_udp.json",
+      "bytes": 75900,
+      "sha256": "728580dd2ac357cadba714a1be2254a6cabd7a7accb020d0fceb943e4e4653b5",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/radio-clock-status.json",
+      "bytes": 137,
+      "sha256": "1bbfcd5404146b9f95affc192348abb2c14038afb2a8632e9f486007ee360bad",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/record-build-summary.json",
+      "bytes": 385,
+      "sha256": "635a01979ca3910477eddfd0b377fd7ae72481fd154f9836a9af723acb722604",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/records.parquet",
+      "bytes": 84494,
+      "sha256": "d5f5bd1289ad6685bbcb69f601dfac9669ded34f78061b8338a1077ff967f6f5",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/records.summary.json",
+      "bytes": 384,
+      "sha256": "ef9280e3749007e13bd83847a5fbb61c0fdba5f59c56d3da0f3732574cd2ae4b",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/registration.log",
+      "bytes": 232,
+      "sha256": "d734052cf6641c9e74d28abae705a8bb87c752964acf2ee12f195a2f1c37cb36",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/run_metadata.json",
+      "bytes": 1070,
+      "sha256": "a26d0e8e3b21562f72e32e1864713271cef17d92ccc7d7fe6457ef6c29ec5277",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue-container-inspect.json",
+      "bytes": 9624,
+      "sha256": "ff8fa3ca029e2d85397c34c91dc01f798b6636af86341a39113556aa428318ce",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue-container.log",
+      "bytes": 1296,
+      "sha256": "9b62a3144f943855ba835a5e79da114222cff8ce37d0bff1de523e33d0813283",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue.full.log",
+      "bytes": 533,
+      "sha256": "7132f93b543ec977cbfaa724e6f96f4cd71bb60c16de2299b8b5366c44d9c5f0",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue.log",
+      "bytes": 729088,
+      "sha256": "0eba9430f79ca05192fe33b163f511dbfe82f2f94e762dfde8b491adc3df2c68",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue_container_id.txt",
+      "bytes": 65,
+      "sha256": "0d80afdb42ec57e3f204b5866e9733e91b45d5bfdee349045d174bab09140580",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue_mac_nr.pcap",
+      "bytes": 11403264,
+      "sha256": "4acc53374a96dc53c0bf149f6da18d0b589ef7a1c5aa74b51f24a2662a7f6c89",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue_metrics.csv",
+      "bytes": 25487,
+      "sha256": "cc458ae03060e559035a74c7855461cfe6c713dbfd0ae7be77efc5ce440bcff7",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/srsue_nas.pcap",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-fixed_a2-s9505/v14_attestation.json",
+      "bytes": 10607,
+      "sha256": "c860d604c4a3638f78d23af10f0f9a14d7ebc62746ef2f3458e6efd2fc8e3902",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    }
+  ]
+}

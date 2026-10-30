@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "scope": "guard.decide only on identical unique measured-input harness observations; no policy, preprocessing, logging, adapter, network, readback, or radio effects included",
+  "implementation_sha256": {
+    "src/controller/safety_guard.py": "12545e152e7ca07c49f2be6a187e4eb3d3fea97801f7b4aac8e1fdf7fd18e4af",
+    "src/xapp/adapters/actions.py": "16fec61f437c550c2ae210338f15f618a345d8b29829340a981b56edb4b217d2",
+    "src/xapp/adapters/ocudu_websocket.py": "69fd4d108766ab9b692096ed39717eb2a83ebec9fc9a32971c80699ab101700b",
+    "experiments/live/run_xapp_loop.py": "9cd62afa471a8f746feda262fbb25a66b168a11f45b31bcbffbfd55e6a75a7cd"
+  },
+  "configuration": {
+    "calibration_windows": 10,
+    "sustained_evidence_windows": 3,
+    "maximum_action_windows": 5,
+    "cooldown_windows": 3,
+    "minimum_spectral_excess": 0.05,
+    "minimum_spectral_divergence": 0.35,
+    "throughput_degradation_ratio": 0.8,
+    "rollback_throughput_ratio": 0.5,
+    "bler_degradation_threshold": 0.05,
+    "latency_degradation_ratio": 2.0,
+    "rollback_latency_ratio": 3.0
+  },
+  "repetitions": 30,
+  "independent_unit": "fresh Python process, order counterbalanced",
+  "decisions_per_repetition": 5000,
+  "individual_decision_timing": {
+    "guard": {
+      "mean_ms": 0.096383394,
+      "median_ms": 0.0906,
+      "p95_ms": 0.1231,
+      "p99_ms": 0.18650200000000186
+    },
+    "bypass": {
+      "mean_ms": 0.0007407793333333335,
+      "median_ms": 0.0007,
+      "p95_ms": 0.0008,
+      "p99_ms": 0.0017
+    }
+  },
+  "raw_repetition_means": [
+    {
+      "process_repetition": 0,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09229162,
+      "bypass_mean_ms": 0.0007251,
+      "paired_increment_ms": 0.09156652
+    },
+    {
+      "process_repetition": 1,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.11205859999999998,
+      "bypass_mean_ms": 0.00107076,
+      "paired_increment_ms": 0.11098783999999998
+    },
+    {
+      "process_repetition": 2,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.0908107,
+      "bypass_mean_ms": 0.0007201200000000001,
+      "paired_increment_ms": 0.09009057999999999
+    },
+    {
+      "process_repetition": 3,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.08989828,
+      "bypass_mean_ms": 0.0006971200000000001,
+      "paired_increment_ms": 0.08920116
+    },
+    {
+      "process_repetition": 4,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09788736,
+      "bypass_mean_ms": 0.00072136,
+      "paired_increment_ms": 0.097166
+    },
+    {
+      "process_repetition": 5,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09208262,
+      "bypass_mean_ms": 0.000738,
+      "paired_increment_ms": 0.09134462
+    },
+    {
+      "process_repetition": 6,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09046406,
+      "bypass_mean_ms": 0.0007169600000000001,
+      "paired_increment_ms": 0.0897471
+    },
+    {
+      "process_repetition": 7,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09118327999999999,
+      "bypass_mean_ms": 0.0007246,
+      "paired_increment_ms": 0.09045867999999999
+    },
+    {
+      "process_repetition": 8,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.0999893,
+      "bypass_mean_ms": 0.0007871000000000001,
+      "paired_increment_ms": 0.0992022
+    },
+    {
+      "process_repetition": 9,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09362228,
+      "bypass_mean_ms": 0.0007143200000000001,
+      "paired_increment_ms": 0.09290796
+    },
+    {
+      "process_repetition": 10,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.1264943,
+      "bypass_mean_ms": 0.00073886,
+      "paired_increment_ms": 0.12575544
+    },
+    {
+      "process_repetition": 11,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.10921098,
+      "bypass_mean_ms": 0.0007264000000000001,
+      "paired_increment_ms": 0.10848458
+    },
+    {
+      "process_repetition": 12,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.10667093999999999,
+      "bypass_mean_ms": 0.00080748,
+      "paired_increment_ms": 0.10586345999999999
+    },
+    {
+      "process_repetition": 13,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09553524,
+      "bypass_mean_ms": 0.00070266,
+      "paired_increment_ms": 0.09483258
+    },
+    {
+      "process_repetition": 14,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09893932,
+      "bypass_mean_ms": 0.0007552800000000001,
+      "paired_increment_ms": 0.09818404
+    },
+    {
+      "process_repetition": 15,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09075148,
+      "bypass_mean_ms": 0.0007122200000000001,
+      "paired_increment_ms": 0.09003926
+    },
+    {
+      "process_repetition": 16,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09166318,
+      "bypass_mean_ms": 0.0007151400000000001,
+      "paired_increment_ms": 0.09094804
+    },
+    {
+      "process_repetition": 17,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09217302,
+      "bypass_mean_ms": 0.0007146800000000001,
+      "paired_increment_ms": 0.09145834
+    },
+    {
+      "process_repetition": 18,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09295732000000001,
+      "bypass_mean_ms": 0.00073538,
+      "paired_increment_ms": 0.09222194000000002
+    },
+    {
+      "process_repetition": 19,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.0909127,
+      "bypass_mean_ms": 0.0007094800000000001,
+      "paired_increment_ms": 0.09020322
+    },
+    {
+      "process_repetition": 20,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.08873936,
+      "bypass_mean_ms": 0.0007069000000000001,
+      "paired_increment_ms": 0.08803246
+    },
+    {
+      "process_repetition": 21,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.092617,
+      "bypass_mean_ms": 0.0006993,
+      "paired_increment_ms": 0.0919177
+    },
+    {
+      "process_repetition": 22,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09237508,
+      "bypass_mean_ms": 0.00070718,
+      "paired_increment_ms": 0.0916679
+    },
+    {
+      "process_repetition": 23,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09183986,
+      "bypass_mean_ms": 0.00070396,
+      "paired_increment_ms": 0.09113589999999999
+    },
+    {
+      "process_repetition": 24,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.10350418,
+      "bypass_mean_ms": 0.00075558,
+      "paired_increment_ms": 0.1027486
+    },
+    {
+      "process_repetition": 25,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09330313999999999,
+      "bypass_mean_ms": 0.0007082000000000001,
+      "paired_increment_ms": 0.09259493999999999
+    },
+    {
+      "process_repetition": 26,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.0984212,
+      "bypass_mean_ms": 0.0007731400000000001,
+      "paired_increment_ms": 0.09764806
+    },
+    {
+      "process_repetition": 27,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09516574,
+      "bypass_mean_ms": 0.00074014,
+      "paired_increment_ms": 0.0944256
+    },
+    {
+      "process_repetition": 28,
+      "order": "guard,bypass",
+      "guard_mean_ms": 0.09976684,
+      "bypass_mean_ms": 0.0008013,
+      "paired_increment_ms": 0.09896553999999999
+    },
+    {
+      "process_repetition": 29,
+      "order": "bypass,guard",
+      "guard_mean_ms": 0.09017283999999999,
+      "bypass_mean_ms": 0.00069466,
+      "paired_increment_ms": 0.08947817999999999
+    }
+  ],
+  "paired_increment_between_process_repetitions": {
+    "mean_ms": 0.09564261466666665,
+    "median_ms": 0.09206982000000001,
+    "p95_ms": 0.10986137299999998,
+    "p99_ms": 0.121472836
+  },
+  "paired_increment_mean_95ci": [
+    0.09307032113333334,
+    0.09875901343333333
+  ],
+  "allocation_peak_increment_bytes_1000_decisions": 167398,
+  "environment": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "clock": "perf_counter_ns"
+  }
+}

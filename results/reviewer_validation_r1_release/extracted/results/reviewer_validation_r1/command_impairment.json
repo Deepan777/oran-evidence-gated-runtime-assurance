@@ -1,0 +1,4267 @@
+{
+  "attempts": [
+    {
+      "attempt": 0,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.22396,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263182891578
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.13139,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263194317917
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.17258,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263205581037
+      },
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.94012,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263216731567
+      },
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.30083,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263228006556
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.208841,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263239401006
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.35762,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263250888995
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.083639,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263262253234
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.92094,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263273372954
+      },
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.979181,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263284414293
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.03689,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263295685433
+      },
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.91584,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263306727643
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.17439,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263317912542
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.99193,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263329233001
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.97513,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263340416691
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.967681,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263351454920
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.9025,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263362688180
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.895801,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263373642320
+      },
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.92173,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263384710729
+      },
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.444169,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263396180158
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.8049,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263407250378
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.80171,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263418091418
+      },
+      "success": true
+    },
+    {
+      "attempt": 22,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.06647,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263429340847
+      },
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.86796,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263440507927
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.05897,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263451644906
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.120121,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263462849316
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.95246,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263473951085
+      },
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.92379,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263484960515
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.13342,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263496102094
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.25448,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263507458624
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.04583,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263518855173
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.121349,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263530099212
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.03025,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263541275432
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.95235,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263552239472
+      },
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.85218,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263563336721
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 2.07031,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263575521680
+      },
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.1183,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263586743300
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.07465,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263597992190
+      },
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 0.95212,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263609138219
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "baseline",
+      "error": null,
+      "latency_ms": 1.175661,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263620526129
+      },
+      "success": true
+    },
+    {
+      "attempt": 0,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.406687,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497263911291856
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.455396,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497264222893742
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.903267,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497264534811548
+      },
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.871646,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497264846948054
+      },
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.546876,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497265158712739
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.460577,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497265470304926
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.657567,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497265782051452
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.642677,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497266093863478
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.498677,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497266405574425
+      },
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.837557,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497266717348271
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.852276,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497267029398897
+      },
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.616267,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497267341272822
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.617327,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497267653053068
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.801727,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497267964931834
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.904066,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497268276873080
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.478566,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497268588707006
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.594107,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497268900323843
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.380097,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497269211843779
+      },
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.590417,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497269523551655
+      },
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.510207,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497269835231651
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.501006,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497270146888676
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.464667,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497270458528433
+      },
+      "success": true
+    },
+    {
+      "attempt": 22,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.589836,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497270770249569
+      },
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.438847,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497271081926425
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.531367,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497271393640342
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.536538,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497271705471568
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.677066,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497272017138404
+      },
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.688317,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497272329074310
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.596656,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497272640881606
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.413986,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497272952471452
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.823577,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497273264410219
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.692027,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497273576268155
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.584346,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497273888077590
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.554206,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497274199720557
+      },
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.630967,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497274511551973
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.602736,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497274823282899
+      },
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.610927,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497275135059895
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.731047,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497275446918931
+      },
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.657767,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497275758721047
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "delay_50ms",
+      "error": null,
+      "latency_ms": 301.761336,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497276070541573
+      },
+      "success": true
+    },
+    {
+      "attempt": 0,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 592.638873,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497276617496779
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 519.660937,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497277179363782
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 579.519082,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497277768390677
+      },
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 617.333593,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497278382816540
+      },
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 503.658018,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497278942354146
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 584.143494,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497279481318312
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 646.418222,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497280141413853
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 551.794796,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497280702744948
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 562.297786,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497281269392801
+      },
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 576.661704,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497281887364665
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 554.394675,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497282417757061
+      },
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 582.430754,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497283014940054
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 670.52155,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497283664996836
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 533.023785,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497284268787979
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 598.834363,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497284860337783
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 591.841864,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497285466756306
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 727.583548,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497286203208164
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 560.808335,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497286795830077
+      },
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 606.199993,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497287391480971
+      },
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 590.117633,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497287973002855
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 557.166475,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497288568792038
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 578.298835,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497289154859493
+      },
+      "success": true
+    },
+    {
+      "attempt": 22,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 740.587247,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497289844488913
+      },
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 598.385253,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497290523311363
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 605.788723,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497291118996167
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 606.906954,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497291737466329
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 597.956425,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497292346352113
+      },
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 672.14869,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497293025279143
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 658.791991,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497293688049923
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 643.131081,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497294337920624
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 555.690905,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497294916194419
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 656.526661,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497295568546370
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 614.285723,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497296218126771
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 745.787056,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497296932037079
+      },
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 521.859356,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497297456413105
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 529.871487,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497298046960990
+      },
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 559.924215,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497298596211186
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 602.360573,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497299221656477
+      },
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 606.223323,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497299834571781
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "delay_100ms_jitter_20ms",
+      "error": null,
+      "latency_ms": 545.094216,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300378614337
+      },
+      "success": true
+    },
+    {
+      "attempt": 0,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.066349,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300506965702
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.00972,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300518196901
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.986809,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300529111791
+      },
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.29662,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300540774130
+      },
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.261921,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300552091800
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.01486,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300563448539
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.364581,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300574835378
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.16423,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300586203298
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.240129,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300597632358
+      },
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.2152,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300609010527
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.946359,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300620212037
+      },
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.32875,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300631587706
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.917521,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300642745425
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.25343,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300653879855
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.309181,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300665331835
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.27806,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300676848594
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.07348,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300688201774
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.13271,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497300699457753
+      },
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "condition": "loss_1pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.058537,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 19,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 202.698041,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301673432999
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.04765,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301684735779
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.23982,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301695977778
+      },
+      "success": true
+    },
+    {
+      "attempt": 22,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.01319,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301707283128
+      },
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.130009,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301718419197
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.89773,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301729590377
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.41816,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301740970407
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.08669,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301752417336
+      },
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.69781,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301763325706
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.31377,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301774542425
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.01639,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301785861435
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.95698,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301796987274
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.20535,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301808246523
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.47271,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301819781993
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.35343,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301831330893
+      },
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.21595,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301842708502
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.10474,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301854019102
+      },
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 1.06609,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497301865390111
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "loss_1pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.080948,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 38,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.98751,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497302637821947
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "loss_1pct",
+      "error": null,
+      "latency_ms": 0.996639,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497302648863127
+      },
+      "success": true
+    },
+    {
+      "attempt": 0,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.06763,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497302669844476
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.88122,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497302680898275
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "loss_5pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.092716,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 3,
+      "condition": "loss_5pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.090387,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 4,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.88759,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304214674097
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.95118,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304225769357
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.030349,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304236809446
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.07056,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304248079716
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.85553,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304259102935
+      },
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.97562,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304270049785
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.00282,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304281329575
+      },
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 206.150621,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304497627075
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 206.426871,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497304713999825
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 415.290191,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497305139455116
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.062229,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497305150721286
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.12324,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497305161960435
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.29164,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497305173283435
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "loss_5pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.082304,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 18,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.186923,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497305945982329
+      },
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.801012,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497305957025567
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.049753,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497305968049846
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "loss_5pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.11061,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 22,
+      "condition": "loss_5pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.208071,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 23,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 204.931528,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497307705677305
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 205.57295,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497307921431871
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.920973,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497307932634130
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "loss_5pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.23049,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 27,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.199543,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497308705285887
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 206.38066,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497308921840554
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.793352,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497308932857593
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.308893,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497308944247164
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.972553,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497308955323423
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 0.948372,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497308966514222
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 209.113519,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497309185826448
+      },
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.324574,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497309197115568
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "loss_5pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.055351,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 36,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.037163,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497309969817305
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.438294,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497309981234515
+      },
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 1.286933,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497309992644585
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "loss_5pct",
+      "error": null,
+      "latency_ms": 206.979183,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310209854315
+      },
+      "success": true
+    },
+    {
+      "attempt": 0,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 0.943602,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310230764300
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.274463,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310242079260
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.047012,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310253266459
+      },
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 202.458831,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310465624266
+      },
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.054313,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310477104906
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.003663,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310488298965
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 4.901734,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310499303744
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.053262,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497310514624895
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "loss_10pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.225371,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 9,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.536924,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497311287607582
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "loss_10pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.13507,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 11,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 207.275744,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497312266219569
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 415.948771,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497312692446268
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.154763,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497312703876378
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.377083,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497312715279667
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.130153,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497312726642367
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 4.487222,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497312737941507
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.113553,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497312752529975
+      },
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 415.142399,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497313177764820
+      },
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.168403,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497313189193870
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.192043,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497313200515850
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "loss_10pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.173229,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 22,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 0.769132,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497313972968916
+      },
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 0.870382,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497313983780604
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.159223,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497313995123844
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 204.423716,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314209731638
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 213.40332,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314220904697
+      },
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.133713,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314444535834
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.114133,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314455831524
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.013072,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314466908193
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 204.305596,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314681387985
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.026203,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314692597674
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 202.892702,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497314905657033
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "loss_10pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.199851,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 34,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.128923,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497315678247130
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.082213,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497315689542400
+      },
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 0.917713,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497315700607699
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.101213,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497315711722208
+      },
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "condition": "loss_10pct",
+      "error": null,
+      "latency_ms": 1.136792,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497315723029668
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "loss_10pct",
+      "error": "TimeoutError:timed out",
+      "latency_ms": 751.11496,
+      "response": null,
+      "success": false
+    },
+    {
+      "attempt": 0,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.569359,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497316606305725
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.532749,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497316737963010
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.464969,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497316869566225
+      },
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.78685,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317001287281
+      },
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.710869,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317133324477
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.467529,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317265030803
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.499398,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317396754159
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.380098,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317528244834
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.533188,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317659918859
+      },
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.411459,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317791485174
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.402729,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497317923034839
+      },
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.387909,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318054514064
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.625049,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318186201269
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.491799,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318317951915
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.557359,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318449708691
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 101.433687,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318561284443
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.423298,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318692946779
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.596509,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318824742794
+      },
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 101.420107,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497318936258287
+      },
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.557789,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319067901442
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.608089,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319199587228
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.85778,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319331575464
+      },
+      "success": true
+    },
+    {
+      "attempt": 22,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.688039,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319463510441
+      },
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.62464,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319595308796
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.589888,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319727059020
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.65323,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319858849248
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.594348,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497319990629033
+      },
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.560818,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497320122303457
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.62172,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497320253990904
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.65972,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497320385866830
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.685619,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497320517796806
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.776389,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497320649773632
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.743569,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497320781710069
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.63136,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497320913494915
+      },
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.588788,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321045340180
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.538729,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321177002075
+      },
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.492599,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321308669030
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.378408,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321440310016
+      },
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.535969,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321571847041
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "reorder_10pct",
+      "error": null,
+      "latency_ms": 121.518949,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321703541036
+      },
+      "success": true
+    },
+    {
+      "attempt": 0,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.779192,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321745081736
+      },
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 1.093543,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321756349275
+      },
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.779752,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321767280524
+      },
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.770412,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321778186522
+      },
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.971982,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321789331032
+      },
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.841692,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321800351421
+      },
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.961493,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321811455900
+      },
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.812202,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321822429249
+      },
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.784512,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321833369067
+      },
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.738152,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321844323476
+      },
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.864043,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321855317195
+      },
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.794462,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321866184653
+      },
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.877152,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321877248512
+      },
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.804052,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321888200141
+      },
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.837712,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321899135779
+      },
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.861983,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321910189819
+      },
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.778392,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321921059797
+      },
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.812842,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321932001985
+      },
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.769022,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321942955124
+      },
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.749282,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321953898253
+      },
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.761072,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321964807921
+      },
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.788273,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321975735190
+      },
+      "success": true
+    },
+    {
+      "attempt": 22,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.774801,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321986608989
+      },
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.742252,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497321997529418
+      },
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.894873,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322008517096
+      },
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.787213,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322019467155
+      },
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.788602,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322030416244
+      },
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.779982,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322041343683
+      },
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.766812,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322052335611
+      },
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.837192,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322063316880
+      },
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.866932,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322074337559
+      },
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.792932,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322085311717
+      },
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 1.002943,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322096449877
+      },
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.811772,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322107447946
+      },
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.777122,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322118444084
+      },
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.790592,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322129396733
+      },
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.758182,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322140344012
+      },
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.797222,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322151388441
+      },
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.789932,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322162321019
+      },
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "condition": "duplicate_5pct",
+      "error": null,
+      "latency_ms": 0.804602,
+      "response": {
+        "action": "A2",
+        "cmd": "research_action_set",
+        "status": "ok",
+        "timestamp_ns": 1792497322173302029
+      },
+      "success": true
+    }
+  ],
+  "attempts_per_condition": 40,
+  "client": "tools.send_ocudu_command.send",
+  "conditions": [
+    {
+      "condition": "baseline",
+      "netem": [],
+      "qdisc_after_attempts": "qdisc noqueue 0: root refcnt 2 \n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0",
+      "qdisc_before_attempts": "qdisc noqueue 0: root refcnt 2 \n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    },
+    {
+      "condition": "delay_50ms",
+      "netem": [
+        "delay",
+        "50ms"
+      ],
+      "qdisc_after_attempts": "qdisc netem 8001: root refcnt 2 limit 1000 delay 50ms\n Sent 67544 bytes 596 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 66b 1p requeues 0",
+      "qdisc_before_attempts": "qdisc netem 8001: root refcnt 2 limit 1000 delay 50ms\n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    },
+    {
+      "condition": "delay_100ms_jitter_20ms",
+      "netem": [
+        "delay",
+        "100ms",
+        "20ms",
+        "distribution",
+        "normal"
+      ],
+      "qdisc_after_attempts": "qdisc netem 8002: root refcnt 2 limit 1000 delay 100ms  20ms\n Sent 124666 bytes 949 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 688b 5p requeues 0",
+      "qdisc_before_attempts": "qdisc netem 8002: root refcnt 2 limit 1000 delay 100ms  20ms\n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    },
+    {
+      "condition": "loss_1pct",
+      "netem": [
+        "loss",
+        "1%"
+      ],
+      "qdisc_after_attempts": "qdisc netem 8003: root refcnt 2 limit 1000 loss 1%\n Sent 53773 bytes 500 pkt (dropped 4, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0",
+      "qdisc_before_attempts": "qdisc netem 8003: root refcnt 2 limit 1000 loss 1%\n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    },
+    {
+      "condition": "loss_5pct",
+      "netem": [
+        "loss",
+        "5%"
+      ],
+      "qdisc_after_attempts": "qdisc netem 8004: root refcnt 2 limit 1000 loss 5%\n Sent 57713 bytes 519 pkt (dropped 33, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0",
+      "qdisc_before_attempts": "qdisc netem 8004: root refcnt 2 limit 1000 loss 5%\n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    },
+    {
+      "condition": "loss_10pct",
+      "netem": [
+        "loss",
+        "10%"
+      ],
+      "qdisc_after_attempts": "qdisc netem 8005: root refcnt 2 limit 1000 loss 10%\n Sent 55051 bytes 511 pkt (dropped 60, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0",
+      "qdisc_before_attempts": "qdisc netem 8005: root refcnt 2 limit 1000 loss 10%\n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    },
+    {
+      "condition": "reorder_10pct",
+      "netem": [
+        "delay",
+        "20ms",
+        "reorder",
+        "10%",
+        "50%"
+      ],
+      "qdisc_after_attempts": "qdisc netem 8006: root refcnt 2 limit 1000 delay 20ms reorder 10% 50% gap 1\n Sent 75472 bytes 602 pkt (dropped 0, overlimits 0 requeues 4) \n backlog 66b 1p requeues 4",
+      "qdisc_before_attempts": "qdisc netem 8006: root refcnt 2 limit 1000 delay 20ms reorder 10% 50% gap 1\n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    },
+    {
+      "condition": "duplicate_5pct",
+      "netem": [
+        "duplicate",
+        "5%"
+      ],
+      "qdisc_after_attempts": "qdisc netem 8007: root refcnt 2 limit 1000 duplicate 5%\n Sent 55480 bytes 533 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0",
+      "qdisc_before_attempts": "qdisc netem 8007: root refcnt 2 limit 1000 duplicate 5%\n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0"
+    }
+  ],
+  "evidence_role": "COMMAND_TRANSPORT_IMPAIRMENT_CHARACTERIZATION",
+  "final_qdisc": "qdisc noqueue 0: root refcnt 2 \n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0",
+  "initial_qdisc": "qdisc noqueue 0: root refcnt 2 \n Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) \n backlog 0b 0p requeues 0",
+  "schema_version": 1,
+  "scope_limitation": "isolated WebSocket command/acknowledgement transport; not a radio-service impairment result",
+  "summaries": [
+    {
+      "acknowledged": 40,
+      "attempts": 40,
+      "condition": "baseline",
+      "errors": [],
+      "mean_success_latency_ms": 1.073061075,
+      "median_success_latency_ms": 1.04136,
+      "p95_success_latency_ms": 1.3619474499999997,
+      "success_rate": 1.0
+    },
+    {
+      "acknowledged": 40,
+      "attempts": 40,
+      "condition": "delay_50ms",
+      "errors": [],
+      "mean_success_latency_ms": 301.61783015000003,
+      "median_success_latency_ms": 301.599696,
+      "p95_success_latency_ms": 301.87322705,
+      "success_rate": 1.0
+    },
+    {
+      "acknowledged": 40,
+      "attempts": 40,
+      "condition": "delay_100ms_jitter_20ms",
+      "errors": [],
+      "mean_success_latency_ms": 598.66670485,
+      "median_success_latency_ms": 592.2403684999999,
+      "p95_success_latency_ms": 728.2337329499999,
+      "success_rate": 1.0
+    },
+    {
+      "acknowledged": 38,
+      "attempts": 40,
+      "condition": "loss_1pct",
+      "errors": [
+        "TimeoutError:timed out"
+      ],
+      "mean_success_latency_ms": 6.441541289473683,
+      "median_success_latency_ms": 1.1313595,
+      "p95_success_latency_ms": 1.4263425,
+      "success_rate": 0.95
+    },
+    {
+      "acknowledged": 33,
+      "attempts": 40,
+      "condition": "loss_5pct",
+      "errors": [
+        "TimeoutError:timed out"
+      ],
+      "mean_success_latency_ms": 57.19131724242425,
+      "median_success_latency_ms": 1.07056,
+      "p95_success_latency_ms": 207.83291739999999,
+      "success_rate": 0.825
+    },
+    {
+      "acknowledged": 35,
+      "attempts": 40,
+      "condition": "loss_10pct",
+      "errors": [
+        "TimeoutError:timed out"
+      ],
+      "mean_success_latency_ms": 60.0783424,
+      "median_success_latency_ms": 1.136792,
+      "p95_success_latency_ms": 273.92504369999943,
+      "success_rate": 0.875
+    },
+    {
+      "acknowledged": 40,
+      "attempts": 40,
+      "condition": "reorder_10pct",
+      "errors": [],
+      "mean_success_latency_ms": 120.56503385,
+      "median_success_latency_ms": 121.5593035,
+      "p95_success_latency_ms": 121.77691204999999,
+      "success_rate": 1.0
+    },
+    {
+      "acknowledged": 40,
+      "attempts": 40,
+      "condition": "duplicate_5pct",
+      "errors": [],
+      "mean_success_latency_ms": 0.8198794249999999,
+      "median_success_latency_ms": 0.791762,
+      "p95_success_latency_ms": 0.9735300499999999,
+      "success_rate": 1.0
+    }
+  ],
+  "timeout_seconds": 0.75
+}

@@ -1,0 +1,127 @@
+diff --git a/lib/include/srsran/adt/pool/fixed_size_pool.h b/lib/include/srsran/adt/pool/fixed_size_pool.h
+index 0fdd363..050e9b5 100644
+--- a/lib/include/srsran/adt/pool/fixed_size_pool.h
++++ b/lib/include/srsran/adt/pool/fixed_size_pool.h
+@@ -84,7 +84,12 @@ public:
+     allocated_blocks.clear();
+   }
+ 
+-  static concurrent_fixed_memory_pool<ObjSize, DebugSanitizeAddress>* get_instance(size_t size = 4096)
++  // The NR software-radio UE can legitimately retain more than 4096 byte
++  // buffers while a long RLC-UM impairment creates a large PDCP reordering
++  // window.  This pool is the sole production instantiation of this template
++  // in srsUE.  Provision enough headroom for the frozen 120 s validation
++  // workload; this changes no radio samples or protocol decisions.
++  static concurrent_fixed_memory_pool<ObjSize, DebugSanitizeAddress>* get_instance(size_t size = 16384)
+   {
+     static concurrent_fixed_memory_pool<ObjSize, DebugSanitizeAddress> pool(size);
+     return &pool;
+diff --git a/lib/src/rlc/rlc_um_nr.cc b/lib/src/rlc/rlc_um_nr.cc
+index 197466b..848bd2e 100644
+--- a/lib/src/rlc/rlc_um_nr.cc
++++ b/lib/src/rlc/rlc_um_nr.cc
+@@ -551,6 +551,11 @@ void rlc_um_nr::rlc_um_nr_rx::handle_data_pdu(uint8_t* payload, uint32_t nof_byt
+   if (header.si == rlc_nr_si_field_t::full_sdu) {
+     // copy full PDU into buffer
+     unique_byte_buffer_t sdu = rlc_um_nr_strip_pdu_header(header, payload, nof_bytes);
++    if (sdu == nullptr) {
++      RlcError("Dropping full RLC-UM SDU after byte-buffer allocation failure.");
++      metrics.num_lost_pdus++;
++      return;
++    }
+ 
+     // deliver to PDCP
+     RlcInfo("Rx SDU (%d B)", sdu->N_bytes);
+@@ -563,6 +568,11 @@ void rlc_um_nr::rlc_um_nr_rx::handle_data_pdu(uint8_t* payload, uint32_t nof_byt
+     rlc_umd_pdu_nr_t rx_pdu = {};
+     rx_pdu.header           = header;
+     rx_pdu.buf              = rlc_um_nr_strip_pdu_header(header, payload, nof_bytes);
++    if (rx_pdu.buf == nullptr) {
++      RlcError("Dropping segmented RLC-UM PDU after byte-buffer allocation failure (SN=%d).", header.sn);
++      metrics.num_lost_pdus++;
++      return;
++    }
+ 
+     // check if this SN is already present in rx buffer
+     if (rx_window.find(header.sn) == rx_window.end()) {
+diff --git a/srsue/src/metrics_csv.cc b/srsue/src/metrics_csv.cc
+index f6cfbc2..5443fff 100644
+--- a/srsue/src/metrics_csv.cc
++++ b/srsue/src/metrics_csv.cc
+@@ -22,6 +22,7 @@
+ #include "srsue/hdr/metrics_csv.h"
+ 
+ #include <float.h>
++#include <chrono>
+ #include <iomanip>
+ #include <iostream>
+ #include <math.h>
+@@ -35,6 +36,18 @@ using namespace std;
+ 
+ namespace srsue {
+ 
++namespace {
++
++/// Emit an explicit UTC capture time so this receiver-side stream can be
++/// aligned with OCUDU KPM JSON and the IQ broker's ground-truth timestamps.
++double epoch_time_ms()
++{
++  using clock = std::chrono::system_clock;
++  return std::chrono::duration<double, std::milli>(clock::now().time_since_epoch()).count();
++}
++
++} // namespace
++
+ metrics_csv::metrics_csv(std::string filename, bool append_)
+ {
+   std::ios_base::openmode flags = std::ios_base::out;
+@@ -88,7 +101,7 @@ void metrics_csv::set_metrics_helper(const srsran::rf_metrics_t&  rf,
+     return;
+   }
+ 
+-  file << time_ms << ";";
++  file << std::fixed << std::setprecision(3) << epoch_time_ms() << ";";
+ 
+   // CC and PCI
+   file << cc << ";";
+@@ -97,6 +110,8 @@ void metrics_csv::set_metrics_helper(const srsran::rf_metrics_t&  rf,
+ 
+   // Print PHY metrics for first CC
+   file << float_to_string(phy.ch[r].rsrp, 2);
++  file << float_to_string(phy.ch[r].rsrq, 2);
++  file << float_to_string(phy.ch[r].rssi, 2);
+   file << float_to_string(phy.ch[r].pathloss, 2);
+   file << float_to_string(phy.sync[r].cfo, 2);
+ 
+@@ -186,7 +201,7 @@ void metrics_csv::set_metrics(const ue_metrics_t& metrics, const uint32_t period
+ 
+   if (file.is_open() && ue != NULL) {
+     if (n_reports == 0 && !file_exists) {
+-      file << "time;cc;earfcn;pci;rsrp;pl;cfo;pci_neigh;rsrp_neigh;cfo_neigh;dl_mcs;dl_snr;dl_turbo;dl_brate;dl_bler;"
++      file << "timestamp_epoch_ms;cc;earfcn;pci;rsrp;rsrq;rssi;pl;cfo;pci_neigh;rsrp_neigh;cfo_neigh;dl_mcs;dl_snr;dl_turbo;dl_brate;dl_bler;"
+               "ul_ta;distance_km;speed_kmph;ul_mcs;ul_buff;ul_brate;ul_"
+               "bler;"
+               "rf_o;rf_"
+@@ -207,13 +222,21 @@ void metrics_csv::set_metrics(const ue_metrics_t& metrics, const uint32_t period
+       set_metrics_helper(metrics.rf, metrics.sys, metrics.phy, metrics.stack.mac, metrics.stack.rrc, r, r);
+     }
+ 
++    // The CSV helper accepts the LTE-shaped RRC metric container, but its
++    // exported connection flag must describe the carrier whose PHY/MAC values
++    // are in this row. In NR standalone mode LTE RRC can remain IDLE while the
++    // native NR RRC is CONNECTED. Adapt only this local snapshot's state for
++    // the shared writer; never infer connection from throughput or RF values.
++    rrc_metrics_t nr_csv_rrc = metrics.stack.rrc;
++    nr_csv_rrc.state = metrics.stack.rrc_nr.state == RRC_NR_STATE_CONNECTED ? RRC_STATE_CONNECTED : RRC_STATE_IDLE;
++
+     // Metrics for NR carrier
+     for (uint32_t r = 0; r < metrics.phy_nr.nof_active_cc; r++) {
+       set_metrics_helper(metrics.rf,
+                          metrics.sys,
+                          metrics.phy_nr,
+                          metrics.stack.mac_nr,
+-                         metrics.stack.rrc,
++                         nr_csv_rrc,
+                          metrics.phy.nof_active_cc + r, // NR carrier offset
+                          r);
+     }

@@ -1,0 +1,54 @@
+{
+  "run": "iq-broker-live-cg-20261027m1-smoke-partial-guarded_policy-s9302",
+  "events": [
+    {
+      "action_window": 17,
+      "rollback_window": 18,
+      "action": "MCS_BACKOFF",
+      "authorized": true,
+      "throughput_before_action_mbps": 0.0,
+      "delay_before_action_ms": 2409.7720064935065,
+      "throughput_at_rollback_mbps": 0.0,
+      "delay_at_rollback_ms": 2771.543127388535,
+      "throughput_threshold_mbps": 2.37502,
+      "delay_threshold_ms": 5.305052371541501,
+      "boundary_already_crossed_before_action": true,
+      "interference_ongoing": true,
+      "action_readback_after_input_window_end": true,
+      "attribution": "cannot distinguish action-caused harm from ongoing interference; the threshold was already violated before authorization"
+    },
+    {
+      "action_window": 24,
+      "rollback_window": 25,
+      "action": "MCS_BACKOFF",
+      "authorized": true,
+      "throughput_before_action_mbps": 0.0,
+      "delay_before_action_ms": 5343.744124137931,
+      "throughput_at_rollback_mbps": 0.0,
+      "delay_at_rollback_ms": 4123.5545357142855,
+      "throughput_threshold_mbps": 2.37502,
+      "delay_threshold_ms": 5.305052371541501,
+      "boundary_already_crossed_before_action": true,
+      "interference_ongoing": true,
+      "action_readback_after_input_window_end": true,
+      "attribution": "cannot distinguish action-caused harm from ongoing interference; the threshold was already violated before authorization"
+    },
+    {
+      "action_window": 31,
+      "rollback_window": 32,
+      "action": "MCS_BACKOFF",
+      "authorized": true,
+      "throughput_before_action_mbps": 0.0,
+      "delay_before_action_ms": 5357.144170068027,
+      "throughput_at_rollback_mbps": 0.0,
+      "delay_at_rollback_ms": 3679.814905063291,
+      "throughput_threshold_mbps": 2.37502,
+      "delay_threshold_ms": 5.305052371541501,
+      "boundary_already_crossed_before_action": true,
+      "interference_ongoing": true,
+      "action_readback_after_input_window_end": true,
+      "attribution": "cannot distinguish action-caused harm from ongoing interference; the threshold was already violated before authorization"
+    }
+  ],
+  "conclusion": "All three are persistence of a pre-existing threshold breach during ongoing interference. Temporal succession is not causal action harm, and a counterfactual ongoing-interference/no-action sequence is unavailable for these windows."
+}

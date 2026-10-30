@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-20T08:20:00Z",
+  "status": "PRE_FULL_CAMPAIGN_ELIGIBILITY_CORRECTION",
+  "superseded_manifest": "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1_SUPERSEDED_SMOKE.csv",
+  "superseded_manifest_sha256": "2c121749a54b7d8b3fc299374958bd0bb7edfe24424a71c8a289a051196f4fdc",
+  "superseded_freeze": "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1_SUPERSEDED_SMOKE.freeze.json",
+  "superseded_freeze_sha256": "b04066d4b2361e11c05c7df420f676bf63ecccd74cdf20cd200b52843d9b5714",
+  "failed_smoke_run_id": "rv-r1-b01-a1-partial_band-j0-low-nominal-s9101",
+  "accepted_rows_before_correction": 0,
+  "observed_radio_windows": 30,
+  "evidence_complete_windows": 30,
+  "decision_status_counts": {
+    "DECISION": 10,
+    "SKIPPED_INFEASIBLE_EXPLORATION_ACTION": 20
+  },
+  "first_rejection": "PRB_AVOID_SHIFT was infeasible because no localized jammer region was available in any of the 20 interference windows",
+  "scientific_basis": "The baseline-relative spectral estimator requires ten action-free reference windows, and a localized actuator must not be forced when localization is absent.",
+  "correction": {
+    "pre_interference_seconds": 10,
+    "interference_seconds": 15,
+    "recovery_seconds": 5,
+    "A1_A4_eligibility": "partial_band at +5 dB JSR only",
+    "A0_A2_A3_eligibility": "all 24 factor blocks"
+  },
+  "prohibited_actions": [
+    "do not reclassify the failed smoke as accepted",
+    "do not delete or overwrite its raw evidence",
+    "do not use it in efficacy estimates"
+  ]
+}
+

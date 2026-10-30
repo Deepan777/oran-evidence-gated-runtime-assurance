@@ -62,7 +62,7 @@ def _json_lines(path: Path) -> Iterable[dict[str, Any]]:
     return values
 
 
-def _load_srsue(path: Path) -> list[TimedValues]:
+def _load_srsue(path: Path, *, allow_unbounded_sinr: bool = False) -> list[TimedValues]:
     if not path.is_file():
         return []
     rows = list(csv.reader(path.read_text(encoding="utf-8").splitlines(), delimiter=";"))
@@ -75,7 +75,7 @@ def _load_srsue(path: Path) -> list[TimedValues]:
             continue
         raw = dict(zip(rows[0], row, strict=True))
         try:
-            parsed = parse_srsue_csv(header, ";".join(row))
+            parsed = parse_srsue_csv(header, ";".join(row), allow_unbounded_sinr=allow_unbounded_sinr)
         except ValueError:
             # The raw envelope remains on disk; an incomplete window records
             # that this particular receiver sample was unusable.
@@ -283,7 +283,8 @@ def build_records(evidence: Path, metadata: dict[str, Any]) -> pd.DataFrame:
     sample_rate_hz = int(metadata.get("sample_rate_hz", DEFAULT_SAMPLE_RATE_HZ))
     if sample_rate_hz <= 0:
         raise ValueError("sample_rate_hz must be positive")
-    srsue = _load_srsue(evidence / "srsue_metrics.csv")
+    amended_receiver_profile = metadata.get("acceptance_profile") == "observed_outage_and_unbounded_sinr_v2"
+    srsue = _load_srsue(evidence / "srsue_metrics.csv", allow_unbounded_sinr=amended_receiver_profile)
     srsue_status = _load_srsue_status(evidence / "srsue_metrics.csv")
     scheduler, rlc = _load_ocudu(evidence / "ocudu-metrics.jsonl")
     iq_sensor = _load_iq_sensor(evidence / "iq-spectral-estimator.jsonl")
@@ -334,6 +335,11 @@ def build_records(evidence: Path, metadata: dict[str, Any]) -> pd.DataFrame:
         if not missing:
             observability = "complete_measured"
             evidence_complete = True
+        elif (amended_receiver_profile and missing_set == {"sinr_db"}
+              and telemetry.get("sinr_positive_infinity_observed") == 1.0
+              and receiver_attached == 1.0):
+            observability = "native_positive_infinite_sinr_observed"
+            evidence_complete = True
         elif missing_set == {"rlc_sdu_delay_ms"} and no_successful_sdu:
             observability = "right_censored_no_successful_sdu"
             evidence_complete = True
@@ -375,6 +381,8 @@ def build_records(evidence: Path, metadata: dict[str, Any]) -> pd.DataFrame:
             "complete_controller_state": not missing_controller,
             "receiver_observed": receiver_observed,
             "receiver_attached": receiver_attached,
+            "receiver_measurement_qualifiers": json.dumps({"sinr_db": "native_positive_infinity_unbounded"}
+                if telemetry.get("sinr_positive_infinity_observed") == 1.0 else {}, sort_keys=True),
             "telemetry_observability": observability,
             "evidence_complete": evidence_complete,
             **_truth_for_window(truth, start, end, started_ns), **telemetry,

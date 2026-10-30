@@ -1,0 +1,7 @@
+FROM ocudu-gnb-zmq:git-fa4c9fa445a3
+
+ARG OCUDU_COMMIT=fa4c9fa445a37fea681c9a75ee2fc70f9814ae06
+LABEL org.opencontainers.image.revision="${OCUDU_COMMIT}" \
+      org.opencontainers.image.patch="radio-before-du-startup,initial-zmq-tx-timeline-rebase,first-rx-clock-barrier"
+COPY gnb /opt/ocudu/bin/gnb
+ENTRYPOINT ["/opt/ocudu/bin/gnb"]

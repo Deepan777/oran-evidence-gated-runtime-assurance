@@ -1,0 +1,9 @@
+FROM ocudu-gnb-zmq:git-fa4c9fa445a3-radiofix-macfix
+
+ARG SOURCE_COMMIT
+ARG PATCH_SHA256
+LABEL org.opencontainers.image.revision="${SOURCE_COMMIT}" \
+      org.opencontainers.image.research-patch-sha256="${PATCH_SHA256}" \
+      org.opencontainers.image.patch="radio-first,mac-fix,atomic-research-actions-a0-a4"
+COPY gnb /opt/ocudu/bin/gnb
+ENTRYPOINT ["/opt/ocudu/bin/gnb"]

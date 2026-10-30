@@ -1,0 +1,8 @@
+﻿{
+    "status":  "PASS",
+    "accepted_unique_runs":  360,
+    "archive_sha256":  "0606fea9b8fe2383ff864fd105a7666174394e863a432d2650255ed90c8e1376",
+    "verified_files":  46,
+    "vm_status":  "TERMINATED",
+    "verified_utc":  "2026-08-27T18:08:44.6741285Z"
+}

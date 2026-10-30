@@ -9,7 +9,7 @@ from torch import nn
 from src.controller.action_mask import Action, ActionContext
 from src.controller.state import StateBuilder, StateSchema
 from src.environment.iq_calibrated_env import FEATURE_NAMES
-from src.xapp.adapters.actions import ActionAdapter, HookAcknowledgement
+from src.xapp.adapters.actions import ActionAdapter, ConfigurationReadback, HookAcknowledgement
 from src.xapp.runtime.loop import DecisionInput, DecisionRuntime, TELEMETRY_STATE_FEATURES
 from experiments.live.run_xapp_loop import _PPOLogitAdapter, _sample_masked_ppo
 from src.baselines.learning import MaskedPPOPolicy
@@ -28,8 +28,17 @@ class FixedQ(nn.Module):
 
 
 class AckBackend:
+    def __init__(self) -> None:
+        self.action = Action.NO_OP
+        self.parameters: dict[str, object] = {}
+
     def apply(self, action: Action, parameters: object) -> HookAcknowledgement:
-        return HookAcknowledgement(True, "research-hook", "ok", dict(parameters))  # type: ignore[arg-type]
+        self.action = action
+        self.parameters = dict(parameters)  # type: ignore[arg-type]
+        return HookAcknowledgement(True, "research-hook", "ok", action, self.parameters)
+
+    def readback(self) -> ConfigurationReadback:
+        return ConfigurationReadback(True, "research-readback", "verified", self.action, self.parameters)
 
 
 def _decision() -> DecisionInput:
@@ -67,6 +76,7 @@ def test_runtime_preserves_locked_order_and_execution_acknowledgement() -> None:
         attribution_steps=4,
         counterfactual_iterations=3,
     )
+    assert runtime.action_adapter.reconcile().successful
     result = runtime.decide(_decision())
     assert result.selected_action is Action.PRB_AVOID_SHIFT
     assert result.execution.acknowledged
@@ -88,6 +98,7 @@ def test_runtime_preserves_locked_order_and_execution_acknowledgement() -> None:
     }
     record = result.as_record()
     assert json.loads(json.dumps(record))["execution"]["acknowledged"] is True
+    assert record["execution"]["configuration_state_status"] == "VERIFIED"
 
 
 def test_runtime_rejects_missing_measured_telemetry() -> None:
@@ -109,6 +120,7 @@ def test_development_forced_exploration_still_obeys_the_action_mask() -> None:
         np.full(len(FEATURE_NAMES), -8.0), np.full(len(FEATURE_NAMES), 8.0),
         np.ones(len(FEATURE_NAMES), dtype=bool),
     )
+    assert runtime.action_adapter.reconcile().successful
     result = runtime.decide(_decision(), explain=False, forced_action=Action.MCS_BACKOFF)
     assert result.selected_action is Action.MCS_BACKOFF
     assert result.execution.executed_action is Action.MCS_BACKOFF
@@ -134,6 +146,7 @@ def test_repeated_mcs_backoff_is_idempotent() -> None:
         np.full(len(FEATURE_NAMES), -8.0), np.full(len(FEATURE_NAMES), 8.0),
         np.ones(len(FEATURE_NAMES), dtype=bool),
     )
+    assert runtime.action_adapter.reconcile().successful
     first = runtime.decide(_decision(), explain=False, forced_action=Action.MCS_BACKOFF)
     assert first.execution.requested_parameters["mcs_cap"] == 6
     second = DecisionInput(**{**_decision().__dict__, "action_context": ActionContext(

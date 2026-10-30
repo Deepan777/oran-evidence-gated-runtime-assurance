@@ -6,7 +6,7 @@ executes the safety-gated adapter, and returns a fully machine-readable record.
 """
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from time import perf_counter_ns
 from typing import Mapping
 
@@ -22,7 +22,7 @@ from src.xai.attribution import selected_action_attribution
 from src.xai.contrastive import contrastive_attribution
 from src.xai.counterfactual import CounterfactualResult, projected_counterfactual
 from src.xai.rationale import FeatureContribution, build_operator_rationale
-from src.xapp.adapters.actions import ActionAdapter, ActionExecution
+from src.xapp.adapters.actions import ActionAdapter, ActionExecution, ConfigurationStateStatus
 from src.xapp.adapters.parameter_planner import ActionParameterPolicy, plan_action_parameters
 
 
@@ -99,9 +99,47 @@ class DecisionResult:
                 "weighted_l1": self.counterfactual.weighted_l1,
                 "iterations": self.counterfactual.iterations,
             }
-        execution = asdict(self.execution)
-        execution["requested_action"] = self.execution.requested_action.name
-        execution["executed_action"] = self.execution.executed_action.name
+        verified_action = self.execution.executed_action
+        execution = {
+            "requested_action": self.execution.requested_action.name,
+            "requested_parameters": dict(self.execution.requested_parameters),
+            "command_sent": self.execution.command_sent,
+            "command_outcome": self.execution.command_outcome.value,
+            "acknowledged": self.execution.acknowledged,
+            "acknowledgement_message": self.execution.acknowledgement_message,
+            "adapter_reported_action": (
+                None if self.execution.adapter_reported_action is None
+                else self.execution.adapter_reported_action.name
+            ),
+            "adapter_reported_parameters": dict(self.execution.adapter_reported_parameters),
+            "action_match": self.execution.action_match,
+            "parameter_match": self.execution.parameter_match,
+            "configuration_state_status": self.execution.configuration_state_status.value,
+            "configuration_state_action": (
+                None if self.execution.configuration_state_action is None
+                else self.execution.configuration_state_action.name
+            ),
+            "configuration_state_parameters": dict(self.execution.configuration_state_parameters),
+            "restoration_requested": self.execution.restoration_requested,
+            "restoration_acknowledged": self.execution.restoration_acknowledged,
+            "restoration_verified": self.execution.restoration_verified,
+            "failure": self.execution.failure,
+            "backend": self.execution.backend,
+            "started_ns": self.execution.started_ns,
+            "completed_ns": self.execution.completed_ns,
+            "readback": None if self.execution.readback is None else {
+                "successful": self.execution.readback.successful,
+                "source_id": self.execution.readback.source_id,
+                "timestamp_ns": self.execution.readback.observed_timestamp_ns,
+                "configuration_version": self.execution.readback.configuration_version,
+                "verification_scope": self.execution.readback.verification_scope,
+                "message": self.execution.readback.message,
+            },
+            # Compatibility keys are deliberately nullable. They contain only
+            # independently verified state, never an inference from an ACK.
+            "executed_action": None if verified_action is None else verified_action.name,
+            "applied_parameters": dict(self.execution.applied_parameters),
+        }
         return {
             "state": self.state,
             "raw_state": dict(self.raw_state),
@@ -220,18 +258,7 @@ class DecisionRuntime:
                     action_parameters["mcs_cap"] = self._last_mcs_cap
             self._last_mcs_observed = decision.action_context.current_mcs_index
         execution = self.action_adapter.execute(selected, mask, action_parameters)
-        if execution.acknowledged and execution.executed_action in (
-            Action.MCS_BACKOFF,
-            Action.COMPOSITE_LOCAL_DEFENSE,
-        ):
-            applied_cap = execution.applied_parameters.get("mcs_cap")
-            self._last_mcs_cap = int(applied_cap) if applied_cap is not None else None
-        elif execution.executed_action not in (
-            Action.MCS_BACKOFF,
-            Action.COMPOSITE_LOCAL_DEFENSE,
-        ):
-            self._last_mcs_cap = None
-            self._last_mcs_observed = None
+        self.observe_execution(execution)
         selected_attr = torch.zeros_like(state_tensor)
         contrastive_attr = torch.zeros_like(state_tensor)
         alternative: Action | None = None
@@ -313,6 +340,17 @@ class DecisionRuntime:
     @staticmethod
     def _elapsed(start_ns: int) -> float:
         return (perf_counter_ns() - start_ns) / 1_000_000.0
+
+    def observe_execution(self, execution: ActionExecution) -> None:
+        """Keep actuator memory consistent with both normal and restoration commands."""
+        if execution.configuration_state_status is not ConfigurationStateStatus.VERIFIED:
+            return
+        if execution.configuration_state_action in (Action.MCS_BACKOFF, Action.COMPOSITE_LOCAL_DEFENSE):
+            applied_cap = execution.configuration_state_parameters.get("mcs_cap")
+            self._last_mcs_cap = int(applied_cap) if applied_cap is not None else None
+        else:
+            self._last_mcs_cap = None
+            self._last_mcs_observed = None
 
     @staticmethod
     def _assemble_raw_state(decision: DecisionInput) -> dict[str, float]:

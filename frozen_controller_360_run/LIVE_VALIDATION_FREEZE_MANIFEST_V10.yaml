@@ -1,0 +1,376 @@
+schema_version: 10
+status: LIVE_VALIDATION_FROZEN_V10
+scope: balanced_live_o_ran_validation
+total_method_executions: 360
+scenario_count: 90
+methods:
+- B0
+- B2
+- B5
+- P
+runs_per_method: 90
+run_length_seconds: 120
+selection_partition: locked_test
+selection_rule: deterministic round-robin over jammer_type/jsr_db cells
+full_confirmatory_manifest_unchanged: true
+full_confirmatory_manifest: CONFIRMATORY_FREEZE_MANIFEST.yaml
+artifacts:
+  base_manifest:
+    path: datasets/metadata/manifests/confirmatory_runs.csv
+    sha256: 24f5498e7cd001760aaa51c71189830af31b814fd60fff765e9c933717de1b59
+  b0_source:
+    path: datasets/metadata/manifests/confirmatory/B0_confirmatory_runs.csv
+    sha256: 23bb447ce62ae138c4e04083af85a0bfbce25527c88cd9fcc131253895a9e6b5
+  b2_source:
+    path: datasets/metadata/manifests/confirmatory/B2_confirmatory_runs.csv
+    sha256: 0ef627d652981be7046a2646c2404a0efbb62198e0b44495e037257827142710
+  b5_source:
+    path: datasets/metadata/manifests/confirmatory/B5_confirmatory_runs.csv
+    sha256: d0361b3b8e153f3a5ce59d051b8244840cc8818d01050d47bc58cf0b0c17850d
+  p_source:
+    path: datasets/metadata/manifests/confirmatory/P_confirmatory_runs.csv
+    sha256: 79e917e0d00e3e5e4ec16e742d94a2d236cb8f114245afc0474a5ec20125b947
+  selected_run_ids:
+    path: datasets/metadata/manifests/live_validation/selected_run_ids.json
+    sha256: 5e4a17a6d5a322e1662d452a74291f9f0be5e44b303663db210dc9e28db64f61
+  p_recalibrated_schema:
+    path: results/training/live_controller_recalibrated_v2/state_schema.json
+    sha256: 127719f66f1b3bc3622473089c8b94206dfe65fdd9cd212a7b51a2d773946fc5
+  p_recalibrated_controller:
+    path: results/training/live_controller_recalibrated/md3qn_per_live_candidate.pt
+    sha256: 713b48f1a16fdae31c37cf5b6ed2a8757fa80facbd4e99de3a5e64d74621e498
+  b5_recalibrated_controller:
+    path: results/training/live_controller_recalibrated/prb_only_masked_dqn_live_candidate.pt
+    sha256: 958ba0fc13d6fe505fb45e65bcbe5a59676161e4725ee5c3b1c42a8893ccdd68
+  b0_v3_manifest:
+    path: datasets/metadata/manifests/live_validation_v3/B0_live_validation_runs.csv
+    sha256: 33ad1b96ae9110d63e3c2b85e09aa45235d5318f1e9077cdfebb46b52d922152
+  b2_v3_manifest:
+    path: datasets/metadata/manifests/live_validation_v3/B2_live_validation_runs.csv
+    sha256: 14699c06d8197c09aef5c3f5b560f1f1ccc6441b8bbaeba1d2669787bb3ef82e
+  b5_v3_manifest:
+    path: datasets/metadata/manifests/live_validation_v3/B5_live_validation_runs.csv
+    sha256: 1edc50b6b9c61889c8caf8746763e87483be7647611036602697297966588277
+  p_v3_manifest:
+    path: datasets/metadata/manifests/live_validation_v3/P_live_validation_runs.csv
+    sha256: 9aa36fb8ff69c0643cb319c921fe4d73efd3e130db4e98277d41519184614a20
+  v4_radio_config:
+    path: config/baseline/ocudu_gnb_zmq_e2_udp_um.yml
+    sha256: 6eb0f74ab5a37b612f95f36de778da3fcd46d7d6420c15cd04d9d9ed920a9cf7
+  b0_v4_manifest:
+    path: datasets/metadata/manifests/live_validation_v4/B0_live_validation_runs.csv
+    sha256: a3e8e64262242d2a5a5a8e4d35afe7aae0f7a9f792143138e8ec25abd4c9bcc5
+  b2_v4_manifest:
+    path: datasets/metadata/manifests/live_validation_v4/B2_live_validation_runs.csv
+    sha256: 04b9143ed892e52268d78ebb54bf87b3fdcf4346f0b83a082ff7ad7ffe12b86c
+  b5_v4_manifest:
+    path: datasets/metadata/manifests/live_validation_v4/B5_live_validation_runs.csv
+    sha256: 2eb33c0cfd6b706575cf7ce107e64244f0a44193febfb7bc539b486c501cfe0a
+  p_v4_manifest:
+    path: datasets/metadata/manifests/live_validation_v4/P_live_validation_runs.csv
+    sha256: 469e166d7a1065edcaec0fc5cb88e4055f3fe7a764dde66e4fbf9c4ad70fdbda
+  v5_common_controller_schema:
+    path: results/training/live_controller_recalibrated_v2/state_schema.json
+    sha256: 127719f66f1b3bc3622473089c8b94206dfe65fdd9cd212a7b51a2d773946fc5
+  b0_v5_manifest:
+    path: datasets/metadata/manifests/live_validation_v5/B0_live_validation_runs.csv
+    sha256: f4c9d7a56a4bee6b1324d02af4cb61be7e10bc9e57df518858a45e43769ce7d2
+  b2_v5_manifest:
+    path: datasets/metadata/manifests/live_validation_v5/B2_live_validation_runs.csv
+    sha256: 278d73e7ea8605368e435d3760e2dc347d95393062c104786dfff9dec0d0b28a
+  b5_v5_manifest:
+    path: datasets/metadata/manifests/live_validation_v5/B5_live_validation_runs.csv
+    sha256: eb366da4601617066e7a42048c9cd2b95e58821ab4aa7be2e4b47a1db719e371
+  p_v5_manifest:
+    path: datasets/metadata/manifests/live_validation_v5/P_live_validation_runs.csv
+    sha256: e3399f0f31365c44783513a561327726d28abd808fd6be680079ff7d5a94c686
+  v6_srsue_source_patch:
+    path: patches/srsran4g-v6-rlc-um-buffer-safety.patch
+    sha256: c99126d7f74dda5dff799b1a0f4639a4e00f890c9dec114dbbbfb48287c2693d
+  b0_v6_manifest:
+    path: datasets/metadata/manifests/live_validation_v6/B0_live_validation_runs.csv
+    sha256: f469dabfb2d91e2d8484070a604d76eac16b79a831d8278a7446faaf259c2a60
+  b2_v6_manifest:
+    path: datasets/metadata/manifests/live_validation_v6/B2_live_validation_runs.csv
+    sha256: 95c48bad7c646f579308f421e1d9f25d8500287f0366466ec503b4021050b9c7
+  b5_v6_manifest:
+    path: datasets/metadata/manifests/live_validation_v6/B5_live_validation_runs.csv
+    sha256: 94664bf40c1075344c8992fe12e06ab33881a3ab07a5dcaf51c5332d4e398581
+  p_v6_manifest:
+    path: datasets/metadata/manifests/live_validation_v6/P_live_validation_runs.csv
+    sha256: 3a740f52be730816b21c8f379a934de377fda6b61b17e9a34c744bfee3a255c4
+  v7_outage_evidence_implementation:
+    paths:
+    - experiments/collection/build_live_run_records.py
+    - experiments/live/run_xapp_loop.py
+    - experiments/collection/run_manifest.py
+    sha256:
+      experiments/collection/build_live_run_records.py: fd36f4df29fff46e827b56f5850a4dd951238b330c3f00ac87f282ef0db9ccf1
+      experiments/live/run_xapp_loop.py: 34df3bef753e740758f5074fcfc1badb5c8afe44e8dcf896247bb8fd9356f924
+      experiments/collection/run_manifest.py: 41fc5bb951071f9ed89992668bb49fe19af698130f611392d9ebc917ab5b5209
+  b0_v7_manifest:
+    path: datasets/metadata/manifests/live_validation_v7/B0_live_validation_runs.csv
+    sha256: 6c5a6fe539210bdc7846d43c70e41f0f0fa8d904846e0659753c80d3bbf3daa7
+  b2_v7_manifest:
+    path: datasets/metadata/manifests/live_validation_v7/B2_live_validation_runs.csv
+    sha256: 77e518d559784830ac56ac421a84ed5ca00e338f5319fa1c117d205e97fe5ded
+  b5_v7_manifest:
+    path: datasets/metadata/manifests/live_validation_v7/B5_live_validation_runs.csv
+    sha256: cc339c231a14daab43e32fd3173d407c5f37c8ec958c09e126d485fc0585df31
+  p_v7_manifest:
+    path: datasets/metadata/manifests/live_validation_v7/P_live_validation_runs.csv
+    sha256: 88258d70fabd519e4ee90c860c373ab973f43b7062e5d80b6684e4a0fa86a131
+  v8_physical_guard_implementation:
+    paths:
+    - experiments/collection/build_live_run_records.py
+    - experiments/live/run_xapp_loop.py
+    - experiments/collection/run_manifest.py
+    sha256:
+      experiments/collection/build_live_run_records.py: fd36f4df29fff46e827b56f5850a4dd951238b330c3f00ac87f282ef0db9ccf1
+      experiments/live/run_xapp_loop.py: 5cbead6df50c02c677abec775bdad5afa16fd8048ca1b4f2e3b2203ba73d50ef
+      experiments/collection/run_manifest.py: c8d41962f20878b3e1862c81f7888156b48a8ecd1d10de3d8d40c6a013ab581a
+  v8_analysis_plan:
+    path: LIVE_VALIDATION_V8_ANALYSIS_PLAN.yaml
+    sha256: 28db0ac1d83365801466a1379dc6c1b1f52312b0ff4135f81e5ccc3ea8f5d2bd
+  b0_v8_manifest:
+    path: datasets/metadata/manifests/live_validation_v8/B0_live_validation_runs.csv
+    sha256: 9da560a59d703085768fc0dddef8ce7fe31f3545cde66d65a9bda9120f993f26
+  b2_v8_manifest:
+    path: datasets/metadata/manifests/live_validation_v8/B2_live_validation_runs.csv
+    sha256: 52cbf45b1e8d205d188ac91839fcd313dbe09a9b0addc9b9bb5b504ab36f4f12
+  b5_v8_manifest:
+    path: datasets/metadata/manifests/live_validation_v8/B5_live_validation_runs.csv
+    sha256: d04766627b12d6cecd5664e03239e22261fa7836415471ec59f2c6f9862e072c
+  p_v8_manifest:
+    path: datasets/metadata/manifests/live_validation_v8/P_live_validation_runs.csv
+    sha256: 9a10a937485d59253a27b400bc87b0927009837dae3b9cb7566748ffed8b91c2
+  v9_native_receiver_attachment_implementation:
+    paths:
+    - src/xapp/telemetry/srsue_csv.py
+    - experiments/collection/build_live_run_records.py
+    - experiments/live/run_xapp_loop.py
+    - experiments/collection/run_manifest.py
+    sha256:
+      src/xapp/telemetry/srsue_csv.py: 3cdd8f385bb61ee96856532cd3fe9d9b80fa5cfa0cb4bde7479e3f5f72767fb0
+      experiments/collection/build_live_run_records.py: fd36f4df29fff46e827b56f5850a4dd951238b330c3f00ac87f282ef0db9ccf1
+      experiments/live/run_xapp_loop.py: da537592f7894b6aeed49dd13849eaeacb221f5ca7427babaa81a30f3374c572
+      experiments/collection/run_manifest.py: c8d41962f20878b3e1862c81f7888156b48a8ecd1d10de3d8d40c6a013ab581a
+  v9_analysis_plan:
+    path: LIVE_VALIDATION_V9_ANALYSIS_PLAN.yaml
+    sha256: 69b6fccff352897c17ea3e3e25da927843358940ab0765e5c64b1f55c114ade1
+  b0_v9_manifest:
+    path: datasets/metadata/manifests/live_validation_v9/B0_live_validation_runs.csv
+    sha256: a33de168d182712c4cab246e371d64442ba874076c2141f98f9fc04404de1295
+  b2_v9_manifest:
+    path: datasets/metadata/manifests/live_validation_v9/B2_live_validation_runs.csv
+    sha256: c522967d242c921e33ef71f56d951127bffb929cc010afdb4bbf174db9ee430e
+  b5_v9_manifest:
+    path: datasets/metadata/manifests/live_validation_v9/B5_live_validation_runs.csv
+    sha256: c7c2003f73db45f3e65ae11518f8a0c06e3d41b591de7034222fdcd83dc545b3
+  p_v9_manifest:
+    path: datasets/metadata/manifests/live_validation_v9/P_live_validation_runs.csv
+    sha256: e31a77b414ffd590f926275e87322b46ce2f8fc5a864b3e0dd41c5dd10d3d713
+  v10_detached_outage_implementation:
+    paths:
+    - src/xapp/telemetry/srsue_csv.py
+    - experiments/collection/build_live_run_records.py
+    - experiments/live/run_xapp_loop.py
+    - experiments/collection/run_manifest.py
+    sha256:
+      src/xapp/telemetry/srsue_csv.py: 3cdd8f385bb61ee96856532cd3fe9d9b80fa5cfa0cb4bde7479e3f5f72767fb0
+      experiments/collection/build_live_run_records.py: 498da56b5bf80f678b303c41aaca88ae984c14597252dc305249439b8dc31a69
+      experiments/live/run_xapp_loop.py: da537592f7894b6aeed49dd13849eaeacb221f5ca7427babaa81a30f3374c572
+      experiments/collection/run_manifest.py: c8d41962f20878b3e1862c81f7888156b48a8ecd1d10de3d8d40c6a013ab581a
+  v10_analysis_plan:
+    path: LIVE_VALIDATION_V10_ANALYSIS_PLAN.yaml
+    sha256: c948f0ca912d560d2e755d4f9e7a8370ae3b51e0411d5ca5ba77b73e7820ed63
+  b0_v10_manifest:
+    path: datasets/metadata/manifests/live_validation_v10/B0_live_validation_runs.csv
+    sha256: 52184455873f8476fd405d4e6b1ba59df2ebafbfdd55080da478e6890f385ccb
+  b2_v10_manifest:
+    path: datasets/metadata/manifests/live_validation_v10/B2_live_validation_runs.csv
+    sha256: 8618fb4652a18ad91645133e4981cdbb67665671dec26b888f264e73722e52ed
+  b5_v10_manifest:
+    path: datasets/metadata/manifests/live_validation_v10/B5_live_validation_runs.csv
+    sha256: ec2a1fe8181645e985a70eee81094b656b530e6c0270c89c8e0dac2b62ab4722
+  p_v10_manifest:
+    path: datasets/metadata/manifests/live_validation_v10/P_live_validation_runs.csv
+    sha256: 472e3b48960d8f6d0fa3d3139045ee3ca4e82065e74c3d81637b13e2ca9544b7
+execution_plan:
+- method: B0
+  scenario_manifest: datasets/metadata/manifests/live_validation_v10/B0_live_validation_runs.csv
+  result_manifest: results/raw/LIVE_VALIDATION_V10_B0.json
+  expected_runs: 90
+  command:
+  - envs/oran-action-xai/bin/python
+  - experiments/collection/run_manifest.py
+  - --manifest
+  - datasets/metadata/manifests/live_validation_v10/B0_live_validation_runs.csv
+  - --output
+  - results/raw/LIVE_VALIDATION_V10_B0.json
+  - --max-wall-seconds
+  - '1800'
+  - --gnb-image
+  - ocudu-gnb-zmq:research-actions-fa4c9fa445a3
+  - --ue-image
+  - srsue-zmq:git-6bcbd9e5bf86-telemetry-v2-iperf3-buffer16384
+  - --gnb-config
+  - ocudu_gnb_zmq_e2_udp_um.yml
+- method: B2
+  scenario_manifest: datasets/metadata/manifests/live_validation_v10/B2_live_validation_runs.csv
+  result_manifest: results/raw/LIVE_VALIDATION_V10_B2.json
+  expected_runs: 90
+  command:
+  - envs/oran-action-xai/bin/python
+  - experiments/collection/run_manifest.py
+  - --manifest
+  - datasets/metadata/manifests/live_validation_v10/B2_live_validation_runs.csv
+  - --output
+  - results/raw/LIVE_VALIDATION_V10_B2.json
+  - --max-wall-seconds
+  - '1800'
+  - --gnb-image
+  - ocudu-gnb-zmq:research-actions-fa4c9fa445a3
+  - --ue-image
+  - srsue-zmq:git-6bcbd9e5bf86-telemetry-v2-iperf3-buffer16384
+  - --gnb-config
+  - ocudu_gnb_zmq_e2_udp_um.yml
+- method: B5
+  scenario_manifest: datasets/metadata/manifests/live_validation_v10/B5_live_validation_runs.csv
+  result_manifest: results/raw/LIVE_VALIDATION_V10_B5.json
+  expected_runs: 90
+  command:
+  - envs/oran-action-xai/bin/python
+  - experiments/collection/run_manifest.py
+  - --manifest
+  - datasets/metadata/manifests/live_validation_v10/B5_live_validation_runs.csv
+  - --output
+  - results/raw/LIVE_VALIDATION_V10_B5.json
+  - --max-wall-seconds
+  - '1800'
+  - --gnb-image
+  - ocudu-gnb-zmq:research-actions-fa4c9fa445a3
+  - --ue-image
+  - srsue-zmq:git-6bcbd9e5bf86-telemetry-v2-iperf3-buffer16384
+  - --gnb-config
+  - ocudu_gnb_zmq_e2_udp_um.yml
+- method: P
+  scenario_manifest: datasets/metadata/manifests/live_validation_v10/P_live_validation_runs.csv
+  result_manifest: results/raw/LIVE_VALIDATION_V10_P.json
+  expected_runs: 90
+  command:
+  - envs/oran-action-xai/bin/python
+  - experiments/collection/run_manifest.py
+  - --manifest
+  - datasets/metadata/manifests/live_validation_v10/P_live_validation_runs.csv
+  - --output
+  - results/raw/LIVE_VALIDATION_V10_P.json
+  - --max-wall-seconds
+  - '1800'
+  - --gnb-image
+  - ocudu-gnb-zmq:research-actions-fa4c9fa445a3
+  - --ue-image
+  - srsue-zmq:git-6bcbd9e5bf86-telemetry-v2-iperf3-buffer16384
+  - --gnb-config
+  - ocudu_gnb_zmq_e2_udp_um.yml
+parent_freeze_manifest: LIVE_VALIDATION_FREEZE_MANIFEST_V9.yaml
+notes: V10 implements the outage class already frozen in V9, retains all raw missingness
+  and measured network values, changes no scientific factor, and uses fresh execution
+  IDs.
+radio_profile_change:
+  scope: method_neutral_live_testbed_transport
+  from: 5QI-9 RLC AM
+  to: 5QI-9 RLC UM bidirectional
+  reason: preserve real-IQ clock and measure UDP loss without RLC-AM terminal RRC
+    release
+  scenario_factors_changed: false
+  rejected_v3_evidence_retained: true
+controller_schema_correction:
+  scope: common_controller_preprocessing_and_ood_guard
+  from: B2 older live_controller/state_schema.json
+  to: results/training/live_controller_recalibrated_v2/state_schema.json
+  basis: pre-confirmatory development-only calibration already hashed in the parent
+    freeze
+  models_changed: false
+  scenario_factors_changed: false
+  acceptance_rules_changed: false
+  rejected_v4_evidence_retained: true
+execution_revision: V10_DETACHED_OUTAGE_EVIDENCE_R1
+runtime_correction:
+  scope: method_neutral_srsue_rlc_um_memory_safety
+  srsran_commit: 6bcbd9e5bf8686aa7085202cd847c5ddd64a9c16
+  source_patch_sha256: c99126d7f74dda5dff799b1a0f4639a4e00f890c9dec114dbbbfb48287c2693d
+  ue_image: srsue-zmq:git-6bcbd9e5bf86-telemetry-v2-iperf3-buffer16384
+  ue_image_id: sha256:d752a75c5dca2718ef2e9abd4427c87fd4f0cc6a581dc5663d517f60e097d72c
+  srsue_binary_sha256: 34bad939de7ad48e60b272d3d5b318c53b70f1cbae8a274cffeaa183b7615f05
+  byte_buffer_pool_blocks: 16384
+  allocation_failure_behavior: drop_and_count_rlc_pdu_without_null_dereference
+  scenario_factors_changed: false
+  controllers_changed: false
+  radio_profile_changed: false
+  acceptance_rules_changed: false
+  rejected_v3_v4_v5_evidence_retained: true
+outage_evidence_correction:
+  scope: method_neutral_live_observability_and_causal_preprocessing
+  acceptance_profile: observed_outage_censoring_v1
+  raw_missing_values_synthesized: false
+  right_censored_latency_rule: no successful RLC SDU, zero throughput, and unit interval
+    drop rate
+  detached_receiver_rule: native is_attached=0 plus scheduler, RLC, IQ, and complete
+    radio-clock evidence
+  controller_missing_value_rule: frozen training mean then previous measured value,
+    with provenance
+  outcome_latency_rule: a dropped/no-success interval is an SLA violation; raw delay
+    remains missing
+  scenario_factors_changed: false
+  controllers_changed: false
+  radio_profile_changed: false
+  runtime_image_changed: false
+  acceptance_rules_changed: true
+  rejected_v3_v4_v5_v6_evidence_retained: true
+physical_guard_correction:
+  scope: method_neutral_controller_input_validation
+  ood_guard_profile: physical_plausibility_with_shift_audit
+  training_p01_p99_usage: audit-only distribution-shift warnings
+  hard_rejection_rule: non-finite, physically impossible, malformed probability, or
+    malformed previous-action state
+  development_trigger: V7 B2 stress smoke; zero V7 confirmatory rows accepted
+  scenario_factors_changed: false
+  controllers_changed: false
+  radio_profile_changed: false
+  runtime_image_changed: false
+  acceptance_rules_changed: true
+  rejected_v3_v4_v5_v6_v7_evidence_retained: true
+native_receiver_attachment_correction:
+  scope: method_neutral_receiver_observability_and_controller_input_validation
+  ood_guard_profile: physical_plausibility_with_shift_audit
+  training_p01_p99_usage: audit-only distribution-shift warnings
+  hard_rejection_rule: non-finite, physically impossible, malformed probability, or
+    malformed previous-action state
+  development_trigger: V8 B2 row livev8-b2-confirmatory-intermittentmjsrp5mhighmprotected_onlymdegraded-s1006;
+    native srsUE is_attached=0 with finite RF placeholders; V8 attachment audit found
+    4312/4320 affected B2 decisions across 36 runs
+  detached_receiver_policy: retain raw finite placeholders as receiver_unavailable_sentinels;
+    exclude receiver-derived controller features; frozen causal imputation with provenance
+  scenario_factors_changed: false
+  controllers_changed: false
+  radio_profile_changed: false
+  runtime_image_changed: false
+  acceptance_rules_changed: false
+  v8_controller_outcomes_eligible: false
+  rejected_v3_v4_v5_v6_v7_v8_evidence_retained: true
+detached_outage_evidence_correction:
+  scope: method_neutral_outage_evidence_classification
+  development_trigger: V9 B0 row livev9-b0-confirmatory-barragemjsrp10mhighmprotected_onlymdegraded-s1010;
+    120 radio windows, four native-detached windows with measured gNB-side buffered-SDU
+    delay
+  classification: native is_attached=0 plus present scheduler, RLC, IQ and radio-clock
+    evidence; retain any measured gNB-side delay; synthesize no receiver metric
+  scenario_factors_changed: false
+  controllers_changed: false
+  radio_profile_changed: false
+  runtime_image_changed: false
+  outcomes_changed: false
+  thresholds_changed: false
+  v9_outcomes_eligible: false
+  rejected_v3_v4_v5_v6_v7_v8_v9_evidence_retained: true

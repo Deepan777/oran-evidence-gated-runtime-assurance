@@ -8,7 +8,9 @@ never opened by this module; it is evaluation-only evidence.
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import json
+import os
 import subprocess
 import time
 from pathlib import Path
@@ -245,7 +247,8 @@ def _protected_session_active() -> bool:
 
 def _telemetry_window(metrics: Path, srsue: Path, sensor: Path, start_ns: int, end_ns: int) -> tuple[dict[str, float], dict[str, Any]] | None:
     scheduler, rlc = _load_ocudu(metrics)
-    receiver = _load_srsue(srsue)
+    receiver = _load_srsue(srsue, allow_unbounded_sinr=
+        os.environ.get("ORAN_RECEIVER_MEASUREMENT_PROFILE") == "native_positive_infinity_v1")
     scheduler_point, rlc_point, receiver_point = (
         _latest(scheduler, start_ns, end_ns), _latest(rlc, start_ns, end_ns), _latest(receiver, start_ns, end_ns),
     )
@@ -259,6 +262,7 @@ def _telemetry_window(metrics: Path, srsue: Path, sensor: Path, start_ns: int, e
         return None
     receiver_values = {} if receiver_point is None else dict(receiver_point.values)
     receiver_attached = receiver_values.pop("receiver_attached", None)
+    unbounded_sinr = receiver_values.pop("sinr_positive_infinity_observed", None) == 1.0
     unavailable_sentinels: dict[str, float] = {}
     # A detached srsUE can emit finite placeholder RF values (for example
     # dl_snr=113 interleaved with NaN).  The native is_attached=0 flag makes
@@ -298,6 +302,7 @@ def _telemetry_window(metrics: Path, srsue: Path, sensor: Path, start_ns: int, e
             "iq_spectral_estimator": int(sensor_point["timestamp_ns"]),
         },
         "receiver_attached": receiver_attached,
+        "receiver_measurement_qualifiers": {"sinr_db": "native_positive_infinity_unbounded"} if unbounded_sinr else {},
         "receiver_unavailable_sentinels": unavailable_sentinels,
     }
 
@@ -406,8 +411,9 @@ def main() -> int:
     schema, lower, upper, raw_low, raw_high = _load_schema(args.state_schema)
     imputer = CausalStateImputer(schema)
     network, score_type = _load_controller(args.controller, args.controller_kind)
+    action_adapter = ActionAdapter(OcuduWebSocketResearchBackend(), {})
     runtime = DecisionRuntime(
-        network, StateBuilder(schema), ActionAdapter(OcuduWebSocketResearchBackend(), {}),
+        network, StateBuilder(schema), action_adapter,
         np.clip(lower, schema.clip_low, schema.clip_high), np.clip(upper, schema.clip_low, schema.clip_high),
         np.asarray([name in MUTABLE_FEATURES for name in FEATURE_NAMES], dtype=bool),
     )
@@ -420,6 +426,16 @@ def main() -> int:
     previous_sensor_timestamp = 0
     with args.output.open("w", encoding="utf-8") as stream:
         for window_index in range(args.duration_seconds):
+            reconciliation_ms = 0.0
+            reconciliation = None
+            if not action_adapter.nontrivial_authority_ready:
+                # A genuine baseline readback is required at startup and after
+                # uncertainty. This cannot be inferred from the A0 request.
+                restoration = action_adapter.execute(Action.NO_OP, np.ones(5, dtype=bool))
+                reconciliation = asdict(restoration)
+                reconciliation_ms = restoration.latency_ms
+                runtime.observe_execution(restoration)
+                previous = action_adapter.last_verified_action
             if args.radio_window_driven:
                 matched_sensor: dict[str, Any] | None = None
                 while time.monotonic() < radio_deadline:
@@ -439,6 +455,9 @@ def main() -> int:
                         "selection_mode": args.selection_mode,
                         "status": "SKIPPED_MISSING_MEASURED_RADIO_WINDOW",
                     }
+                    if safety_guard is not None:
+                        record["safety_guard"] = safety_guard.reject_invalid("missing_measured_radio_window").as_dict()
+                        record["restoration"] = asdict(action_adapter.execute(Action.NO_OP, np.ones(5, dtype=bool)))
                     stream.write(json.dumps(record, sort_keys=True) + "\n"); stream.flush()
                     continue
                 window_start = previous_sensor_timestamp
@@ -449,12 +468,36 @@ def main() -> int:
                 wait_seconds = (window_end - time.time_ns()) / 1_000_000_000
                 if wait_seconds > 0:
                     time.sleep(wait_seconds)
+            processing_start = time.perf_counter_ns()
             found = _telemetry_window(args.ocudu_metrics, args.srsue_metrics, args.iq_sensor, window_start, window_end)
             record: dict[str, Any] = {"window_index": window_index, "window_start_ns": window_start, "window_end_ns": window_end, "evidence_class": "development_live_exploration" if args.selection_mode == "forced_exploration" else ("locked_confirmatory" if args.selection_mode == "fixed_action" else "live_controller_integration"), "selection_mode": args.selection_mode}
+            if not action_adapter.nontrivial_authority_ready:
+                # No previous-action one-hot may pretend that UNKNOWN means A0.
+                # Retain the observed window and explicit unavailable proposal.
+                record.update({
+                    "status": "STATE_UNVERIFIED_NO_INFERENCE",
+                    "policy_proposal": None,
+                    "previous_action_state_status": "UNKNOWN",
+                    "baseline_reconciliation": reconciliation,
+                    "baseline_reconciliation_ms": reconciliation_ms,
+                })
+                if safety_guard is not None:
+                    record["safety_guard"] = safety_guard.reject_invalid("applied_state_lockout_restore_baseline").as_dict()
+                stream.write(json.dumps(record, sort_keys=True)+"\n"); stream.flush()
+                if not args.radio_window_driven:
+                    window_start = window_end
+                continue
             if found is None:
                 record.update({"status": "SKIPPED_INCOMPLETE_MEASURED_TELEMETRY"})
+                if safety_guard is not None:
+                    record["safety_guard"] = safety_guard.reject_invalid("missing_measured_telemetry").as_dict()
+                    record["restoration"] = asdict(action_adapter.execute(Action.NO_OP, np.ones(5, dtype=bool)))
             else:
                 telemetry, context_data = found
+                guard_measured = {
+                    name: telemetry.get(name, float("nan"))
+                    for name in ("dl_throughput_mbps", "bler", "rlc_sdu_delay_ms")
+                }
                 telemetry, imputation = imputer.fill(telemetry, DETECTOR_FEATURES)
                 p_jam, distribution = _detector_output(detector, telemetry)
                 sensor = context_data["sensor"]
@@ -477,6 +520,7 @@ def main() -> int:
                 record.update({"detector_p_jam": p_jam, "detector_distribution": distribution,
                                "iq_localization": sensor, "source_timestamps_ns": context_data["source_timestamps_ns"],
                                "receiver_attached": context_data["receiver_attached"],
+                               "receiver_measurement_qualifiers": context_data["receiver_measurement_qualifiers"],
                                "receiver_unavailable_sentinels": context_data["receiver_unavailable_sentinels"],
                                "telemetry_provenance": imputation, "raw_state": raw_state,
                                "ood_guard_profile": args.ood_guard_profile})
@@ -491,6 +535,9 @@ def main() -> int:
                 # different action.
                 if violations and args.selection_mode not in {"forced_exploration", "ppo_sampling"}:
                     record.update({"status": "SKIPPED_OUT_OF_DISTRIBUTION", "ood_violations": violations})
+                    if safety_guard is not None:
+                        record["safety_guard"] = safety_guard.reject_invalid("invalid_physical_measurement").as_dict()
+                        record["restoration"] = asdict(action_adapter.execute(Action.NO_OP, np.ones(5, dtype=bool)))
                 else:
                     if violations:
                         record["ood_violations"] = violations
@@ -507,19 +554,26 @@ def main() -> int:
                         }
                     if safety_guard is not None:
                         protected_active = _protected_session_active()
+                        guard_started = time.perf_counter_ns()
                         safety = safety_guard.decide(SafetyObservation(
                             window_index=window_index,
+                            source_id=str(sensor.get("source_id", "iq_spectral_estimator")),
+                            source_epoch=str(sensor.get("source_epoch", sensor.get("process_start_ns", args.output.parent.name))),
+                            sequence_number=int(sensor.get("sequence_number", sensor.get("window_index", window_index))),
+                            measurement_window_id=str(sensor.get("measurement_window_id", sensor.get("timestamp_ns", window_index))),
+                            source_timestamp_ns=int(sensor["timestamp_ns"]),
                             protected_session_active=protected_active,
                             spectral_reference_ready=bool(sensor.get("spectral_reference_ready", False)),
                             spectral_excess_fraction=float(sensor.get("spectral_excess_fraction", 0.0)),
                             spectral_divergence=float(sensor.get("spectral_divergence", 0.0)),
-                            throughput_mbps=float(telemetry["dl_throughput_mbps"]),
-                            bler=float(telemetry["bler"]),
-                            latency_ms=float(telemetry["rlc_sdu_delay_ms"]),
+                            throughput_mbps=float(guard_measured["dl_throughput_mbps"]),
+                            bler=float(guard_measured["bler"]),
+                            latency_ms=float(guard_measured["rlc_sdu_delay_ms"]),
                             previous_action=previous,
-                        ))
+                        ), applied_state_verified=action_adapter.nontrivial_authority_ready)
                         forced_action = safety.forced_action
                         record["safety_guard"] = safety.as_dict()
+                        record["guard_computation_ms"] = (time.perf_counter_ns()-guard_started)/1e6
                     ppo_behavior: dict[str, float] | None = None
                     if args.selection_mode == "ppo_sampling":
                         if not isinstance(network, _PPOLogitAdapter):
@@ -536,7 +590,12 @@ def main() -> int:
                         # substitution with another action.
                         record.update({"status": "SKIPPED_INFEASIBLE_EXPLORATION_ACTION", "reason": str(error)})
                     else:
-                        previous = result.execution.executed_action
+                        # Previous-action state is updated only from independent
+                        # readback. An unacknowledged or merely reported command
+                        # must never be silently represented as verified A0.
+                        previous = action_adapter.last_verified_action
+                        if safety_guard is not None and not action_adapter.nontrivial_authority_ready:
+                            record["post_execution_guard"] = safety_guard.reject_invalid("execution_uncertain_restore_baseline").as_dict()
                         decision_record = result.as_record()
                         if score_type == "policy_logits":
                             decision_record["policy_logits"] = decision_record.pop("q_values")
@@ -548,7 +607,14 @@ def main() -> int:
                         })
                         if ppo_behavior is not None:
                             record["ppo_behavior"] = ppo_behavior
+            record["baseline_reconciliation"] = reconciliation
+            record["baseline_reconciliation_ms"] = reconciliation_ms
+            record["full_loop_processing_ms"] = (time.perf_counter_ns()-processing_start)/1e6 + reconciliation_ms
+            logging_started = time.perf_counter_ns()
             stream.write(json.dumps(record, sort_keys=True) + "\n"); stream.flush()
+            logging_ms = (time.perf_counter_ns()-logging_started)/1e6
+            with args.output.with_name("loop-stage-timings.jsonl").open("a",encoding="utf-8") as timing_stream:
+                timing_stream.write(json.dumps({"window_index":window_index,"logging_ms":logging_ms,"full_loop_with_logging_ms":record["full_loop_processing_ms"]+logging_ms})+"\n")
             if not args.radio_window_driven:
                 window_start = window_end
     print(f"LIVE_XAPP_WINDOWS_COMPLETED={args.duration_seconds}")

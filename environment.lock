@@ -9,7 +9,7 @@ python:
   version: "3.11"
   ubuntu_24_04_source: "ppa:deadsnakes/ppa"
   package_version: pending_linux_provisioning
-  environment_path_windows: "<project-root>\\envs\\oran-action-xai"
+  environment_path_windows: "D:\\VIT Vellore Research one\\O-RAN\\envs\\oran-action-xai"
   environment_path_linux: /opt/oran-action-xai/envs/oran-action-xai
 external_repositories:
   ocudu: {url: "https://gitlab.com/ocudu/ocudu.git", commit: pending_phase_4_clone}

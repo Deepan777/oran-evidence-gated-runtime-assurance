@@ -27,7 +27,7 @@ def test_websocket_backend_rejects_error(monkeypatch: object) -> None:
     )
     result = OcuduWebSocketResearchBackend().apply(Action.MCS_BACKOFF, {"mcs_cap": 5})
     assert not result.accepted
-    assert result.applied_parameters == {}
+    assert result.reported_parameters == {}
 
 
 def test_websocket_backend_accepts_native_ocudu_ack(monkeypatch: object) -> None:
@@ -37,3 +37,5 @@ def test_websocket_backend_accepts_native_ocudu_ack(monkeypatch: object) -> None
     )
     result = OcuduWebSocketResearchBackend().apply(Action.NO_OP, {})
     assert result.accepted
+    assert result.reported_action is None
+    assert result.reported_parameters == {}

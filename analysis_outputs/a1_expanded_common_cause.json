@@ -1,0 +1,93 @@
+{
+  "arms": [
+    {
+      "method": "B0",
+      "runs": 90,
+      "recovery_windows": 1800,
+      "live_xapp_flags": [
+        0
+      ],
+      "selection_modes": [
+        "policy"
+      ],
+      "controller_kinds": [
+        "md3qn_per"
+      ],
+      "positive_throughput_windows": 720,
+      "positive_native_rlc_sdu_windows": 720,
+      "finite_delay_windows": 720,
+      "recovery_windows_with_scheduler_ue_entry": 1800
+    },
+    {
+      "method": "B2",
+      "runs": 90,
+      "recovery_windows": 1800,
+      "live_xapp_flags": [
+        1
+      ],
+      "selection_modes": [
+        "policy"
+      ],
+      "controller_kinds": [
+        "heuristic"
+      ],
+      "positive_throughput_windows": 0,
+      "positive_native_rlc_sdu_windows": 0,
+      "finite_delay_windows": 0,
+      "recovery_windows_with_scheduler_ue_entry": 1800
+    },
+    {
+      "method": "B5",
+      "runs": 90,
+      "recovery_windows": 1800,
+      "live_xapp_flags": [
+        1
+      ],
+      "selection_modes": [
+        "policy"
+      ],
+      "controller_kinds": [
+        "prb_only_masked_dqn"
+      ],
+      "positive_throughput_windows": 0,
+      "positive_native_rlc_sdu_windows": 0,
+      "finite_delay_windows": 0,
+      "recovery_windows_with_scheduler_ue_entry": 1800
+    },
+    {
+      "method": "P",
+      "runs": 90,
+      "recovery_windows": 1800,
+      "live_xapp_flags": [
+        1
+      ],
+      "selection_modes": [
+        "policy"
+      ],
+      "controller_kinds": [
+        "md3qn_per"
+      ],
+      "positive_throughput_windows": 0,
+      "positive_native_rlc_sdu_windows": 0,
+      "finite_delay_windows": 0,
+      "recovery_windows_with_scheduler_ue_entry": 1800
+    }
+  ],
+  "raw_manifest_run_counts": {
+    "B0": 90,
+    "B2": 90,
+    "B5": 90,
+    "P": 90
+  },
+  "locally_available_original_run_metadata_counts": {
+    "B0": 0,
+    "B2": 0,
+    "B5": 0,
+    "P": 0
+  },
+  "frozen_loop_sha256": "da537592f7894b6aeed49dd13849eaeacb221f5ca7427babaa81a30f3374c572",
+  "frozen_loop_has_phase_input": false,
+  "frozen_loop_has_explicit_post_loop_reset": false,
+  "causal_conclusion": "Shared live-xApp-path association, not isolated learned-policy failure. Specific UE/PDU, scheduler, traffic, or harness cause cannot be determined from locally available records. Historical receiver attachment flag is invalid for NR. Frozen loop has no interference-phase restoration boundary; actual recovery-period applied state is unavailable locally.",
+  "frozen_outputs_modified": false
+}

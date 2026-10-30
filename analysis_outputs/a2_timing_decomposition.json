@@ -1,0 +1,102 @@
+{
+  "run": "iq-broker-live-cg-20261027m1-fault-partial-guarded_policy-s9401",
+  "windows": 45,
+  "measured_stage_summaries_ms": {
+    "full_with_logging_ms": {
+      "n": 45,
+      "mean": 487.3750356666668,
+      "median": 435.76018,
+      "p99": 820.5791238,
+      "maximum": 831.8380989999999
+    },
+    "logging_ms": {
+      "n": 45,
+      "mean": 0.5369242666666667,
+      "median": 0.37395,
+      "p99": 2.0020240000000027,
+      "maximum": 2.48422
+    },
+    "guard_ms": {
+      "n": 45,
+      "mean": 1.0702168,
+      "median": 0.786,
+      "p99": 3.3974152000000006,
+      "maximum": 3.51893
+    },
+    "preprocessing_ms": {
+      "n": 45,
+      "mean": 0.13483715555555553,
+      "median": 0.08935,
+      "p99": 0.7320036,
+      "maximum": 0.73676
+    },
+    "inference_ms": {
+      "n": 45,
+      "mean": 1.2312931555555557,
+      "median": 0.92283,
+      "p99": 4.101658400000003,
+      "maximum": 4.68538
+    },
+    "masking_ms": {
+      "n": 45,
+      "mean": 0.025099444444444445,
+      "median": 0.01869,
+      "p99": 0.062145240000000004,
+      "maximum": 0.06317
+    },
+    "runtime_total_ms": {
+      "n": 45,
+      "mean": 16.943732066666666,
+      "median": 14.890061,
+      "p99": 36.49592216,
+      "maximum": 36.821813
+    },
+    "command_send_ack_readback_ms": {
+      "n": 45,
+      "mean": 15.268145311111109,
+      "median": 12.742911,
+      "p99": 33.4695324,
+      "maximum": 33.732802
+    },
+    "reconciliation_ms": {
+      "n": 45,
+      "mean": 0.5883265333333333,
+      "median": 0.0,
+      "p99": 13.333972920000003,
+      "maximum": 14.042563
+    },
+    "unpartitioned_outer_processing_ms": {
+      "n": 45,
+      "mean": 468.235836,
+      "median": 418.936102,
+      "p99": 802.57436284,
+      "maximum": 812.783128
+    },
+    "runtime_other_ms": {
+      "n": 45,
+      "mean": 0.2843570000000002,
+      "median": 0.21452000000000027,
+      "p99": 1.2266683600000023,
+      "maximum": 1.450070000000002
+    }
+  },
+  "unpartitioned_outer_fraction_of_total": 0.9607300368996398,
+  "unavailable_individual_stage_durations": [
+    "telemetry wait",
+    "telemetry parse",
+    "detector evaluation",
+    "protected-session subprocess checks",
+    "command send alone",
+    "acknowledgement wait alone",
+    "consumer readback polling alone"
+  ],
+  "fixed_polling": {
+    "radio_window_poll_seconds": 0.05,
+    "readback_poll_seconds": 0.01,
+    "readback_timeout_seconds": 0.75,
+    "command_timeout_seconds": 1.0
+  },
+  "timing_boundary": "Radio-window waiting is outside full_loop_processing_ms. Logging is separately measured. Send, acknowledgement and readback are combined. Outer residual includes telemetry file reload/parse, detector, two protected-session docker exec pgrep calls and other bookkeeping; these cannot be separated retrospectively.",
+  "dominance": "The measured outer residual dominates; individual causes inside it are uninstrumented, so no measured parse/subprocess split is claimed.",
+  "historical_1_721_ms_boundary": "Historical DecisionRuntime timing; excludes the outer telemetry/session/guard work and logging, hence not comparable with corrected complete local processing."
+}

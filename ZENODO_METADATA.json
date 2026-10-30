@@ -1,0 +1,32 @@
+{
+  "title": "Evidence-gated runtime assurance for O-RAN control: code and data (v1.4.0)",
+  "version": "1.4.0",
+  "upload_type": "software",
+  "license": "cc-by-4.0",
+  "creators": [
+    {
+      "name": "Deepanramkumar, P.",
+      "affiliation": "School of Computer Science and Engineering, Vellore Institute of Technology, Vellore, Tamil Nadu, India"
+    },
+    {
+      "name": "Sharmila, A. Helen",
+      "affiliation": "School of Computer Science and Engineering, Vellore Institute of Technology, Vellore, Tamil Nadu, India"
+    }
+  ],
+  "description": "Code, frozen model artifacts and data for evidence-gated runtime assurance in a virtualized O-RAN control testbed. Version 1.4.0 adds the prospectively committed Study V continuation, all 69 attempted executions including five rejected runs, acceptance reasons, native attestations where available, preservation-integrity records, the matched-comparison and replication analysis, primary and exploratory statistical outputs, real command-fault traces, the exploratory G-pre variant, offline validation report and SHA-256 manifests. No measured outcome is imputed or edited. Recovery is observed within ten seconds. Documented privacy projections withhold ancillary captures and container introspection and replace operator identity or subscriber settings without changing measured outcomes. The original full records remain privately preserved.",
+  "keywords": [
+    "O-RAN",
+    "runtime assurance",
+    "xApp",
+    "reproducibility",
+    "wireless interference",
+    "software radio"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Deepan777/oran-evidence-gated-runtime-assurance/releases/tag/v1.4.0",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

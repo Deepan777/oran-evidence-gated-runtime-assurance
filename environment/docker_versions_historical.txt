@@ -1,0 +1,6 @@
+Docker Engine version: NOT VERIFIED FROM PROJECT ARTIFACTS
+Docker Compose version: NOT VERIFIED FROM PROJECT ARTIFACTS
+Container platform: linux/amd64
+Container storage driver recorded in inspections: overlayfs
+gNB image ID: sha256:455f84581550466ed9fc1fd21f5e121a3172e14ee2ab53411a4bf4b59dc231d3
+UE image ID: sha256:d752a75c5dca2718ef2e9abd4427c87fd4f0cc6a581dc5663d517f60e097d72c

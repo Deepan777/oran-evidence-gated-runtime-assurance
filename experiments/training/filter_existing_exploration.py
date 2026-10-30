@@ -2,7 +2,7 @@ from __future__ import annotations
 import csv, json, pathlib
 
 def main() -> None:
-    root = pathlib.Path('<project-root>')
+    root = pathlib.Path('/home/OPERATOR_USER/oran-cloud-project')
     manifest = root / 'datasets/metadata/manifests/live_exploration_runs_recalibrated.csv'
     out = root / 'datasets/metadata/manifests/live_exploration_runs_recalibrated_complete.csv'
     with manifest.open(newline='') as f:

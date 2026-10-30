@@ -1,0 +1,272 @@
+{
+  "run_id": "v14-20261030-cg-b03-r1-guarded_policy-s9505",
+  "kind": "post_collection_archive_preservation_only",
+  "native_execution_attestation_available": true,
+  "historical_execution_proof_inferred": false,
+  "original_members": [
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/background_udp.json",
+      "bytes": 107500,
+      "sha256": "b8c7cf8415665315b20e21658301d9c36dcba16a13c70e1a249621c634485fdf",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/broker-scheduling.txt",
+      "bytes": 46,
+      "sha256": "4051745a5ec6f5a7771c26ef8e109da91836e87d5b63777685463ffb25b725c6",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/broker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/broker.pid",
+      "bytes": 6,
+      "sha256": "2f188e53a628d849d192bca3f68e961cd82b02e4bab86361ebe234dec8f3e025",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/broker_status.jsonl",
+      "bytes": 36601,
+      "sha256": "2a95493c26a942e6f0428d3be5f567885a5791fdb26330325e69c1b35812ca18",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/client-exit-status.txt",
+      "bytes": 155,
+      "sha256": "c288f789761d5bcb2716169f1f2200cff818acf1d4bfe1f2a7ae7957fae54e12",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/command-transport.jsonl",
+      "bytes": 18388,
+      "sha256": "859cc2e14d89cdf12d30347add9f49d7f1026674589e05284e8d2dfa9fc77cba",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/container-resource-snapshot.jsonl",
+      "bytes": 396,
+      "sha256": "eb5a760178a1f6dd0b5ff2adad8f1378493990dd2a79d19a968884a0fa8849ea",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/experiment.start",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/gnb-container-inspect.json",
+      "bytes": 8692,
+      "sha256": "72dbfe8300a5dcfedfaa943fa4172eeac2bd8d07e8817939807ceb02c97131a3",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/gnb.full.log",
+      "bytes": 1715424,
+      "sha256": "4332f2d50a5eec3fca8af9aacb48daa251fef63c6a93a604bea76184791d3107",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/gnb.log",
+      "bytes": 1641027,
+      "sha256": "3f5d074248c254ddcdca116e37013ef0c95f5872583d6a419b19e63577232f96",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/gnb_container_id.txt",
+      "bytes": 65,
+      "sha256": "a6282f472068e675674753c835d6f571da27ebb36db2951632b56ed857a298c6",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/gnb_mac.pcap",
+      "bytes": 36512670,
+      "sha256": "84925f134dd022378a6ac73dc3cec5b1302808c40b16b4a6f9730592a0ba4d7f",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/gnb_ngap.pcap",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/iperf-background-server.log",
+      "bytes": 10563,
+      "sha256": "cbf1b8d798f0317ec29fa72724808e1a72cab692dbb0b22b0effac3337e0b0db",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/iperf-protected-server.log",
+      "bytes": 10563,
+      "sha256": "277f70e09c0cf0af76dc6a1b82be8be8a80bcf885f98ad48071009e666e4abae",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/iq-spectral-estimator.jsonl",
+      "bytes": 29052,
+      "sha256": "320cade10a2ba18104f2e2e0c9f83850bbe3aea2293c32e46ffa70f919658827",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/jammer_truth.jsonl",
+      "bytes": 18001954,
+      "sha256": "849b9e2314a84897e7f743f030fcf2b63762bdc51c37164f6412bf5be2ca35ff",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/live-xapp-decisions.jsonl",
+      "bytes": 291980,
+      "sha256": "fd579ea3beeeba609876a67d2eb3116c5e76b883eae7a91403606aeb8fe11262",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/live-xapp.log",
+      "bytes": 31,
+      "sha256": "83e766f467b652343b50afbacc0ab11aa114b62da45bc14e4425e308bf32513a",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/loop-stage-timings.jsonl",
+      "bytes": 3880,
+      "sha256": "3899be9c29b762335943571b6842183d62798bfbcaa125c850e6dc96a4a6db9a",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/metrics-capture.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/ocudu-metrics.jsonl",
+      "bytes": 1185591,
+      "sha256": "35d52654ca78f0871999cf112e40fd11aa38e4b46fce60aa2c4687a482c09961",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/protected-client-start-ns.txt",
+      "bytes": 20,
+      "sha256": "2571a98da29931a631a388414760c11f6913d82986425625cde3bacd2a59bd2e",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/protected-traffic-status.json",
+      "bytes": 18676,
+      "sha256": "c1a73f5efe443d5d049c817c7380d0572c956662d30d024f3e5b8ada9407044b",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/protected-traffic-validator.log",
+      "bytes": 18677,
+      "sha256": "604c074536f08ac5252f32e909b8927e9eb68d3369ffb7ccb9dbc06cf5265927",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/protected_ping.txt",
+      "bytes": 9294,
+      "sha256": "0816b1dbeabef36a5500980f773051373fb3756e64405778fa5c0a07211e63e5",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/protected_udp.json",
+      "bytes": 107441,
+      "sha256": "06de9973077203f9df76504ae256efeca9909fc52ec18b38a11ea57ef452b696",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/radio-clock-status.json",
+      "bytes": 137,
+      "sha256": "90b61a6c44530b6e10d3f8a6e52ccd058f7c4f2676905bdea966d570a1fcddac",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/record-build-summary.json",
+      "bytes": 389,
+      "sha256": "77530b442d5c5728682d17346badd3124b00f93d90b6e1ea8f394d2e16e134b0",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/records.parquet",
+      "bytes": 88307,
+      "sha256": "ede22f332f32910c1d807d6664b0ced7f07477b38efd343ef98d3098de5d88ca",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/records.summary.json",
+      "bytes": 388,
+      "sha256": "45569c69b8e33100feb1c16db273fad67b5ee0b9270e491643c719789fa3fc13",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/registration.log",
+      "bytes": 238,
+      "sha256": "0c73f691d27061cad31f22b3309beb69ad7c2b4aa619869656853011a734127b",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/run_metadata.json",
+      "bytes": 1073,
+      "sha256": "d7db39a25fcf886b36d3e24b1ebd9863af4d7e324443ad41bc53544a66bd7f59",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue-container-inspect.json",
+      "bytes": 9636,
+      "sha256": "8ca40764ffdb4a6f36a7c8675c6c57f74d7e21606d8692a14fa87fe80a1c1425",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue-container.log",
+      "bytes": 2973,
+      "sha256": "db06147d07aa1c1478b27ffbd2fac417b3ee7f3fdfdbb619e75b8d78912671ec",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue.full.log",
+      "bytes": 2210,
+      "sha256": "75fe08b42ab5280174f4c10e1c48bbf9b703b71d971d713fa8f80fda385fdf36",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue.log",
+      "bytes": 3727360,
+      "sha256": "bc7b1cee782585e285835370df690e2b8d8efe4cce3234c113f191f17e3040dd",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue_container_id.txt",
+      "bytes": 65,
+      "sha256": "0ad773c67ed7844534263d5324457ae7179b7be5d66c171cabe03149c270df98",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue_mac_nr.pcap",
+      "bytes": 19980288,
+      "sha256": "b224c73a4878d06c57cbd4593e8fce11611472685537a1bba4ba467c74dbf87a",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue_metrics.csv",
+      "bytes": 35582,
+      "sha256": "92f07b9bb57f7c362443a3dbce16b915d741db72f43156ef2c129cc3cedc5f10",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/srsue_nas.pcap",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    },
+    {
+      "path": "results/raw/iq-broker-live-v14-20261030-cg-b03-r1-guarded_policy-s9505/v14_attestation.json",
+      "bytes": 10825,
+      "sha256": "13ad5037440c0da20e47c91c133cb91ecfcf228faa4e7b736123bff565dbb122",
+      "source_archive_sha256": "3b7224fe7f286aa5fb5edd64de1973fbd75945966c370c15320ddd8bda3426f3"
+    }
+  ]
+}

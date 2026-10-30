@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-10-20T08:00:00Z",
+  "evidence_role": "EXPLORATORY_REVIEWER_RESPONSE_NEW_DATA",
+  "expected_windows": 2880,
+  "manifest": "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1.csv",
+  "matched_blocks": 24,
+  "prohibited_use": "not eligible to overturn V10 or qualification futility decisions",
+  "rows": 96,
+  "schema_version": 1,
+  "source_sha256": {
+    "analysis/reviewer_validation_r1_postprocess.py": "107a9ec7c9fcb5d320090f187cd66dbac31f4fee396384838827c7b10a81f1e4",
+    "configs/experiments/protocol.yaml": "084c605c11fd0bf484026ed42face9bfd8906890447efa8565788c461f9f97c0",
+    "datasets/metadata/manifests/reviewer_validation_r1/REVIEWER_VALIDATION_R1.csv": "2c121749a54b7d8b3fc299374958bd0bb7edfe24424a71c8a289a051196f4fdc",
+    "experiments/collection/run_manifest.py": "75a855099e8725e5553a9b191774032a4f201db2013ccc64cbb25b511dfe116d",
+    "experiments/generate_reviewer_validation_r1.py": "8c0ebc803f963abb887eee814e5e3993a6fe81594aeb445a8cb0983d43b072c1",
+    "reproducibility/REVIEWER_VALIDATION_R1_ANALYSIS_PLAN.yaml": "83f847995d6cc23c514b88af2cd14cafc3d8454901f905a22987a8baecde7a35",
+    "tools/finalize_reviewer_validation_r1.py": "0b57030c90616bd49de8ab50a9dd80c1c72fb719bdb2f69ff40248020be2c70a",
+    "tools/install_reviewer_validation_r1_service.sh": "ba05c091dcc385f14c52daa9e473635fd80a75236c8940ee9e85066ea9c608b4",
+    "tools/run_command_impairment_study.py": "f0e5585e9ddc9a515d0d96ae1264715983785081eab0ade2aa9d45ee1e0691b1",
+    "tools/run_live_pilot_scenario.sh": "9c15aeb4fec9f4455a378b25cb88561c226d6a7aabce40bd836362aead293bc5",
+    "tools/run_reviewer_validation_r1.sh": "c6d21ce79510c1adfe1a4109cf58f60460ea6cd9f2d80bc6337aaff654981813",
+    "tools/run_reviewer_validation_r1_resilient.py": "fe0770ac0e166d8ea4eb683ee0ae0b618e65d57bc70e1c43fbdd58e2cac59d25"
+  },
+  "windows_per_row": 30
+}

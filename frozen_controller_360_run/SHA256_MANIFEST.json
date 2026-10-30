@@ -1,0 +1,77 @@
+[
+  {
+    "bytes": 86988,
+    "file": "md3qn_per_live_candidate.pt",
+    "sha256": "713b48f1a16fdae31c37cf5b6ed2a8757fa80facbd4e99de3a5e64d74621e498"
+  },
+  {
+    "bytes": 5472,
+    "file": "state_schema.json",
+    "sha256": "127719f66f1b3bc3622473089c8b94206dfe65fdd9cd212a7b51a2d773946fc5"
+  },
+  {
+    "bytes": 1117,
+    "file": "scaler.pkl",
+    "sha256": "ebf2363fe396f04166b4990fe84d80062e3433101a3d1eacc2623817b925d9df"
+  },
+  {
+    "bytes": 1614,
+    "file": "live_controller_fine_tuning_summary.json",
+    "sha256": "74df31874de83cbd556431ef464278df8945052272cceaca0c1bb7ddeaf8db3f"
+  },
+  {
+    "bytes": 1598,
+    "file": "controller_training_summary.json",
+    "sha256": "4b75f90f8090411f7dfe0adaa2aa84683f7f6ddaad102e7a8b1d5e1acc251452"
+  },
+  {
+    "bytes": 301,
+    "file": "controller.yaml",
+    "sha256": "94ccad761d475929526e60cb4c8de6c2a69a561686522a6526cb17791f2f19ce"
+  },
+  {
+    "bytes": 423,
+    "file": "reward.yaml",
+    "sha256": "932314568ee4715b9f61a0a783608e15dad7e20f230e7a23e04e340e58bb9463"
+  },
+  {
+    "bytes": 7231,
+    "file": "prepare_live_controller.py",
+    "sha256": "6cfd17740009a05fb485fa23c12023f3a515b40ec6e36190a29ba9ea7081c1f5"
+  },
+  {
+    "bytes": 12139,
+    "file": "train_live_controller.py",
+    "sha256": "365438088938df6e967923dac0e867a3f7343854d2cb619909d269fc367dcd36"
+  },
+  {
+    "bytes": 2166,
+    "file": "md3qn.py",
+    "sha256": "da793279280cd5aa4661cd3fade09787fe07fe12fd446c636c321bea508b1ef4"
+  },
+  {
+    "bytes": 3427,
+    "file": "state.py",
+    "sha256": "56741e00f246654dc2b0ecc68e701a327d1456b7947dada222fd50447bc3b59f"
+  },
+  {
+    "bytes": 1977,
+    "file": "reward.py",
+    "sha256": "45e7d3fa5e17b73b71dc0a9e1e51b63784d870f93f112b75a713eb08493a819c"
+  },
+  {
+    "bytes": 27132,
+    "file": "run_xapp_loop.py",
+    "sha256": "da537592f7894b6aeed49dd13849eaeacb221f5ca7427babaa81a30f3374c572"
+  },
+  {
+    "bytes": 19103,
+    "file": "LIVE_VALIDATION_FREEZE_MANIFEST_V10.yaml",
+    "sha256": "9cf5183dda8092e7206bfca8e299c0a71ae2db3cfd0609bb542a308c6d8b92f9"
+  },
+  {
+    "bytes": 71175,
+    "file": "P_live_validation_runs.csv",
+    "sha256": "472e3b48960d8f6d0fa3d3139045ee3ca4e82065e74c3d81637b13e2ca9544b7"
+  }
+]

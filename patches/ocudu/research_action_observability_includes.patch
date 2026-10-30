@@ -1,0 +1,28 @@
+diff --git a/lib/scheduler/ue_scheduling/grant_params_selector.cpp b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+--- a/lib/scheduler/ue_scheduling/grant_params_selector.cpp
++++ b/lib/scheduler/ue_scheduling/grant_params_selector.cpp
+@@ -15,6 +15,7 @@
+ #include "ocudu/scheduler/support/rb_helper.h"
+ #include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ #include <variant>
+diff --git a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+--- a/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
++++ b/lib/scheduler/ue_context/ue_link_adaptation_controller.cpp
+@@ -6,6 +6,7 @@
+ #include "../config/time_domain_mapper.h"
+ #include "../support/mcs_calculator.h"
+ #include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ 
+ using namespace ocudu;
+diff --git a/lib/scheduler/slicing/inter_slice_scheduler.cpp b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+--- a/lib/scheduler/slicing/inter_slice_scheduler.cpp
++++ b/lib/scheduler/slicing/inter_slice_scheduler.cpp
+@@ -10,6 +10,7 @@
+ #include "../ue_scheduling/ue_cell_grid_allocator.h"
+ #include "ocudu/ocudulog/ocudulog.h"
+ #include "ocudu/scheduler/research_action_control.h"
++#include <cstdio>
+ 
+ using namespace ocudu;

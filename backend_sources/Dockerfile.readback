@@ -1,0 +1,4 @@
+FROM ocudu-gnb-zmq:research-actions-fa4c9fa445a3
+LABEL org.opencontainers.image.description="Scheduler consumer-state readback at PRB, MCS and slice application sites"
+COPY gnb /opt/ocudu/bin/gnb
+ENTRYPOINT ["/opt/ocudu/bin/gnb"]

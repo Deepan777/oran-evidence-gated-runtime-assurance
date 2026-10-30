@@ -49,11 +49,21 @@ class HttpResearchHookBackend:
                 status = int(response.status)
                 payload = json.loads(response.read().decode("utf-8"))
         except HTTPError as exc:
-            return HookAcknowledgement(False, "ocudu-research-http", f"http_{exc.code}", {})
+            return HookAcknowledgement(False, "ocudu-research-http", f"http_{exc.code}")
         except (URLError, TimeoutError, json.JSONDecodeError) as exc:
-            return HookAcknowledgement(False, "ocudu-research-http", f"transport:{type(exc).__name__}", {})
-        accepted = status == 200 and payload.get("status") == "applied" and payload.get("action") == action.name
-        applied = payload.get("applied_parameters", {}) if accepted else {}
+            return HookAcknowledgement(False, "ocudu-research-http", f"transport:{type(exc).__name__}")
+        accepted = status == 200 and payload.get("status") == "applied"
+        reported_name = payload.get("action")
+        reported_action = Action.__members__.get(str(reported_name)) if reported_name is not None else None
+        reported_parameters = payload.get("applied_parameters", {}) if accepted else {}
+        if not isinstance(reported_parameters, dict):
+            reported_parameters = {}
         message = str(payload.get("message", "invalid acknowledgement"))
-        return HookAcknowledgement(accepted, "ocudu-research-http", message, applied)
+        return HookAcknowledgement(
+            accepted=accepted,
+            backend="ocudu-research-http",
+            message=message,
+            reported_action=reported_action,
+            reported_parameters=reported_parameters,
+        )
 
